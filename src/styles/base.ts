@@ -14,8 +14,10 @@ const GlobalBase = createGlobalStyle`
     --color-grey-3-modal: rgba(37,38,38,0.6);
 
     --color-red-0: rgba(203, 0, 0, 1);
-    --button-grad-red: linear-gradient(102.18deg, rgba(211, 0, 0, 0.83) 30.17%, rgba(73, 0, 0, 0) 135.52%);
+    --button-grad-red: 102.18deg, rgba(211, 0, 0, 0.83) 30.17%, rgba(73, 0, 0, 0) 135.52%;
 
+    --box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    
     --font-base: 'Roboto', sans-serif;
 }
 `;
