@@ -1,0 +1,1 @@
+//variáveis globais da aplicação
