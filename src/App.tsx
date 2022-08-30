@@ -6,9 +6,6 @@ function App() {
     <>
       <GlobalBase />
       <GlobalReset />
-      <div>teste</div>
-      <label htmlFor="">testando label</label>
-      <input type="text" placeholder="teste" />
     </>
   );
 }
