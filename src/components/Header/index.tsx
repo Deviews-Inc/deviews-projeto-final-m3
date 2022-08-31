@@ -1,1 +1,4 @@
-//componente da aplicação
+const Header = () => {
+  return <div></div>;
+};
+export default Header;
