@@ -6,8 +6,8 @@ export const ButtonComponent = styled.button`
   box-shadow: var(--box-shadow);
 
   width: 18rem;
+  height: 3rem;
   border-radius: 8px;
-  padding: 20px;
 
-  font-size: 2.25rem;
+  font-size: 1rem;
 `;

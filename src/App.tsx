@@ -1,4 +1,5 @@
-import Dashboard from "./pages/Dashboard";
+import Routes from "./routes";
+
 import GlobalBase from "./styles/base";
 import GlobalReset from "./styles/reset";
 
@@ -7,7 +8,8 @@ function App() {
     <>
       <GlobalBase />
       <GlobalReset />
-      <Dashboard />
+
+      <Routes />
     </>
   );
 }
