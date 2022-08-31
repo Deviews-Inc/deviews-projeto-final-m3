@@ -7,7 +7,7 @@ export const HeaderComponent = styled.header`
   display: flex;
   justify-content: center;
 
-  div {
+  figure {
     width: 90%;
     display: flex;
     height: 100%;
