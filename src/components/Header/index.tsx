@@ -4,9 +4,9 @@ import fullLogo from "../../assets/LogoInteiro1.png";
 const Header = () => {
   return (
     <HeaderComponent>
-      <div>
+      <figure>
         <img src={fullLogo} alt="Logo <Deviews/>" />
-      </div>
+      </figure>
     </HeaderComponent>
   );
 };

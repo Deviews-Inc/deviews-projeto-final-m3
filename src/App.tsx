@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import GlobalBase from "./styles/base";
 import GlobalReset from "./styles/reset";
 
