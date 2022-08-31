@@ -44,13 +44,13 @@ time, mark, audio, video, button, input,textarea {
 }
 
 ::placeholder {
-    font-size: 24px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--color-grey-0);
 }
 
 label{
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--color-white-0);
 }
