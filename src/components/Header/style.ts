@@ -7,14 +7,22 @@ export const HeaderComponent = styled.header`
   display: flex;
   justify-content: center;
 
-  figure {
+  div {
     width: 90%;
-    display: flex;
     height: 100%;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    img {
-      width: 15%;
+    figure {
+      width: 200px;
+
+      img {
+        width: 100%;
+      }
+    }
+    .logoMobile {
+      width: 60px;
     }
   }
 `;
