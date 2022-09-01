@@ -7,7 +7,8 @@ import logo from "../../assets/Logodevil.png";
 import { ContainerPassword, Form } from "./styles";
 import Button from "../Button";
 import schema from "../../validators/loginUser";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { GiBleedingEye } from "react-icons/gi";
 
 interface IUserLogin {
   email: string;
@@ -50,7 +51,7 @@ const FormLogin = () => {
             {...register("password")}
           />
           <button type="button" onClick={() => setIsView(!isView)}>
-            <IoEyeOutline />
+            <GiBleedingEye className="eyeOpen" />
           </button>
         </ContainerPassword>
       ) : (

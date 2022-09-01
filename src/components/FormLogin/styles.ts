@@ -104,6 +104,11 @@ export const ContainerPassword = styled.div`
       width: 1.125rem;
       height: 1.125rem;
     }
+
+    .eyeOpen {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   @media screen and (min-width: 425px) {
