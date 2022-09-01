@@ -21,7 +21,7 @@ interface UserDataRegister {
 }
 
 interface AuthProvidersData {
-  login: (userData: UserDataLogin) => void;
+  signIn: (userDataLogin: UserDataLogin) => void;
   register: (userData: UserDataRegister) => void;
   user: object;
 }
@@ -32,7 +32,8 @@ export const AuthContext = createContext<AuthProvidersData>(
 
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
-  // const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadUser = async () => {
@@ -41,18 +42,19 @@ const AuthProvider = ({ children }: AuthProps) => {
 
       if (token) {
         try {
-          const { data } = await api.get(`/user/${userId}`);
+          const { data } = await api.get(`/users/${userId}`);
           setUser(data);
-          // navigate("/dashboard", { replace: true });
+          navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
       }
+      setLoading(false);
     };
     loadUser();
   }, []);
 
-  const login = (data: UserDataLogin) => {
+  const signIn = (data: UserDataLogin) => {
     api
       .post("/login", data)
       .then((response) => {
@@ -63,7 +65,7 @@ const AuthProvider = ({ children }: AuthProps) => {
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
-        // navigate("/dashboard", { replace: true });
+        navigate("/dashboard", { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -72,13 +74,13 @@ const AuthProvider = ({ children }: AuthProps) => {
     api
       .post("/registe", data)
       .then((response) => {
-        // navigate("/login", { replace: true });
+        navigate("/login", { replace: true });
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <AuthContext.Provider value={{ login, register, user }}>
+    <AuthContext.Provider value={{ signIn, register, user }}>
       {children}
     </AuthContext.Provider>
   );

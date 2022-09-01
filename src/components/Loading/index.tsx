@@ -1,9 +1,9 @@
-import loadingSvg from "../Loading/loading.svg";
+import loadingSvg from "../../assets/loading.svg";
 
 const Loading = () => {
   return (
     <div>
-      <img src={loadingSvg} alt="" />
+      <img src={loadingSvg} alt="loading" />
     </div>
   );
 };
