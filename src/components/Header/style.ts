@@ -15,14 +15,14 @@ export const HeaderComponent = styled.header`
     justify-content: space-between;
 
     figure {
-      width: 200px;
+      width: 12.5rem;
 
       img {
         width: 100%;
       }
     }
     .logoMobile {
-      width: 60px;
+      width: 3.75rem;
     }
   }
 `;

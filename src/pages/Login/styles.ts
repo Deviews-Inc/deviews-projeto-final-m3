@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-  height: 100vh;
+  height: 85vh;
   width: 100vw;
 
   align-items: center;
