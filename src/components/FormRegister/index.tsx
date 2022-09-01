@@ -6,6 +6,7 @@ import Button from "../Button";
 import { Form, ListItem } from "./styles";
 import { BsPlusLg } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
+import Logo  from "../../assets/LogoDevil.png";
 
 
 interface IFormRegister {
@@ -40,6 +41,9 @@ const FormRegister = () => {
   return (
     <Form onSubmit={() => {}}>
       <div className="container">
+        <figure>
+          <img src={Logo} alt="Logo" />
+        </figure>
         <div className="divForm">
             <label htmlFor="name">Nome: </label>
             <input

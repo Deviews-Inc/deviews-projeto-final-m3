@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import logo from "../../assets/logodevil.png";
+import logo from "../../assets/LogoDevil.png";
 
 import { Form } from "./styles";
 import Button from "../Button";
@@ -26,7 +26,7 @@ const FormLogin = () => {
   return (
     <Form onSubmit={handleSubmit(singIn)}>
       <figure>
-        <img src="" alt="Logo da Deviews" />
+        <img src={logo} alt="Logo da Deviews" />
       </figure>
 
       <label htmlFor="email">Email</label>

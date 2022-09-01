@@ -5,12 +5,26 @@ export const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
 
-    margin: 0 auto;
+    margin: 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--color-grey-3);
+
+    figure{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        img{
+            width: 4.3125rem;
+        }
+    }
+
    .container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    
         .divForm{
             flex: 50%;
             display: flex;
@@ -122,6 +136,9 @@ export const Form = styled.form`
    
    } 
     @media screen and (min-width: 768px){
+        figure{
+            display: none;
+        }
         .container{
             flex-flow: row;
             .divForm{
