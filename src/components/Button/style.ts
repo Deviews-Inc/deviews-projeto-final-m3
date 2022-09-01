@@ -5,9 +5,13 @@ export const ButtonComponent = styled.button`
   color: var(--color-white-0);
   box-shadow: var(--box-shadow);
 
-  width: 18rem;
+  width: 100%;
   height: 3rem;
   border-radius: 8px;
 
   font-size: 1rem;
+
+  @media screen and (min-width: 425px) {
+    width: 18.188rem;
+  }
 `;
