@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
-export const ButtonComponent = styled.button`
+export const Button = styled.button`
+  width: 40px;
+  height: 40px;
   background: linear-gradient(var(--button-grad-red));
   color: var(--color-white-0);
-  box-shadow: var(--box-shadow);
-
-  width: 18rem;
-  height: 3rem;
   border-radius: 8px;
-
-  font-size: 1rem;
+  box-shadow: var(--box-shadow);
+  font-size: 35px;
 `;
