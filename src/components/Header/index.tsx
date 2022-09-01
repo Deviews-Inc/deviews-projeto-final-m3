@@ -1,6 +1,6 @@
 import { HeaderComponent } from "./style";
 import fullLogo from "../../assets/LogoInteiro1.png";
-import logoDevil from "../../assets/logodevil.png";
+import logoDevil from "../../assets/LogoDevil.png";
 import logoName from "../../assets/LogoNome.png";
 
 import ButtonLogout from "../ButtonLogout";
