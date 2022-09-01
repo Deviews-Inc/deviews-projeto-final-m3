@@ -20,5 +20,6 @@ const GlobalBase = createGlobalStyle`
     
     --font-base: 'Roboto', sans-serif;
 }
+
 `;
 export default GlobalBase;

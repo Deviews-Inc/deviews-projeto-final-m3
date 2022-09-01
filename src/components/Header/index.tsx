@@ -1,17 +1,16 @@
 import { HeaderComponent } from "./style";
 import fullLogo from "../../assets/LogoInteiro1.png";
-import logoDevil from "../../assets/Logodevil.png";
+import logoDevil from "../../assets/LogoDevil.png";
 import logoName from "../../assets/LogoNome.png";
-
 import ButtonLogout from "../ButtonLogout";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 650);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
 
   const updateMedia = () => {
-    setIsDesktop(window.innerWidth > 650);
+    setIsDesktop(window.innerWidth > 768);
   };
 
   useEffect(() => {
