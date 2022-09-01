@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../assets/Logodevil.png";
+import logo from "../../assets/LogoDevil.png";
 
 import { ContainerPassword, Form } from "./styles";
 import Button from "../Button";
