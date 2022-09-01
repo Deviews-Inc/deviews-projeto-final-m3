@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../assets/Logodevil.png";
 
@@ -9,6 +9,7 @@ import Button from "../Button";
 import schema from "../../validators/loginUser";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { GiBleedingEye } from "react-icons/gi";
+import { AuthContext } from "../../providers/AuthContext";
 
 interface IUserLogin {
   email: string;
@@ -16,6 +17,7 @@ interface IUserLogin {
 }
 
 const FormLogin = () => {
+  const { signIn } = useContext(AuthContext);
   const [isView, setIsView] = useState<boolean>(false);
 
   const {
@@ -24,12 +26,8 @@ const FormLogin = () => {
     formState: { errors },
   } = useForm<IUserLogin>({ resolver: yupResolver(schema) });
 
-  const singIn = (data: IUserLogin) => {
-    console.log(data);
-  };
-
   return (
-    <Form onSubmit={handleSubmit(singIn)}>
+    <Form onSubmit={handleSubmit(signIn)}>
       <figure>
         <img src={logo} alt="Logo da Deviews" />
       </figure>
