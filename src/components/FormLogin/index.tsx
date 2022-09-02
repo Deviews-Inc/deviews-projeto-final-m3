@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import logo from "../../assets/logodevil.png";
+import logo from "../../assets/LogoDevil.png";
 
-import { Form } from "./styles";
+import { ContainerPassword, Form } from "./styles";
 import Button from "../Button";
 import schema from "../../validators/loginUser";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { GiBleedingEye } from "react-icons/gi";
+import { AuthContext } from "../../providers/AuthContext";
 
 interface IUserLogin {
   email: string;
@@ -13,20 +17,19 @@ interface IUserLogin {
 }
 
 const FormLogin = () => {
+  const { signIn } = useContext(AuthContext);
+  const [isView, setIsView] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IUserLogin>({ resolver: yupResolver(schema) });
 
-  const singIn = (data: IUserLogin) => {
-    console.log(data);
-  };
-
   return (
-    <Form onSubmit={handleSubmit(singIn)}>
+    <Form onSubmit={handleSubmit(signIn)}>
       <figure>
-        <img src="" alt="Logo da Deviews" />
+        <img src={logo} alt="Logo da Deviews" />
       </figure>
 
       <label htmlFor="email">Email</label>
@@ -38,11 +41,29 @@ const FormLogin = () => {
       <span>{errors.email?.message}</span>
 
       <label htmlFor="password">Senha</label>
-      <input
-        type="password"
-        placeholder="Digite aqui sua senha"
-        {...register("password")}
-      />
+      {isView ? (
+        <ContainerPassword>
+          <input
+            type="text"
+            placeholder="Digite aqui sua senha"
+            {...register("password")}
+          />
+          <button type="button" onClick={() => setIsView(!isView)}>
+            <GiBleedingEye className="eyeOpen" />
+          </button>
+        </ContainerPassword>
+      ) : (
+        <ContainerPassword>
+          <input
+            type="password"
+            placeholder="Digite aqui sua senha"
+            {...register("password")}
+          />
+          <button type="button" onClick={() => setIsView(!isView)}>
+            <IoEyeOffOutline />
+          </button>
+        </ContainerPassword>
+      )}
       <span>{errors.password?.message}</span>
 
       <Button>&lt;Login/&gt;</Button>

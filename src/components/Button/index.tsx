@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import { ButtonComponent } from "./style";
 
 interface IButtonProps {
-  children: string;
+  children: ReactNode;
 }
 
 const Button = ({ children }: IButtonProps) => {
