@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createContext, ReactNode } from "react";
 import api from "../services/api";
 
@@ -37,6 +36,13 @@ const PostProvider = ({ children }: PostProps) => {
   const editPost = (postId: DataPostId, data: DataPost) => {
     api
       .patch(`/posts/${postId}`, data)
+      .then((response) => {})
+      .catch((err) => console.log(err));
+  };
+
+  const searchPost = (data: string) => {
+    api
+      .get(`/posts?q=${data}`)
       .then((response) => {})
       .catch((err) => console.log(err));
   };
