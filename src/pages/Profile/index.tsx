@@ -1,14 +1,14 @@
-import Button from "../../components/Button";
 import FormPost from "../../components/FormPost";
 import UserOptions from "../../components/UserOptions";
 import { BiPencil } from "react-icons/bi";
+import ButtonEdit from "../../components/ButtonEdit";
 
 const Profile = () => {
   return (
     <>
       <aside>
         <UserOptions />
-      <Button><BiPencil/></Button>
+        <ButtonEdit><BiPencil/></ButtonEdit>
       </aside>
       <aside>
         {/* Pesquisa */}
