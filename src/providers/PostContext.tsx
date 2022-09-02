@@ -42,6 +42,7 @@ interface PostProvidersData {
   newAnswers: (idPost: PostId, answersData: DataAnswers) => void;
   newFirePost: (idPost: PostId, fireData: FireDataPost) => void;
   newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
+  searchPost: (data: string) => void;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -90,6 +91,12 @@ const PostProvider = ({ children }: PostProps) => {
     api
       .patch(`/posts/${postId}`, data)
       .then((response) => {})
+      .catch((err) => err);
+  };
+  const searchPost = (data: string) => {
+    api
+      .get(`/posts?q=${data}`)
+      .then((response) => {})
       .catch((err) => console.log(err));
   };
 
@@ -102,6 +109,7 @@ const PostProvider = ({ children }: PostProps) => {
         newAnswers,
         newFirePost,
         newFireAnswers,
+        searchPost,
       }}
     >
       {children}
