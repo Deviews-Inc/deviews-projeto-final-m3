@@ -11,18 +11,18 @@ interface UserDataLogin {
   password: string;
 }
 
-interface UserDataRegister {
+export interface UserDataRegister {
   name: string;
   username: string;
-  bio: string;
   email: string;
   password: string;
-  techs: string[];
+  bio: string;
+  techs?: string[];
 }
 
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
-  register: (userData: UserDataRegister) => void;
+  signUp: (userData: UserDataRegister) => void;
   user: object;
 }
 
@@ -70,9 +70,9 @@ const AuthProvider = ({ children }: AuthProps) => {
       .catch((err) => console.log(err));
   };
 
-  const register = (data: UserDataRegister) => {
+  const signUp = (data: UserDataRegister) => {
     api
-      .post("/registe", data)
+      .post("/register", data)
       .then((response) => {
         navigate("/login", { replace: true });
       })
@@ -80,7 +80,7 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, register, user }}>
+    <AuthContext.Provider value={{ signIn, signUp, user }}>
       {children}
     </AuthContext.Provider>
   );
