@@ -41,20 +41,6 @@ export const Form = styled.form`
     width: 90%;
   }
 
-  p {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3125rem;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--color-grey-0);
-
-    a {
-      font-size: 0.75rem;
-      color: var(--color-red-0);
-    }
-  }
-
   @media screen and (min-width: 425px) {
     label {
       width: 18.1875rem;

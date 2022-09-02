@@ -8,12 +8,17 @@ const Login = () => {
       <Header />
       <Main>
         <ContainerMain>
-          <ContainerLeft>
-            <p>A rede dos devs</p>
-          </ContainerLeft>
-          <ContainerRight>
-            <FormLogin />
-          </ContainerRight>
+          <div className="gradient">
+            <ContainerLeft>
+              <p>A rede dos devs</p>
+            </ContainerLeft>
+            <ContainerRight>
+              <div>
+                <h2>Login</h2>
+              </div>
+              <FormLogin />
+            </ContainerRight>
+          </div>
         </ContainerMain>
       </Main>
     </>

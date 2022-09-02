@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,6 +9,7 @@ import schema from "../../validators/loginUser";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { GiBleedingEye } from "react-icons/gi";
 import { AuthContext } from "../../providers/AuthContext";
+import Span from "../FormSpan";
 
 interface IUserLogin {
   email: string;
@@ -67,10 +67,7 @@ const FormLogin = () => {
       <span>{errors.password?.message}</span>
 
       <Button>&lt;Login/&gt;</Button>
-      <p>
-        Ainda não possui uma conta?
-        <Link to={"/register"}>Cadastre-se.</Link>
-      </p>
+      <Span>Cadastre-se.</Span>
     </Form>
   );
 };

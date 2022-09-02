@@ -10,6 +10,7 @@ export const ButtonComponent = styled.button`
   border-radius: 8px;
 
   font-size: 1rem;
+  font-weight: 600;
 
   @media screen and (min-width: 425px) {
     width: 18.188rem;
