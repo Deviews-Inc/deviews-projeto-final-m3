@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createContext, ReactNode } from "react";
 import api from "../services/api";
 
@@ -15,7 +14,11 @@ interface DataPostId {
   postId: number;
 }
 
-export const PostContext = createContext({});
+interface IPostContext {
+  searchPost: (data: string) => void;
+}
+
+export const PostContext = createContext<IPostContext>({} as IPostContext);
 
 const PostProvider = ({ children }: PostProps) => {
   const newPost = (data: DataPost) => {
@@ -41,5 +44,20 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  return <PostContext.Provider value={{}}>{children}</PostContext.Provider>;
+  const searchPost = (data: string) => {
+    api
+      .get(`/posts?q=${data}`)
+      .then((response) => {})
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <PostContext.Provider
+      value={{
+        searchPost,
+      }}
+    >
+      {children}
+    </PostContext.Provider>
+  );
 };
