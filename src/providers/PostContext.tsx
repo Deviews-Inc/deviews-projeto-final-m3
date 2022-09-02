@@ -8,6 +8,8 @@ interface PostProps {
 interface DataPost {
   content: string;
   img: string;
+  firePost: number;
+  userId: number;
 }
 
 interface PostId {
@@ -33,7 +35,18 @@ interface FireDataAnswers {
   answersId: number;
 }
 
-export const PostContext = createContext({});
+interface PostProvidersData {
+  newPost: (postData: DataPost) => void;
+  deletePost: (idPost: PostId) => void;
+  editPost: (idPost: PostId, answersData: DataPost) => void;
+  newAnswers: (idPost: PostId, answersData: DataAnswers) => void;
+  newFirePost: (idPost: PostId, fireData: FireDataPost) => void;
+  newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
+}
+
+export const PostContext = createContext<PostProvidersData>(
+  {} as PostProvidersData
+);
 
 const PostProvider = ({ children }: PostProps) => {
   const newPost = (data: DataPost) => {
@@ -59,33 +72,41 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  const newAnswers = (data: DataAnswers) => {
+  const newAnswers = (postId: PostId, data: DataAnswers) => {
     api
-      .post("/answers", data)
+      .patch(`/posts/${postId}`, data)
       .then((response) => {})
       .catch((err) => console.log(err));
   };
 
-  const deleteAnswers = (answersId: AnswersId) => {
+  const newFirePost = (postId: PostId, data: FireDataPost) => {
     api
-      .delete(`/answers/${answersId}`)
+      .patch(`/posts/${postId}`, data)
       .then((response) => {})
       .catch((err) => console.log(err));
   };
 
-  const newFirePost = (data: FireDataPost) => {
+  const newFireAnswers = (postId: PostId, data: FireDataAnswers) => {
     api
-      .post("/fires", data)
+      .patch(`/posts/${postId}`, data)
       .then((response) => {})
       .catch((err) => console.log(err));
   };
 
-  const newFireAnswers = (data: FireDataAnswers) => {
-    api
-      .post("/fires", data)
-      .then((response) => {})
-      .catch((err) => console.log(err));
-  };
-
-  return <PostContext.Provider value={{}}>{children}</PostContext.Provider>;
+  return (
+    <PostContext.Provider
+      value={{
+        newPost,
+        deletePost,
+        editPost,
+        newAnswers,
+        newFirePost,
+        newFireAnswers,
+      }}
+    >
+      {children}
+    </PostContext.Provider>
+  );
 };
+
+export default PostProvider;
