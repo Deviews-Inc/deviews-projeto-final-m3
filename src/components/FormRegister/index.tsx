@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Schema } from "../../validators/RegisterUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -7,8 +7,9 @@ import { Form, ListItem } from "./styles";
 import { BsPlusLg } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { FiAlertCircle } from "react-icons/fi";
-import Logo from "../../assets/LogoDevil.png";
 import Span from "../FormSpan";
+import Logo from "../../assets/LogoDevil.png";
+import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
 
 interface IFormRegister {
   name: string;
@@ -20,11 +21,13 @@ interface IFormRegister {
 }
 
 const FormRegister = () => {
+  const { signUp } = useContext(AuthContext);
   const [newTech, setNewTech] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<IFormRegister>({
     resolver: yupResolver(Schema),
@@ -39,9 +42,15 @@ const FormRegister = () => {
     const filterTech = newTech.filter((tech, i) => i !== index);
     setNewTech(filterTech);
   };
+  
+   const createData = (data: UserDataRegister) => {
+    const newData = data;
+    newData.techs = newTech;
+    signUp(newData);
+  };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(createData)}>
       <div className="container">
         <div className="container_logo">
           <h2>Cadastro</h2>
