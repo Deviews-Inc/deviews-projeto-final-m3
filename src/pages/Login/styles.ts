@@ -4,30 +4,34 @@ export const Main = styled.main`
   height: 85vh;
   width: 100vw;
 
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
 export const ContainerMain = styled.div`
-  align-items: center;
-  padding: 2px;
-  height: 90%;
   width: 90%;
+  height: 90%;
+
+  align-items: center;
+  padding: 0.125rem;
+
+  border-radius: 0.25rem;
   background: linear-gradient(
     100deg,
     rgba(211, 0, 0, 0.83),
     rgba(0, 0, 0, 0.25)
   );
-  border-radius: 4px;
 
   .gradient {
-    background-color: var(--color-grey-3);
     width: 100%;
     height: 100%;
-    align-items: center;
+
     display: flex;
-    border-radius: 4px;
+    align-items: center;
+
+    border-radius: 0.25rem;
+    background-color: var(--color-grey-3);
   }
 
   @media screen and (min-width: 425px) {
@@ -35,8 +39,9 @@ export const ContainerMain = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    flex-direction: inherit;
     width: 90%;
+
+    flex-direction: inherit;
   }
 
   @media screen and (min-width: 1024px) {
@@ -52,13 +57,14 @@ export const ContainerLeft = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 50%;
     height: 90%;
 
-    border-right: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 0.125rem;
     border-style: solid;
     border-image: linear-gradient(
         to bottom,
@@ -75,25 +81,34 @@ export const ContainerRight = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  height: 100%;
+
   width: 100%;
+  height: 100%;
 
   .container_logo {
     display: flex;
     margin: auto;
     align-items: center;
-    width: 81.9%;
     justify-content: space-between;
+
+    width: 81.9%;
 
     h2 {
       margin: 0;
+      width: 5.625rem;
+      padding-bottom: 0.625rem;
+
       font-size: 2rem;
-      border-bottom: 2px solid rgba(211, 0, 0, 0.3);
-      border-style: solid;
-      color: var(--color-white-0);
-      padding-bottom: 10px;
-      width: 90px;
       font-weight: 500;
+
+      color: var(--color-white-0);
+      background: linear-gradient(
+          to right,
+          rgba(211, 0, 0, 0.83),
+          rgba(0, 0, 0, 0.25)
+        )
+        left bottom var(--color-grey-3) no-repeat;
+      background-size: 100% 1px;
     }
 
     img {
@@ -110,8 +125,14 @@ export const ContainerRight = styled.div`
   @media screen and (min-width: 768px) {
     width: 50%;
 
-    img {
-      display: none;
+    .container_logo {
+      h2 {
+        width: 100%;
+      }
+
+      img {
+        display: none;
+      }
     }
   }
 `;

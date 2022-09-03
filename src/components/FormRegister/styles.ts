@@ -6,28 +6,32 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  gap: 1.25rem;
 
   width: 100%;
-  gap: 1.25rem;
+
   padding-bottom: 1.25rem;
   border-radius: 0.25rem;
+
   background-color: var(--color-grey-3);
 
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: 100%;
 
     .container_form {
-      align-items: center;
       display: flex;
+      align-items: center;
       flex-direction: column;
       gap: 1.25rem;
     }
 
     .container_div_form {
       width: 90%;
+
       margin-bottom: 1.25rem;
 
       @media screen and (min-width: 768px) {
@@ -37,20 +41,30 @@ export const Form = styled.form`
 
     .container_logo {
       display: flex;
-      margin: 1.75rem auto;
       align-items: center;
-      width: 90%;
       justify-content: space-between;
 
+      width: 90%;
+
+      margin: 1.75rem auto;
+
       h2 {
-        margin: 0;
-        font-size: 2rem;
-        border-bottom: 0.125rem solid rgba(211, 0, 0, 0.3);
-        border-style: solid;
-        color: var(--color-white-0);
-        padding-bottom: 0.625rem;
         width: 8.75rem;
+
+        margin: 0;
+        padding-bottom: 0.625rem;
+
+        font-size: 2rem;
         font-weight: 500;
+
+        color: var(--color-white-0);
+        background: linear-gradient(
+            to right,
+            rgba(211, 0, 0, 0.83),
+            rgba(0, 0, 0, 0.25)
+          )
+          left bottom var(--color-grey-3) no-repeat;
+        background-size: 100% 1px;
       }
 
       img {
@@ -62,96 +76,152 @@ export const Form = styled.form`
       }
 
       @media screen and (min-width: 768px) {
-        width: 90%;
+        width: 50%;
+
+        margin: 1.75rem;
+
         figure {
           display: none;
         }
+
+        h2 {
+          width: 18.1875rem;
+          margin: auto;
+        }
       }
     }
+
     .divForm {
       display: flex;
       flex-flow: column;
-      width: 100%;
-      margin: 0 auto;
       gap: 0.625rem;
+      margin: 0 auto;
+
+      width: 100%;
 
       label {
         padding-top: 1rem;
         padding-bottom: 1rem;
       }
       .entry {
-        height: 3rem;
         width: 90%;
+        height: 3rem;
+
         padding-left: 1.3125rem;
         outline: 0;
+
         border-radius: 0.5rem;
+
+        color: var(--color-white-0);
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
-        color: var(--color-white-0);
       }
       .entryDiv {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        height: 3rem;
+        justify-content: space-between;
+
         width: 82%;
+        height: 3rem;
+
         padding-left: 1.3125rem;
         padding-right: 1.3125rem;
         outline: 0;
+
         border-radius: 0.5rem;
+
+        color: var(--color-white-0);
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
-        color: var(--color-white-0);
+
         input {
           background-color: var(--color-grey-2);
           color: var(--color-white-0);
         }
+
         input:focus {
           outline: none;
         }
+
         .btn_add {
-          background-color: transparent;
           width: auto;
+
+          background-color: transparent;
         }
+
         .iconReact {
+          border: none;
+
           color: var(--color-grey-0);
           background-color: var(--color-grey-2);
-          border: none;
         }
       }
-      span {
-        font-size: 0.75rem;
-        color: var(--color-red-0);
+
+      .div_span {
+        display: flex;
+        align-items: end;
+        gap: 0.3125rem;
+
         width: 90%;
+
+        font-size: 0.75rem;
+        line-height: 0.9375rem;
+
+        color: var(--color-grey-0);
+
+        span {
+          text-align: justify;
+        }
+
+        svg {
+          min-width: 0.9375rem;
+          min-height: 0.9375rem;
+
+          color: var(--color-red-0);
+        }
       }
+
       ul {
         display: flex;
         flex-flow: row wrap;
         justify-content: left;
-        text-align: left;
         margin-top: 1rem;
+
+        text-align: left;
+
         max-height: 6rem;
+
         overflow: auto;
+
         .btn_close {
-          background-color: transparent;
           width: auto;
+
+          background-color: transparent;
         }
+
         .iconReact {
+          border: none;
+
           color: var(--color-grey-0);
           background-color: var(--color-grey-2);
-          border: none;
         }
       }
+
       p {
         display: flex;
         flex-direction: column;
         gap: 0.3125rem;
-        text-align: left;
+
         font-size: 0.75rem;
+        text-align: left;
+
         height: 2rem;
+
         color: var(--color-grey-0);
+
         a {
           font-size: 0.75rem;
+
           color: var(--color-red-0);
         }
       }
@@ -159,52 +229,30 @@ export const Form = styled.form`
       @media screen and (min-width: 425px) {
         align-items: center;
 
-        label {
+        label,
+        .div_span,
+        ul {
           width: 18.1875rem;
         }
+
         .entry {
           width: 16.875rem;
         }
+
         .entryDiv {
           width: 15.563rem;
-        }
-        span {
-          width: 18.1875rem;
-        }
-        ul {
-          width: 18.1875rem;
         }
       }
     }
   }
+
   button {
     width: 90%;
   }
-  /* @media screen and (min-width: 26.5625rem) {
-    .container_logo {
-      width: 291px;
-    }
-
-    label {
-      width: 291px;
-    }
-    .entry {
-      width: 270px;
-    }
-    .entryDiv {
-      width: 249.008px;
-    }
-    span {
-      width: 291px;
-    }
-    ul {
-      width: 291px;
-    }
-  } */
 
   @media screen and (min-width: 26.5625rem) {
     button {
-      width: 291.008px;
+      width: 18.188rem;
     }
   }
 
@@ -227,16 +275,22 @@ export const ListItem = styled.li`
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+
   width: fit-content;
-  height: 32px;
-  padding-left: 12px;
-  padding-right: 12px;
+  height: 2rem;
+
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+
   outline: 0;
+
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
   border-radius: 0.3125rem;
-  gap: 16px;
-  margin-right: 16px;
-  margin-bottom: 16px;
+
+  color: var(--color-white-0);
   box-shadow: var(--box-shadow);
   background-color: var(--color-grey-2);
-  color: var(--color-white-0);
 `;

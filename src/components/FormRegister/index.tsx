@@ -6,6 +6,7 @@ import Button from "../Button";
 import { Form, ListItem } from "./styles";
 import { BsPlusLg } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
+import { FiAlertCircle } from "react-icons/fi";
 import Logo from "../../assets/LogoDevil.png";
 import Span from "../FormSpan";
 
@@ -31,6 +32,7 @@ const FormRegister = () => {
 
   const addTech = (data: string) => {
     setNewTech((prev: any) => [...prev, data]);
+    console.log(newTech);
   };
 
   const removeTech = (index: number) => {
@@ -39,7 +41,7 @@ const FormRegister = () => {
   };
 
   return (
-    <Form onSubmit={() => {}}>
+    <Form>
       <div className="container">
         <div className="container_logo">
           <h2>Cadastro</h2>
@@ -57,7 +59,14 @@ const FormRegister = () => {
                 type="text"
                 {...register("name")}
               />
-              <span className="error"> {errors.name?.message} </span>
+              <div className="div_span">
+                {errors.name && (
+                  <>
+                    <span className="error">{errors.name.message}</span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
 
               <label htmlFor="username">Nome de usuário</label>
               <input
@@ -66,7 +75,14 @@ const FormRegister = () => {
                 type="text"
                 {...register("username")}
               />
-              <span className="error"> {errors.username?.message} </span>
+              <div className="div_span">
+                {errors.username && (
+                  <>
+                    <span className="error">{errors.username.message}</span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
 
               <label htmlFor="bio">Bio</label>
               <input
@@ -75,7 +91,14 @@ const FormRegister = () => {
                 type="text"
                 {...register("bio")}
               />
-              <span className="error"> {errors.bio?.message} </span>
+              <div className="div_span">
+                {errors.bio && (
+                  <>
+                    <span className="error">{errors.bio.message}</span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
 
               <label htmlFor="email">Email</label>
               <input
@@ -84,7 +107,14 @@ const FormRegister = () => {
                 type="email"
                 {...register("email")}
               />
-              <span className="error"> {errors.email?.message} </span>
+              <div className="div_span">
+                {errors.email && (
+                  <>
+                    <span className="error">{errors.email.message}</span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
             </div>
             <div className="divForm">
               <label htmlFor="password">Senha</label>
@@ -94,7 +124,14 @@ const FormRegister = () => {
                 type="password"
                 {...register("password")}
               />
-              <span className="error"> {errors.password?.message} </span>
+              <div className="div_span">
+                {errors.password && (
+                  <>
+                    <span className="error">{errors.password.message}</span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
 
               <label htmlFor="passwordConfirm">Confirmar Senha</label>
               <input
@@ -103,7 +140,16 @@ const FormRegister = () => {
                 type="password"
                 {...register("passwordConfirm")}
               />
-              <span className="error"> {errors.passwordConfirm?.message} </span>
+              <div className="div_span">
+                {errors.passwordConfirm && (
+                  <>
+                    <span className="error">
+                      {errors.passwordConfirm.message}
+                    </span>
+                    <FiAlertCircle />
+                  </>
+                )}
+              </div>
 
               <label htmlFor="techs">Tecnologias</label>
               <div className="entryDiv">
@@ -141,7 +187,7 @@ const FormRegister = () => {
           </div>
 
           <Button>&lt;Cadastrar/&gt;</Button>
-          <Span>login.</Span>
+          <Span>Faça seu login.</Span>
         </div>
       </div>
     </Form>

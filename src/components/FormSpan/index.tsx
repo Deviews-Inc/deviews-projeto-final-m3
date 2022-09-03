@@ -18,7 +18,6 @@ const Span = ({ children }: ISpanProps) => {
         <P>
           Já possui uma conta?
           <div className="link_login">
-            <p>Faça seu</p>
             <Link to={"/login"}>{children}</Link>
           </div>
         </P>

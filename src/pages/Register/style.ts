@@ -11,13 +11,14 @@ export const Main = styled.main`
 
   .gradient {
     width: 100%;
+    padding: 0.125rem;
+
+    border-radius: 0.25rem;
     background: linear-gradient(
       100deg,
       rgba(211, 0, 0, 0.83),
       rgba(0, 0, 0, 0.25)
     );
-    border-radius: 0.25rem;
-    padding: 0.125rem;
   }
 
   @media screen and (min-width: 425px) {
