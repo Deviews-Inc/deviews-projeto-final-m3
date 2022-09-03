@@ -5,36 +5,75 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 
-  width: 80%;
-  margin: 0;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 8px;
+  width: 100%;
+  gap: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-radius: 0.25rem;
   background-color: var(--color-grey-3);
 
-  figure {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    img {
-      width: 4.3125rem;
-    }
-  }
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 20px 0px;
     width: 100%;
+
+    .container_form {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .container_div_form {
+      width: 90%;
+      margin-bottom: 1.25rem;
+
+      @media screen and (min-width: 768px) {
+        display: flex;
+      }
+    }
+
+    .container_logo {
+      display: flex;
+      margin: 1.75rem auto;
+      align-items: center;
+      width: 90%;
+      justify-content: space-between;
+
+      h2 {
+        margin: 0;
+        font-size: 2rem;
+        border-bottom: 0.125rem solid rgba(211, 0, 0, 0.3);
+        border-style: solid;
+        color: var(--color-white-0);
+        padding-bottom: 0.625rem;
+        width: 8.75rem;
+        font-weight: 500;
+      }
+
+      img {
+        width: 3.125rem;
+      }
+
+      @media screen and (min-width: 425px) {
+        width: 18.1875rem;
+      }
+
+      @media screen and (min-width: 768px) {
+        width: 90%;
+        figure {
+          display: none;
+        }
+      }
+    }
     .divForm {
-      flex: 50%;
       display: flex;
       flex-flow: column;
       width: 100%;
-      align-items: baseline;
-      gap: 10px;
+      margin: 0 auto;
+      gap: 0.625rem;
 
       label {
         padding-top: 1rem;
@@ -45,7 +84,7 @@ export const Form = styled.form`
         width: 90%;
         padding-left: 1.3125rem;
         outline: 0;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
         color: var(--color-white-0);
@@ -59,7 +98,7 @@ export const Form = styled.form`
         padding-left: 1.3125rem;
         padding-right: 1.3125rem;
         outline: 0;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
         color: var(--color-white-0);
@@ -70,8 +109,9 @@ export const Form = styled.form`
         input:focus {
           outline: none;
         }
-        button {
+        .btn_add {
           background-color: transparent;
+          width: auto;
         }
         .iconReact {
           color: var(--color-grey-0);
@@ -92,8 +132,9 @@ export const Form = styled.form`
         margin-top: 1rem;
         max-height: 6rem;
         overflow: auto;
-        button {
+        .btn_close {
           background-color: transparent;
+          width: auto;
         }
         .iconReact {
           color: var(--color-grey-0);
@@ -114,9 +155,10 @@ export const Form = styled.form`
           color: var(--color-red-0);
         }
       }
+
       @media screen and (min-width: 425px) {
-        flex-flow: column;
         align-items: center;
+
         label {
           width: 18.1875rem;
         }
@@ -135,19 +177,47 @@ export const Form = styled.form`
       }
     }
   }
-  @media screen and (min-width: 768px) {
-    figure {
-      display: none;
+  button {
+    width: 90%;
+  }
+  /* @media screen and (min-width: 26.5625rem) {
+    .container_logo {
+      width: 291px;
     }
-    .container {
-      flex-flow: row;
+
+    label {
+      width: 291px;
+    }
+    .entry {
+      width: 270px;
+    }
+    .entryDiv {
+      width: 249.008px;
+    }
+    span {
+      width: 291px;
+    }
+    ul {
+      width: 291px;
+    }
+  } */
+
+  @media screen and (min-width: 26.5625rem) {
+    button {
+      width: 291.008px;
     }
   }
-  @media screen and (min-width: 1024px) {
-    width: 70%;
 
+  @media screen and (min-width: 64rem) {
     .form_left {
-      border-right: 2px solid var(--color-grey-1);
+      border-right: 0.125rem;
+      border-style: solid;
+      border-image: linear-gradient(
+          to bottom,
+          rgba(211, 0, 0, 0.83),
+          rgba(0, 0, 0, 0.25)
+        )
+        1 100%;
     }
   }
 `;
@@ -158,14 +228,14 @@ export const ListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   width: fit-content;
-  height: 2rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  height: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
   outline: 0;
-  border-radius: 5px;
-  gap: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  border-radius: 0.3125rem;
+  gap: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
   box-shadow: var(--box-shadow);
   background-color: var(--color-grey-2);
   color: var(--color-white-0);

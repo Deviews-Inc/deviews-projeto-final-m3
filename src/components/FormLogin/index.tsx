@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../assets/LogoDevil.png";
 
 import { ContainerPassword, Form } from "./styles";
 import Button from "../Button";
@@ -28,10 +27,6 @@ const FormLogin = () => {
 
   return (
     <Form onSubmit={handleSubmit(signIn)}>
-      <figure>
-        <img src={logo} alt="Logo da Deviews" />
-      </figure>
-
       <label htmlFor="email">Email</label>
       <input
         type="text"

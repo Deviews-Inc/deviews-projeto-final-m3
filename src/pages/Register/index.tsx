@@ -7,7 +7,9 @@ const Register = () => {
     <>
       <Header />
       <Main>
-        <FormRegister />
+        <div className="gradient">
+          <FormRegister />
+        </div>
       </Main>
     </>
   );

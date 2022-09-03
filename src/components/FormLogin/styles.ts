@@ -11,10 +11,6 @@ export const Form = styled.form`
 
   margin: 0 auto;
 
-  figure > img {
-    width: 4.3125rem;
-  }
-
   label {
     width: 90%;
   }

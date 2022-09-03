@@ -41,94 +41,109 @@ const FormRegister = () => {
   return (
     <Form onSubmit={() => {}}>
       <div className="container">
-        <figure>
-          <img src={Logo} alt="Logo" />
-        </figure>
-        <div className="divForm form_left">
-          <label htmlFor="name">Nome</label>
-          <input
-            className="entry"
-            placeholder="Digite aqui o seu nome"
-            type="text"
-            {...register("name")}
-          />
-          <span className="error"> {errors.name?.message} </span>
-
-          <label htmlFor="username">Nome de usuário</label>
-          <input
-            className="entry"
-            placeholder="Digite aqui o seu username"
-            type="text"
-            {...register("username")}
-          />
-          <span className="error"> {errors.username?.message} </span>
-
-          <label htmlFor="bio">Bio</label>
-          <input
-            className="entry"
-            placeholder="Fale sobre você"
-            type="text"
-            {...register("bio")}
-          />
-          <span className="error"> {errors.bio?.message} </span>
-
-          <label htmlFor="email">Email: </label>
-          <input
-            className="entry"
-            placeholder="Digite aqui o seu email"
-            type="email"
-            {...register("email")}
-          />
-          <span className="error"> {errors.email?.message} </span>
+        <div className="container_logo">
+          <h2>Cadastro</h2>
+          <figure>
+            <img src={Logo} alt="Logo Deviews" />
+          </figure>
         </div>
-        <div className="divForm">
-          <label htmlFor="password">Senha</label>
-          <input
-            className="entry"
-            placeholder="Digite aqui a sua senha"
-            type="password"
-            {...register("password")}
-          />
-          <span className="error"> {errors.password?.message} </span>
+        <div className="container_form">
+          <div className="container_div_form">
+            <div className="divForm form_left">
+              <label htmlFor="name">Nome</label>
+              <input
+                className="entry"
+                placeholder="Digite aqui o seu nome"
+                type="text"
+                {...register("name")}
+              />
+              <span className="error"> {errors.name?.message} </span>
 
-          <label htmlFor="passwordConfirm">Confirmar Senha</label>
-          <input
-            className="entry"
-            placeholder="Confirme sua senha"
-            type="password"
-            {...register("passwordConfirm")}
-          />
-          <span className="error"> {errors.passwordConfirm?.message} </span>
+              <label htmlFor="username">Nome de usuário</label>
+              <input
+                className="entry"
+                placeholder="Username"
+                type="text"
+                {...register("username")}
+              />
+              <span className="error"> {errors.username?.message} </span>
 
-          <label htmlFor="techs">Tecnologias</label>
-          <div className="entryDiv">
-            <input
-              placeholder="Digite a tecnologia"
-              value={inputValue}
-              type="text"
-              onChange={(event) => setInputValue(event.target.value)}
-            />
-            <button type="button" onClick={() => addTech(inputValue)}>
-              <BsPlusLg className="iconReact" />
-            </button>
+              <label htmlFor="bio">Bio</label>
+              <input
+                className="entry"
+                placeholder="Fale sobre você"
+                type="text"
+                {...register("bio")}
+              />
+              <span className="error"> {errors.bio?.message} </span>
+
+              <label htmlFor="email">Email</label>
+              <input
+                className="entry"
+                placeholder="Digite aqui o seu email"
+                type="email"
+                {...register("email")}
+              />
+              <span className="error"> {errors.email?.message} </span>
+            </div>
+            <div className="divForm">
+              <label htmlFor="password">Senha</label>
+              <input
+                className="entry"
+                placeholder="Digite aqui a sua senha"
+                type="password"
+                {...register("password")}
+              />
+              <span className="error"> {errors.password?.message} </span>
+
+              <label htmlFor="passwordConfirm">Confirmar Senha</label>
+              <input
+                className="entry"
+                placeholder="Confirme sua senha"
+                type="password"
+                {...register("passwordConfirm")}
+              />
+              <span className="error"> {errors.passwordConfirm?.message} </span>
+
+              <label htmlFor="techs">Tecnologias</label>
+              <div className="entryDiv">
+                <input
+                  placeholder="Digite a tecnologia"
+                  value={inputValue}
+                  type="text"
+                  onChange={(event) => setInputValue(event.target.value)}
+                />
+                <button
+                  className="btn_add"
+                  type="button"
+                  onClick={() => addTech(inputValue)}
+                >
+                  <BsPlusLg className="iconReact" />
+                </button>
+              </div>
+
+              <ul>
+                {newTech.length > 0 &&
+                  newTech.map((thisTech, index) => (
+                    <ListItem key={index}>
+                      {thisTech}{" "}
+                      <button
+                        className="btn_close"
+                        type="button"
+                        onClick={() => removeTech(index)}
+                      >
+                        <CgClose className="iconReact" />
+                      </button>
+                    </ListItem>
+                  ))}
+              </ul>
+            </div>
           </div>
 
-          <ul>
-            {newTech.length > 0 &&
-              newTech.map((thisTech, index) => (
-                <ListItem key={index}>
-                  {thisTech}{" "}
-                  <button type="button" onClick={() => removeTech(index)}>
-                    <CgClose className="iconReact" />
-                  </button>
-                </ListItem>
-              ))}
-          </ul>
+          <Button>&lt;Cadastrar/&gt;</Button>
+          <Span>login.</Span>
         </div>
       </div>
-
-      <Button>&lt;Cadastrar/&gt;</Button>
-      <Span>login.</Span>
     </Form>
   );
 };

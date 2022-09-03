@@ -13,7 +13,7 @@ export const ContainerMain = styled.div`
   align-items: center;
   padding: 2px;
   height: 90%;
-  width: 80%;
+  width: 90%;
   background: linear-gradient(
     100deg,
     rgba(211, 0, 0, 0.83),
@@ -30,8 +30,13 @@ export const ContainerMain = styled.div`
     border-radius: 4px;
   }
 
+  @media screen and (min-width: 425px) {
+    width: 24.25rem;
+  }
+
   @media screen and (min-width: 768px) {
     flex-direction: inherit;
+    width: 90%;
   }
 
   @media screen and (min-width: 1024px) {
@@ -73,16 +78,33 @@ export const ContainerRight = styled.div`
   height: 100%;
   width: 100%;
 
-  h2 {
-    font-size: 2rem;
-    border-bottom: 2px solid rgba(211, 0, 0, 0.3);
-    border-style: solid;
-    color: var(--color-white-0);
-    margin: 0 auto;
-    text-align: center;
-    padding-bottom: 10px;
-    width: 100px;
-    font-weight: 500;
+  .container_logo {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 81.9%;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      border-bottom: 2px solid rgba(211, 0, 0, 0.3);
+      border-style: solid;
+      color: var(--color-white-0);
+      padding-bottom: 10px;
+      width: 90px;
+      font-weight: 500;
+    }
+
+    img {
+      width: 3.125rem;
+    }
+  }
+
+  @media screen and (min-width: 425px) {
+    .container_logo {
+      width: 18.1875rem;
+    }
   }
 
   @media screen and (min-width: 768px) {
