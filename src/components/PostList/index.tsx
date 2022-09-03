@@ -10,8 +10,9 @@ const PostList = () => {
   return (
     <>
       <ul>
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Post
+            key={index}
             content={post.content}
             userId={post.userId}
             date={post.date}

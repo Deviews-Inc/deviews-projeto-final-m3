@@ -25,9 +25,9 @@ const Post = ({ content, img, date, userId }: IPost) => {
           <h2>Nome aqui</h2>
           <p>@UserAqui</p>
         </div>
-        <p>{content}</p>
+        <p className="content">{content}</p>
         <img src={img} alt="" />
-        <p>{date}</p>
+        <span>{date}</span>
       </Container>
     </div>
   );

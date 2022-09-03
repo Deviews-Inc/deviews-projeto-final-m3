@@ -17,9 +17,10 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     padding: 10px;
+
     img {
-      width: 20%;
-      height: 100%;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
     }
 
@@ -31,16 +32,26 @@ export const Container = styled.div`
     }
   }
 
-  > p {
+  .content {
     font-size: 20px;
     color: white;
     padding: 20px 10px 20px 10px;
     text-align: start;
+    width: 90%;
   }
 
   img {
     width: 90%;
     height: 40%;
     object-fit: cover;
+  }
+
+  span {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-grey-0);
+    width: 90%;
+    text-align: start;
+    margin-top: 20px;
   }
 `;
