@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
+import PostList from "../../components/PostList";
 import Logo from "./Logo.png";
 import { DivDashboard } from "./style";
 
@@ -42,6 +43,7 @@ const Dashboard = () => {
             <Button>.Post</Button>
           </div>
           <div className="line"></div>
+          <PostList />
         </main>
         <aside className="asideInput">
           <input type="text" placeholder="Pesquisar..." />
@@ -78,6 +80,7 @@ const Dashboard = () => {
             <Button>.Post</Button>
           </div>
           <div className="line"></div>
+          <PostList />
         </main>
       </DivDashboard>
     </>
