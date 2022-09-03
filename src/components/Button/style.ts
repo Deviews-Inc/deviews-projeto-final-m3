@@ -1,15 +1,21 @@
 import styled from "styled-components";
 
 export const ButtonComponent = styled.button`
-  background: linear-gradient(var(--button-grad-red));
-  color: var(--color-white-0);
-  box-shadow: var(--box-shadow);
-
   width: 100%;
-  height: 3rem;
-  border-radius: 8px;
+  min-height: 3rem;
+  border-radius: 0.5rem;
 
   font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--color-white-0);
+  box-shadow: var(--box-shadow);
+  background: linear-gradient(var(--button-grad-red));
+  transition: 0.5s;
+
+  &:hover {
+    background-color: rgba(211, 0, 0, 0.83);
+  }
 
   @media screen and (min-width: 425px) {
     width: 18.188rem;
