@@ -3,14 +3,14 @@ import { createGlobalStyle } from "styled-components";
 const GlobalReset = createGlobalStyle`
 ::-webkit-scrollbar {
   width: 14px;
-  background: var(--color-grey-4);
+  background: transparent;
 }
 ::-webkit-scrollbar {
   height: 14px;
 }
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 14px 14px var(--color-grey-1);
-  border: solid 4px var(--color-grey-4);
+  border: solid 4px transparent;
   border-radius: 14px;
 }
 ::-webkit-scrollbar-button {
@@ -51,7 +51,7 @@ time, mark, audio, video, button, input,textarea {
 
 label{
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--color-white-0);
 }
 

@@ -6,11 +6,11 @@ import ButtonLogout from "../ButtonLogout";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
 
   const updateMedia = () => {
-    setIsDesktop(window.innerWidth > 768);
+    setIsDesktop(window.innerWidth >= 768);
   };
 
   useEffect(() => {
