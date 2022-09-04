@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 250px;
-  height: 25px;
-  border: 1px solid var(--color-red-0);
-  opacity: 0.8;
-  border-radius: 50px;
-  background-color: transparent;
+  height: 1.5625rem;
+
   display: flex;
   align-items: center;
 
+  border-radius: 50em;
+  border: 0.125rem solid transparent;
+  background-color: transparent;
+  background: linear-gradient(var(--color-grey-4), var(--color-grey-4))
+      padding-box,
+    linear-gradient(to right, rgba(211, 0, 0, 0.83), rgba(0, 0, 0, 0.25))
+      border-box;
+
   input {
-    background-color: transparent;
-    border-radius: 50px;
     width: 80%;
     height: 90%;
+
+    outline: 0;
+    padding-left: 1.25rem;
+
+    border-radius: 3.125rem;
+    background-color: transparent;
+    color: var(--color-white-0);
   }
 
   button {
@@ -24,8 +33,13 @@ export const Container = styled.div`
 
     svg {
       color: var(--color-red-0);
-      width: 50px;
+      width: 3.125rem;
       height: 80%;
+      transition: 0.5s;
+
+      &:hover {
+        color: var(--color-grey-0);
+      }
     }
   }
 `;

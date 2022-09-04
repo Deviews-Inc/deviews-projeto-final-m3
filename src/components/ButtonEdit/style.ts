@@ -11,4 +11,8 @@ export const ButtonComponent = styled.button`
   border-radius: 8px;
 
   font-size: 1rem;
+
+  &:hover {
+    background-color: rgba(211, 0, 0, 0.83);
+  }
 `;

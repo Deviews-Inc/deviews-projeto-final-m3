@@ -4,10 +4,11 @@ export const HeaderComponent = styled.header`
   display: flex;
   justify-content: center;
 
-  width: 100%;
-  height: 5.25rem;
+  width: 100vw;
+  height: 68px;
 
   background-color: var(--color-black-0);
+  box-shadow: var(--box-shadow);
 
   div {
     display: flex;
@@ -25,7 +26,11 @@ export const HeaderComponent = styled.header`
       }
     }
     .logoMobile {
-      width: 3.75rem;
+      width: 50px;
+    }
+
+    .logoMobilePublic {
+      width: 10.625rem;
     }
   }
 `;

@@ -1,15 +1,17 @@
 import Button from "../Button";
-import { Form } from "./style";
+import { ContainerForm, Form } from "./style";
 
 function FormPost() {
   return (
-    <div>
+    <ContainerForm>
       <Form>
-        <textarea  />
-        <Button>.Post</Button>
+        <div>
+          <textarea placeholder="Escreva o seu post..." />
+          <Button>.Post</Button>
+        </div>
       </Form>
-    </div>
-  )
+    </ContainerForm>
+  );
 }
 
 export default FormPost;
