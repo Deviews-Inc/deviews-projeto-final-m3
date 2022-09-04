@@ -39,7 +39,7 @@ export const Container = styled.div`
       transition: 0.5s;
 
       &:hover {
-        color: var(--color-grey-0);
+        color: var(--color-white-0);
       }
     }
   }

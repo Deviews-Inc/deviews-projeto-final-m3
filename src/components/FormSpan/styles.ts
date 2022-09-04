@@ -18,8 +18,8 @@ export const P = styled.p`
     align-self: center;
     padding: 0.125rem 0rem 0.3125rem 0rem;
 
-    transition: 0.5s;
-    color: var(--color-red-0);
+    transition: 0.3s;
+    color: var(--color-white-0);
 
     &:after {
       content: "";
@@ -41,7 +41,8 @@ export const P = styled.p`
     }
 
     &:hover {
-      color: var(--color-grey-0);
+      color: var(--color-white-0);
+      scale: 1.1;
     }
     &:hover:after {
       width: 100%;

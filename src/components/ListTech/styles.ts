@@ -28,5 +28,16 @@ export const ListItem = styled.li`
     width: auto;
 
     background-color: transparent;
+    .iconClose {
+      border: none;
+
+      color: var(--color-grey-0);
+      background-color: var(--color-grey-2);
+      transition: 0.3s;
+
+      &:hover {
+        color: var(--color-red-0);
+      }
+    }
   }
 `;
