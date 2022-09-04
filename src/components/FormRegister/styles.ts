@@ -193,12 +193,6 @@ export const Form = styled.form`
 
         overflow: auto;
 
-        .btn_close {
-          width: auto;
-
-          background-color: transparent;
-        }
-
         .iconReact {
           border: none;
 
@@ -268,29 +262,4 @@ export const Form = styled.form`
         1 100%;
     }
   }
-`;
-
-export const ListItem = styled.li`
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-
-  width: fit-content;
-  height: 2rem;
-
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-
-  outline: 0;
-
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-
-  border-radius: 0.3125rem;
-
-  color: var(--color-white-0);
-  box-shadow: var(--box-shadow);
-  background-color: var(--color-grey-2);
 `;

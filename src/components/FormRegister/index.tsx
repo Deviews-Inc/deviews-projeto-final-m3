@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Schema } from "../../validators/RegisterUser";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import Button from "../Button";
-import { Form, ListItem } from "./styles";
 import { BsPlusLg } from "react-icons/bs";
-import { CgClose } from "react-icons/cg";
 import { FiAlertCircle } from "react-icons/fi";
-import Span from "../FormSpan";
-import Logo from "../../assets/LogoDevil.png";
-import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
 import toast from "react-hot-toast";
+
+import { Form } from "./styles";
+import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
+import ListTech from "../ListTech";
+import Button from "../Button";
+import Span from "../FormSpan";
 import ToastStyle from "../ToastStyle/styles";
+import Logo from "../../assets/LogoDevil.png";
 
 interface IFormRegister {
   name: string;
@@ -43,11 +44,6 @@ const FormRegister = () => {
     tech === "" && toast.error("Adicione uma tecnologia válida.", ToastStyle);
 
     !findTech && tech !== "" && setNewTech((prev: any) => [...prev, data]);
-  };
-
-  const removeTech = (index: number) => {
-    const filterTech = newTech.filter((tech, i) => i !== index);
-    setNewTech(filterTech);
   };
 
   const createData = (data: UserDataRegister) => {
@@ -187,16 +183,13 @@ const FormRegister = () => {
               <ul>
                 {newTech.length > 0 &&
                   newTech.map((thisTech, index) => (
-                    <ListItem key={index}>
-                      {thisTech}{" "}
-                      <button
-                        className="btn_close"
-                        type="button"
-                        onClick={() => removeTech(index)}
-                      >
-                        <CgClose className="iconReact" />
-                      </button>
-                    </ListItem>
+                    <ListTech
+                      key={index}
+                      thisTech={thisTech}
+                      index={index}
+                      newTech={newTech}
+                      setNewTech={setNewTech}
+                    />
                   ))}
               </ul>
             </div>
