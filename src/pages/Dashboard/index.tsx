@@ -3,7 +3,7 @@ import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
 import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
-import { Container, ContainerMain } from "./style";
+import { Container, ContainerMain } from "./styles";
 
 const Dashboard = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);

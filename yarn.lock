@@ -7444,7 +7444,7 @@ react-hook-form@^7.34.2:
 
 react-hot-toast@^2.3.0:
   version "2.3.0"
-  resolved "https://registry.npmjs.org/react-hot-toast/-/react-hot-toast-2.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.3.0.tgz#70b3d183ac2a4afb6b17cda4a7f4cfe02e730415"
   integrity sha512-/RxV+bfjld7tSJR1SCLzMAXgFuNW7fCpK6+vbYqfmbGSWcqTMz2rizrvfWKvtcPH5HK0NqxmBaC5SrAy1F42zA==
   dependencies:
     goober "^2.1.10"

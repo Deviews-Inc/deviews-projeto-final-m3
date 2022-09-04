@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ButtonComponent } from "./style";
+import { ButtonComponent } from "./styles";
 
 interface IButtonProps {
   children: ReactNode;

@@ -1,6 +1,6 @@
 import FormRegister from "../../components/FormRegister";
 import Header from "../../components/Header";
-import { Main } from "./style";
+import { Main } from "./styles";
 
 const Register = () => {
   return (

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { PostContext } from "../../providers/PostContext";
-import { Container } from "./style";
+import { Container } from "./styles";
 const SearchInput = () => {
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
 
