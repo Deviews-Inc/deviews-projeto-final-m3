@@ -25,18 +25,6 @@ export const Container = styled.div`
     border-radius: 3.125rem;
     background-color: transparent;
     color: var(--color-white-0);
-
-    @media screen and (min-width: 768px) {
-      &:focus {
-        width: 100px;
-      }
-    }
-
-    @media screen and (min-width: 1024px) {
-      &:focus {
-        width: 80%;
-      }
-    }
   }
 
   button {
