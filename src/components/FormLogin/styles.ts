@@ -31,10 +31,16 @@ export const Form = styled.form`
     outline: 0;
 
     border-radius: 0.5rem;
+    border: 2px solid transparent;
 
     color: var(--color-white-0);
     box-shadow: var(--box-shadow);
     background-color: var(--color-grey-2);
+    transition: 0.5s;
+
+    &:focus {
+      border-color: var(--color-grey-1);
+    }
   }
 
   .div_span {

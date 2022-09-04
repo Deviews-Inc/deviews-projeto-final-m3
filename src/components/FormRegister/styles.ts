@@ -111,55 +111,82 @@ export const Form = styled.form`
         outline: 0;
 
         border-radius: 0.5rem;
+        border: 2px solid transparent;
 
         color: var(--color-white-0);
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
+        transition: 0.5s;
+
+        &:focus {
+          border: 2px solid var(--color-grey-1);
+        }
       }
       .entryDiv {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        margin: 0 auto;
 
-        width: 82%;
-        height: 3rem;
+        width: 90%;
 
-        padding-left: 1.3125rem;
-        padding-right: 1.3125rem;
-        outline: 0;
-
-        border-radius: 0.5rem;
-
-        color: var(--color-white-0);
-        box-shadow: var(--box-shadow);
-        background-color: var(--color-grey-2);
+        position: relative;
 
         input {
+          width: 100%;
+          height: 3rem;
+
+          padding-left: 1.3125rem;
+          outline: 0;
+          border: 2px solid transparent;
+          border-radius: 0.5rem;
+          border: 2px solid transparent;
+
+          box-shadow: var(--box-shadow);
           background-color: var(--color-grey-2);
           color: var(--color-white-0);
-        }
+          transition: 0.5s;
 
-        input:focus {
-          outline: none;
+          &:focus {
+            border-color: var(--color-grey-1);
+          }
         }
 
         .btn_add {
+          display: flex;
+          align-items: center;
+
           width: auto;
+          height: 100%;
+
+          position: absolute;
+
+          right: 10px;
 
           background-color: transparent;
+
+          svg {
+            color: var(--color-grey-0);
+
+            width: 1.125rem;
+            height: 1.125rem;
+
+            transition: 0.5s;
+
+            &:hover {
+              color: var(--color-white-0);
+              scale: 1.2;
+            }
+          }
+
+          .eyeOpen {
+            width: 1.25rem;
+            height: 1.25rem;
+          }
         }
 
-        .iconReact {
-          border: none;
-
-          color: var(--color-grey-0);
-          background-color: var(--color-grey-2);
-          transition: 0.5s;
-
-          &:hover {
-            scale: 1.2;
-            color: var(--color-white-0);
-          }
+        @media screen and (min-width: 425px) {
+          width: 16.875rem;
         }
       }
 
@@ -237,10 +264,6 @@ export const Form = styled.form`
 
         .entry {
           width: 16.875rem;
-        }
-
-        .entryDiv {
-          width: 15.563rem;
         }
       }
     }
