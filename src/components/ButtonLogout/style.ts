@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 36px;
+  height: 32px;
 
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ export const Button = styled.button`
   }
 
   svg {
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
   }
 `;

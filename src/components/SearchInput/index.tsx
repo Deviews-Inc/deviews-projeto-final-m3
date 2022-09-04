@@ -12,6 +12,7 @@ const SearchInput = () => {
       <Container>
         <input
           type="text"
+          placeholder="Pesquisar..."
           value={inputSearchValue}
           onChange={(event) => setInputSearchValue(event.target.value)}
         />

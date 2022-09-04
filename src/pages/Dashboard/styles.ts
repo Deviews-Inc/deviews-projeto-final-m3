@@ -10,7 +10,7 @@ export const ContainerMain = styled.div`
   height: 100%;
 
   display: flex;
-  margin: 1.25rem auto;
+  margin: 1.875rem auto;
   flex-direction: column;
   gap: 1.875rem;
 
@@ -27,9 +27,15 @@ export const ContainerMain = styled.div`
 
   .container_posts {
     width: 100%;
+  }
 
-    @media screen and (min-width: 768px) {
-      padding: 1.25rem;
+  @media screen and (min-width: 768px) {
+    flex-direction: inherit;
+    justify-content: space-between;
+
+    .container_posts {
+      width: 100%;
+      padding: 0rem 1.25rem;
       border-width: 2px;
       border-style: solid;
       border-image: linear-gradient(
@@ -41,10 +47,7 @@ export const ContainerMain = styled.div`
     }
   }
 
-  @media screen and (min-width: 768px) {
-    flex-direction: inherit;
-    justify-content: space-between;
-
+  @media screen and (min-width: 1024px) {
     .container_posts {
       width: 50%;
     }
