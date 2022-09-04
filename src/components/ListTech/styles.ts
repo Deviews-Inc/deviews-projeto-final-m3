@@ -36,7 +36,6 @@ export const ListItem = styled.li`
       transition: 0.3s;
 
       &:hover {
-        scale: 1.2;
         color: var(--color-red-0);
       }
     }

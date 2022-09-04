@@ -175,7 +175,6 @@ export const Form = styled.form`
 
             &:hover {
               color: var(--color-white-0);
-              scale: 1.2;
             }
           }
 
