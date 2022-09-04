@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
-  height: 50vw;
+  height: 100vw;
 `;
 
 export const ContainerMain = styled.div`
@@ -17,7 +17,7 @@ export const ContainerMain = styled.div`
   .container_info_user {
     flex-direction: column;
     display: flex;
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   .container_search {
