@@ -18,7 +18,7 @@ export const P = styled.p`
     align-self: center;
     padding: 0.125rem 0rem 0.3125rem 0rem;
 
-    transition: 0.5s;
+    transition: 0.3s;
     color: var(--color-white-0);
 
     &:after {

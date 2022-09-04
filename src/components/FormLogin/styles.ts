@@ -36,7 +36,7 @@ export const Form = styled.form`
     color: var(--color-white-0);
     box-shadow: var(--box-shadow);
     background-color: var(--color-grey-2);
-    transition: 0.5s;
+    transition: 0.3s;
 
     &:focus {
       border-color: var(--color-grey-1);

@@ -116,7 +116,7 @@ export const Form = styled.form`
         color: var(--color-white-0);
         box-shadow: var(--box-shadow);
         background-color: var(--color-grey-2);
-        transition: 0.5s;
+        transition: 0.3s;
 
         &:focus {
           border: 2px solid var(--color-grey-1);
@@ -145,7 +145,7 @@ export const Form = styled.form`
           box-shadow: var(--box-shadow);
           background-color: var(--color-grey-2);
           color: var(--color-white-0);
-          transition: 0.5s;
+          transition: 0.3s;
 
           &:focus {
             border-color: var(--color-grey-1);
@@ -171,7 +171,7 @@ export const Form = styled.form`
             width: 1.125rem;
             height: 1.125rem;
 
-            transition: 0.5s;
+            transition: 0.3s;
 
             &:hover {
               color: var(--color-white-0);

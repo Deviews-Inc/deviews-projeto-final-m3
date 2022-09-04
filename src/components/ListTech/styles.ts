@@ -33,7 +33,7 @@ export const ListItem = styled.li`
 
       color: var(--color-grey-0);
       background-color: var(--color-grey-2);
-      transition: 0.5s;
+      transition: 0.3s;
 
       &:hover {
         scale: 1.2;
