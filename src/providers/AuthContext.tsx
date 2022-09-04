@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import ToastStyle from "../components/ToastStyle/styles";
 import api from "../services/api";
 
 interface AuthProps {
@@ -65,18 +67,24 @@ const AuthProvider = ({ children }: AuthProps) => {
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
+        toast.success("Bem vindo(a)!", ToastStyle);
         navigate("/dashboard", { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch(() => {
+        toast.error("Email e/ou senha inválidos.", ToastStyle);
+      });
   };
 
   const signUp = (data: UserDataRegister) => {
     api
       .post("/register", data)
-      .then((response) => {
+      .then(() => {
+        toast.success("Conta criada com sucesso!", ToastStyle);
         navigate("/login", { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch(() =>
+        toast.error("Ops! Já existe um cadastro com este email.", ToastStyle)
+      );
   };
 
   return (

@@ -1,18 +1,22 @@
 import styled from "styled-components";
 
 export const HeaderComponent = styled.header`
-  background-color: var(--color-black-0);
-  width: 100%;
-  height: 5.25rem;
   display: flex;
   justify-content: center;
 
+  width: 100vw;
+  height: 68px;
+
+  background-color: var(--color-black-0);
+  box-shadow: var(--box-shadow);
+
   div {
-    width: 90%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    width: 90%;
+    height: 100%;
 
     figure {
       width: 12.5rem;
@@ -22,7 +26,11 @@ export const HeaderComponent = styled.header`
       }
     }
     .logoMobile {
-      width: 3.75rem;
+      width: 50px;
+    }
+
+    .logoMobilePublic {
+      width: 10.625rem;
     }
   }
 `;

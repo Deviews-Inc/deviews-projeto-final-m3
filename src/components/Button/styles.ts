@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  width: 36px;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2.1875rem;
+export const ButtonComponent = styled.button`
+  width: 100%;
+  min-height: 3rem;
   border-radius: 0.25rem;
+
+  font-size: 1rem;
+  font-weight: 600;
 
   color: var(--color-white-0);
   box-shadow: var(--box-shadow);
@@ -20,8 +17,7 @@ export const Button = styled.button`
     background-color: rgba(211, 0, 0, 0.83);
   }
 
-  svg {
-    width: 80%;
-    height: 80%;
+  @media screen and (min-width: 425px) {
+    width: 18.188rem;
   }
 `;
