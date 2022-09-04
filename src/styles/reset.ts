@@ -9,7 +9,7 @@ const GlobalReset = createGlobalStyle`
   height: 14px;
 }
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 14px 14px var(--color-grey-1);
+  box-shadow: inset 0 0 14px 14px var(--color-grey-2);
   border: solid 4px transparent;
   border-radius: 14px;
 }
@@ -17,7 +17,7 @@ const GlobalReset = createGlobalStyle`
   display: none;
 }
 ::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 14px 14px var(--color-red-0);
+  box-shadow: inset 0 0 14px 14px var(--color-grey-1);
 }
 ::-webkit-scrollbar-track {
   display: none;
