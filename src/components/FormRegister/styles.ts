@@ -154,6 +154,12 @@ export const Form = styled.form`
 
           color: var(--color-grey-0);
           background-color: var(--color-grey-2);
+          transition: 0.5s;
+
+          &:hover {
+            scale: 1.2;
+            color: var(--color-white-0);
+          }
         }
       }
 

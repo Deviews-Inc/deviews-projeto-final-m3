@@ -41,7 +41,7 @@ export const P = styled.p`
     }
 
     &:hover {
-      color: var(--color-grey-0);
+      color: var(--color-white-0);
     }
     &:hover:after {
       width: 100%;

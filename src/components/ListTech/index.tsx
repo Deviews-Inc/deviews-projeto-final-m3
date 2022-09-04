@@ -15,7 +15,7 @@ const ListTech = ({ thisTech, index, newTech, setNewTech }: any) => {
         type="button"
         onClick={() => removeTech(index)}
       >
-        <CgClose className="iconReact" />
+        <CgClose className="iconClose" />
       </button>
     </ListItem>
   );
