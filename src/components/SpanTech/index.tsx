@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SpanComponent } from "./style";
+import { SpanComponent } from "./styles";
 
 interface ISpanTechProps {
   children: ReactNode;

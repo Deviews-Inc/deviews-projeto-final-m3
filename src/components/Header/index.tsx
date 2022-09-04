@@ -1,4 +1,4 @@
-import { HeaderComponent } from "./style";
+import { HeaderComponent } from "./styles";
 import fullLogo from "../../assets/LogoInteiro1.png";
 import logoDevil from "../../assets/LogoDevil.png";
 import logoName from "../../assets/LogoNome.png";

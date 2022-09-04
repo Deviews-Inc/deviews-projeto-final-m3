@@ -1,5 +1,5 @@
 import Button from "../Button";
-import { ContainerForm, Form } from "./style";
+import { ContainerForm, Form } from "./styles";
 
 function FormPost() {
   return (
