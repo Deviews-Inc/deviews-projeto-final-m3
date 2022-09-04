@@ -44,7 +44,7 @@ export const ContainerBio = styled.div`
 export const ContainerTechs = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0.5rem;
 
   h3 {
     color: var(--color-white-0);

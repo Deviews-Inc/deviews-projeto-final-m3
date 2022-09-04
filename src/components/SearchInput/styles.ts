@@ -18,12 +18,25 @@ export const Container = styled.div`
     width: 80%;
     height: 90%;
 
+    font-size: 0.875rem;
     outline: 0;
     padding-left: 1.25rem;
 
     border-radius: 3.125rem;
     background-color: transparent;
     color: var(--color-white-0);
+
+    @media screen and (min-width: 768px) {
+      &:focus {
+        width: 100px;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      &:focus {
+        width: 80%;
+      }
+    }
   }
 
   button {

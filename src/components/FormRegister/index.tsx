@@ -10,6 +10,8 @@ import { FiAlertCircle } from "react-icons/fi";
 import Span from "../FormSpan";
 import Logo from "../../assets/LogoDevil.png";
 import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
+import toast from "react-hot-toast";
+import ToastStyle from "../ToastStyle/styles";
 
 interface IFormRegister {
   name: string;
@@ -34,16 +36,21 @@ const FormRegister = () => {
   });
 
   const addTech = (data: string) => {
-    setNewTech((prev: any) => [...prev, data]);
-    console.log(newTech);
+    const tech = data.toLowerCase();
+    const findTech = newTech.find((elem) => elem === tech);
+
+    findTech && toast.error("Você já cadastrou essa tecnologia.", ToastStyle);
+    tech === "" && toast.error("Adicione uma tecnologia válida.", ToastStyle);
+
+    !findTech && tech !== "" && setNewTech((prev: any) => [...prev, data]);
   };
 
   const removeTech = (index: number) => {
     const filterTech = newTech.filter((tech, i) => i !== index);
     setNewTech(filterTech);
   };
-  
-   const createData = (data: UserDataRegister) => {
+
+  const createData = (data: UserDataRegister) => {
     const newData = data;
     newData.techs = newTech;
     signUp(newData);
