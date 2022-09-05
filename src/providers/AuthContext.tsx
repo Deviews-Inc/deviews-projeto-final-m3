@@ -22,11 +22,22 @@ export interface UserDataRegister {
   techs?: string[];
 }
 
+interface IUserInfo {
+  bio: string;
+  email: string;
+  id: number;
+  img: string;
+  name: string;
+  techs: string[];
+  username: string;
+}
+
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
   logOut: () => void;
+  userInfo: IUserInfo;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -97,7 +108,7 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user, logOut }}>
+    <AuthContext.Provider value={{ signIn, signUp, user, logOut, userInfo }}>
       {children}
     </AuthContext.Provider>
   );
