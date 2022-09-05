@@ -36,6 +36,8 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState({});
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,6 +65,7 @@ const AuthProvider = ({ children }: AuthProps) => {
       .then((response) => {
         const { user, accessToken: token } = response.data;
 
+        setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
