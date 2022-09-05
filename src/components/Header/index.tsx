@@ -3,11 +3,15 @@ import fullLogo from "../../assets/LogoInteiro1.png";
 import logoDevil from "../../assets/LogoDevil.png";
 import logoName from "../../assets/LogoNome.png";
 import ButtonLogout from "../ButtonLogout";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthContext";
 
 const Header = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+
+  const { logOut } = useContext(AuthContext);
 
   const updateMedia = () => {
     setIsDesktop(window.innerWidth >= 768);
@@ -34,6 +38,7 @@ const Header = () => {
           <ButtonLogout
             onClick={() => {
               setIsAuthenticated(false);
+              logOut();
             }}
           />
         </div>

@@ -81,11 +81,13 @@ const PostProvider = ({ children }: PostProps) => {
       if (isToken) {
         try {
           await api
-            .get("/posts", {
+            .get("/posts?_embed=fires", {
               headers: { Authorization: `Bearer ${isToken}` },
             })
             .then((res) => {
-              setPosts(res.data);
+              const orderedPosts = res.data.reverse();
+              console.log(res.data);
+              setPosts(orderedPosts);
               setLoading(false);
             });
         } catch (err) {
@@ -94,9 +96,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken, reloadPosts]);
-
-  console.log(posts);
+  }, []);
 
   const newPost = (data: DataPost) => {
     api

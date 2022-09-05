@@ -22,10 +22,22 @@ export interface UserDataRegister {
   techs?: string[];
 }
 
+interface IUserInfo {
+  bio: string;
+  email: string;
+  id: number;
+  img: string;
+  name: string;
+  techs: string[];
+  username: string;
+}
+
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
+  logOut: () => void;
+  userInfo: IUserInfo;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
@@ -38,6 +50,8 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
+
   const [isToken, setIsToken] = useState("");
 
   const navigate = useNavigate();
@@ -67,6 +81,7 @@ const AuthProvider = ({ children }: AuthProps) => {
       .then((response) => {
         const { user, accessToken: token } = response.data;
         console.log(token);
+        setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
@@ -95,9 +110,23 @@ const AuthProvider = ({ children }: AuthProps) => {
       );
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
+
   return (
     <AuthContext.Provider
-      value={{ signIn, signUp, user, loading, setLoading, isToken }}
+      value={{
+        signIn,
+        signUp,
+        user,
+        logOut,
+        userInfo,
+        loading,
+        setLoading,
+        isToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
