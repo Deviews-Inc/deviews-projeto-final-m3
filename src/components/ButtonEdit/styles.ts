@@ -5,9 +5,14 @@ export const ButtonComponent = styled.button`
   color: var(--color-white-0);
   box-shadow: var(--box-shadow);
 
-  width: 18rem;
-  height: 3rem;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
   border-radius: 8px;
 
   font-size: 1rem;
+
+  &:hover {
+    background-color: rgba(211, 0, 0, 0.83);
+  }
 `;
