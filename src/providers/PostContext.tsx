@@ -96,7 +96,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, []);
+  }, [isToken]);
 
   const newPost = (data: DataPost) => {
     api
