@@ -73,8 +73,10 @@ const PostProvider = ({ children }: PostProps) => {
       const token = localStorage.getItem("@deviews:token");
       if (token) {
         try {
-          api.get("/posts").then((res) => {
-            setPosts(res.data);
+          api.get("/posts?_embed=fires").then((res) => {
+            const orderedPosts = res.data.reverse();
+            console.log(res.data);
+            setPosts(orderedPosts);
           });
         } catch (err) {
           console.log(err);
@@ -83,8 +85,6 @@ const PostProvider = ({ children }: PostProps) => {
     };
     loadPosts();
   }, []);
-
-  console.log(posts);
 
   const newPost = (data: DataPost) => {
     api
