@@ -11,7 +11,7 @@ import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
 import ListTech from "../ListTech";
 import Button from "../Button";
 import Span from "../FormSpan";
-import ToastStyle from "../ToastStyle/styles";
+import { ToastError } from "../ToastStyle/styles";
 import Logo from "../../assets/LogoDevil.png";
 
 interface IFormRegister {
@@ -40,8 +40,8 @@ const FormRegister = () => {
     const tech = data.toLowerCase();
     const findTech = newTech.find((elem) => elem === tech);
 
-    findTech && toast.error("Você já cadastrou essa tecnologia.", ToastStyle);
-    tech === "" && toast.error("Adicione uma tecnologia válida.", ToastStyle);
+    findTech && toast.error("Você já cadastrou essa tecnologia.", ToastError);
+    tech === "" && toast.error("Adicione uma tecnologia válida.", ToastError);
 
     !findTech && tech !== "" && setNewTech((prev: any) => [...prev, data]);
   };
