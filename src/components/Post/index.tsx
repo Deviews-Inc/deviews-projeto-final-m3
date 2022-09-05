@@ -1,35 +1,20 @@
-import { useContext } from "react";
-import { PostContext } from "../../providers/PostContext";
+import { PostsData } from "../../providers/PostContext";
 import { Container } from "./style";
 
-interface IPost {
-  content: string;
-  img: string;
-  date: string;
-  userId: number;
-}
+type postProps = Omit<PostsData, "id">;
 
-const Post = ({ content, img, date, userId }: IPost) => {
-  const { getUserById } = useContext(PostContext);
-
-  //   getUserById(userId);
-
+const Post = ({ content, img, date, userInfo }: postProps) => {
   return (
-    <div>
-      <Container>
-        <div>
-          <img
-            src="http://images3.memedroid.com/images/UPLOADED178/61533e247bcac.jpeg"
-            alt=""
-          />
-          <h2>Nome aqui</h2>
-          <p>@UserAqui</p>
-        </div>
-        <p className="content">{content}</p>
-        <img src={img} alt="" />
-        <span>{date}</span>
-      </Container>
-    </div>
+    <Container>
+      <div>
+        <img src={userInfo.img} alt="imagem usuário" />
+        <h2>{userInfo.name}</h2>
+        <p>{`@${userInfo.username}`}</p>
+      </div>
+      <p className="content">{content}</p>
+      <img src={img} alt="imagem post" />
+      <span>{date}</span>
+    </Container>
   );
 };
 export default Post;

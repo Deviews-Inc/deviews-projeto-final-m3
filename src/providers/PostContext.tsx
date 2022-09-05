@@ -35,12 +35,18 @@ interface FireDataAnswers {
   answersId: number;
 }
 
-interface PostsData {
+interface IuserInfo {
+  img: string;
+  name: string;
+  username: string;
+}
+
+export interface PostsData {
   content: string;
   date: string;
   id: number;
   img: string;
-  userId: number;
+  userInfo: IuserInfo;
 }
 
 interface PostProvidersData {
@@ -65,10 +71,11 @@ const PostProvider = ({ children }: PostProps) => {
   useEffect(() => {
     const loadPosts = () => {
       const token = localStorage.getItem("@deviews:token");
-
       if (token) {
         try {
-          api.get("/posts").then((res) => setPosts(res.data));
+          api.get("/posts").then((res) => {
+            setPosts(res.data);
+          });
         } catch (err) {
           console.log(err);
         }

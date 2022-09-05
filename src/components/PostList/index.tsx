@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PostContext } from "../../providers/PostContext";
 import Post from "../Post";
+import { Container } from "./style";
 
 const PostList = () => {
   const { posts } = useContext(PostContext);
@@ -9,17 +10,17 @@ const PostList = () => {
 
   return (
     <>
-      <ul>
+      <Container>
         {posts.map((post, index) => (
           <Post
             key={index}
             content={post.content}
-            userId={post.userId}
+            userInfo={post.userInfo}
             date={post.date}
             img={post.img}
           />
         ))}
-      </ul>
+      </Container>
     </>
   );
 };

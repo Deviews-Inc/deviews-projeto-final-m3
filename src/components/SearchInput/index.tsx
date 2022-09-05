@@ -3,6 +3,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { PostContext } from "../../providers/PostContext";
 import { Container } from "./styles";
 import { motion } from "framer-motion";
+import { ChangeEvent } from "react";
 
 const SearchInput = () => {
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
@@ -34,7 +35,9 @@ const SearchInput = () => {
             type="text"
             placeholder="Pesquisar..."
             value={inputSearchValue}
-            onChange={(event) => setInputSearchValue(event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setInputSearchValue(event.target.value)
+            }
             variants={parent}
             initial="variantA"
             whileFocus="variantB"
