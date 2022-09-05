@@ -24,7 +24,7 @@ export const Form = styled.form`
     )
     10;
 
-  div {
+  .container_post {
     display: flex;
     flex-direction: column;
 
@@ -45,14 +45,31 @@ export const Form = styled.form`
       outline: none;
     }
 
-    button {
-      align-self: flex-end;
-      width: 3.75rem;
-      min-height: 1.875rem;
+    .container_buttons {
+      display: flex;
+      flex-direction: initial;
+      justify-content: space-between;
     }
 
-    @media screen and (min-width: 425px) {
-      button {
+    button {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 40px;
+      min-height: 1.875rem;
+
+      svg {
+        height: 60%;
+        width: 70%;
+      }
+    }
+
+    button + button {
+      align-self: flex-end;
+      min-height: 1.875rem;
+      width: 3.75rem;
+
+      @media screen and (min-width: 425px) {
         padding: 0 30px;
         width: auto;
       }

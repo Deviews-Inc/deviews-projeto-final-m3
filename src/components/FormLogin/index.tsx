@@ -54,7 +54,12 @@ const FormLogin = () => {
               placeholder="Digite aqui sua senha"
               {...register("password")}
             />
-            <button type="button" onClick={() => setIsView(!isView)}>
+            <button
+              className="message_password"
+              type="button"
+              onClick={() => setIsView(!isView)}
+            >
+              <span>Ocultar senha</span>
               <GiBleedingEye className="eyeOpen" />
             </button>
           </ContainerPassword>
@@ -65,7 +70,12 @@ const FormLogin = () => {
               placeholder="Digite aqui sua senha"
               {...register("password")}
             />
-            <button type="button" onClick={() => setIsView(!isView)}>
+            <button
+              className="message_password"
+              type="button"
+              onClick={() => setIsView(!isView)}
+            >
+              <span>Mostrar senha</span>
               <IoEyeOffOutline />
             </button>
           </ContainerPassword>
