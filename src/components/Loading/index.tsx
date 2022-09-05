@@ -1,10 +1,11 @@
 import loadingSvg from "../../assets/loading.svg";
+import { Container } from "./style";
 
 const Loading = () => {
   return (
-    <div>
+    <Container>
       <img src={loadingSvg} alt="loading" />
-    </div>
+    </Container>
   );
 };
 

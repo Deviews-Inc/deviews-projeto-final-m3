@@ -26,6 +26,7 @@ interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
+  loading: boolean;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -88,7 +89,7 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user }}>
+    <AuthContext.Provider value={{ signIn, signUp, user, loading }}>
       {children}
     </AuthContext.Provider>
   );

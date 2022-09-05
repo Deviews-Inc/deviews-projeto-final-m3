@@ -36,6 +36,7 @@ interface FireDataAnswers {
 }
 
 interface PostProvidersData {
+  getAllPosts: () => void;
   newPost: (postData: DataPost) => void;
   deletePost: (idPost: PostId) => void;
   editPost: (idPost: PostId, answersData: DataPost) => void;
@@ -50,6 +51,15 @@ export const PostContext = createContext<PostProvidersData>(
 );
 
 const PostProvider = ({ children }: PostProps) => {
+  const getAllPosts = () => {
+    api
+      .get("/users?_embed=posts&_embed=fires")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const newPost = (data: DataPost) => {
     api
       .post("/posts", data)
@@ -103,6 +113,7 @@ const PostProvider = ({ children }: PostProps) => {
   return (
     <PostContext.Provider
       value={{
+        getAllPosts,
         newPost,
         deletePost,
         editPost,
