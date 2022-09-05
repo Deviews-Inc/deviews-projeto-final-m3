@@ -7,6 +7,7 @@ import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
+import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);

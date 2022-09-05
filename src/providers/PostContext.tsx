@@ -1,5 +1,12 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import api from "../services/api";
+import { AuthContext } from "./AuthContext";
 
 interface PostProps {
   children: ReactNode;
@@ -50,7 +57,6 @@ export interface PostsData {
 }
 
 interface PostProvidersData {
-  getAllPosts: () => void;
   newPost: (postData: DataPost) => void;
   deletePost: (idPost: PostId) => void;
   editPost: (idPost: PostId, answersData: DataPost) => void;
@@ -67,23 +73,28 @@ export const PostContext = createContext<PostProvidersData>(
 );
 
 const PostProvider = ({ children }: PostProps) => {
+  const { setLoading, isToken } = useContext(AuthContext);
   const [posts, setPosts] = useState<PostsData[]>([]);
-
+  const [reloadPosts, setReloadPosts] = useState(false);
   useEffect(() => {
-    const loadPosts = () => {
-      const token = localStorage.getItem("@deviews:token");
-      if (token) {
+    const loadPosts = async () => {
+      if (isToken) {
         try {
-          api.get("/posts").then((res) => {
-            setPosts(res.data);
-          });
+          await api
+            .get("/posts", {
+              headers: { Authorization: `Bearer ${isToken}` },
+            })
+            .then((res) => {
+              setPosts(res.data);
+              setLoading(false);
+            });
         } catch (err) {
           console.log(err);
         }
       }
     };
     loadPosts();
-  }, []);
+  }, [isToken, reloadPosts]);
 
   console.log(posts);
 
@@ -149,7 +160,6 @@ const PostProvider = ({ children }: PostProps) => {
   return (
     <PostContext.Provider
       value={{
-        getAllPosts,
         newPost,
         deletePost,
         editPost,
