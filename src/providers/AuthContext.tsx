@@ -26,6 +26,7 @@ interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
+  logOut: () => void;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -87,8 +88,13 @@ const AuthProvider = ({ children }: AuthProps) => {
       );
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user }}>
+    <AuthContext.Provider value={{ signIn, signUp, user, logOut }}>
       {children}
     </AuthContext.Provider>
   );
