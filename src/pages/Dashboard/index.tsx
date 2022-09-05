@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
+import PostList from "../../components/PostList";
 import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
 import { Container, ContainerMain } from "./styles";
@@ -29,7 +30,7 @@ const Dashboard = () => {
               </aside>
               <main className="container_posts">
                 <FormPost />
-                {/* Posts com scroll infinito */}
+                <PostList />
               </main>
               <aside className="container_search">
                 <SearchInput />
@@ -50,7 +51,7 @@ const Dashboard = () => {
               </aside>
               <main className="container_posts">
                 <FormPost />
-                {/* Posts com scroll infinito */}
+                <PostList />
               </main>
             </ContainerMain>
           </Container>

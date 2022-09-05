@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import api from "../services/api";
 
 interface PostProps {
@@ -35,6 +35,20 @@ interface FireDataAnswers {
   answersId: number;
 }
 
+interface IuserInfo {
+  img: string;
+  name: string;
+  username: string;
+}
+
+export interface PostsData {
+  content: string;
+  date: string;
+  id: number;
+  img: string;
+  userInfo: IuserInfo;
+}
+
 interface PostProvidersData {
   newPost: (postData: DataPost) => void;
   deletePost: (idPost: PostId) => void;
@@ -43,6 +57,8 @@ interface PostProvidersData {
   newFirePost: (idPost: PostId, fireData: FireDataPost) => void;
   newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
   searchPost: (data: string) => void;
+  getUserById: (id: number) => void;
+  posts: PostsData[];
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -50,6 +66,26 @@ export const PostContext = createContext<PostProvidersData>(
 );
 
 const PostProvider = ({ children }: PostProps) => {
+  const [posts, setPosts] = useState<PostsData[]>([]);
+
+  useEffect(() => {
+    const loadPosts = () => {
+      const token = localStorage.getItem("@deviews:token");
+      if (token) {
+        try {
+          api.get("/posts").then((res) => {
+            setPosts(res.data);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    loadPosts();
+  }, []);
+
+  console.log(posts);
+
   const newPost = (data: DataPost) => {
     api
       .post("/posts", data)
@@ -100,6 +136,15 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
+  const getUserById = (id: number) => {
+    api
+      .get(`/users/${id}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <PostContext.Provider
       value={{
@@ -110,6 +155,8 @@ const PostProvider = ({ children }: PostProps) => {
         newFirePost,
         newFireAnswers,
         searchPost,
+        posts,
+        getUserById,
       }}
     >
       {children}
