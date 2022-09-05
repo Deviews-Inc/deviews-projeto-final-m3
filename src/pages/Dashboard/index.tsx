@@ -1,116 +1,62 @@
 import { useEffect, useState } from "react";
-import * as yup from "yup";
-import Button from "../../components/Button";
-import Logo from "./Logo.png";
-import { DivDashboard } from "./style";
-import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-interface INewPost {
-  content: string;
-  img: string;
-  userId: number;
-  date: string;
-  userInfo: {
-    name: string;
-    username: string;
-    img: string;
-  };
-}
-
-const token = localStorage.getItem("@deviews:token");
+import FormPost from "../../components/FormPost";
+import Header from "../../components/Header";
+import PostList from "../../components/PostList";
+import SearchInput from "../../components/SearchInput";
+import UserOptions from "../../components/UserOptions";
+import { Container, ContainerMain } from "./styles";
 
 const Dashboard = () => {
-  const [textArea, setTextArea] = useState<string>("");
-
-  // function newPost(data: INewPost) {
-  //   api
-  //     .post("/dashboard", data)
-  //     .then((response) => navigate("/dashboard"))
-  //     .catch((error) => console.log(error));
-  // }
-
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
-    setIsDesktop(window.innerWidth > 768);
+    setIsDesktop(window.innerWidth >= 768);
   };
+
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
 
-  return isDesktop ? (
+  return (
     <>
-      <DivDashboard>
-        <aside>
-          <div className="figureName">
-            <figure>
-              <img src={Logo} alt="Avatar" />
-            </figure>
-            <div className="nameAvatar">
-              <h4>Frederico</h4>
-              <p>@FredericoPugDev</p>
-            </div>
-          </div>
-          <div className="bioETechs">
-            <span>Bio:</span>
-            <span>Techs:</span>
-          </div>
-        </aside>
-        <main>
-          <div className="searchbtn">
-            <textarea
-              placeholder="Escreva seu post..."
-              name=""
-              id=""
-              value={textArea}
-              onChange={(event) => setTextArea(event.target.value)}
-            ></textarea>
-            <Button>.Post</Button>
-          </div>
-          <div className="line"></div>
-        </main>
-        <aside className="asideInput">
-          <input type="text" placeholder="Pesquisar..." />
-        </aside>
-      </DivDashboard>
-      {console.log(textArea)}
-    </>
-  ) : (
-    <>
-      <DivDashboard>
-        <main className="mainMobile">
-          <div className="figureName">
-            <figure>
-              <img src={Logo} alt="Avatar" />
-            </figure>
-            <div className="nameAvatar">
-              <h4>Frederico</h4>
-              <p>@FredericoPugDev</p>
-            </div>
-          </div>
-          <div className="line"></div>
-          <div className="bioETechs">
-            <span>Bio:</span>
-            <span>Techs:</span>
-          </div>
-          <div className="asideInput">
-            <input type="text" placeholder="Pesquisar..." />
-          </div>
-          <div className="searchbtn">
-            <textarea
-              placeholder="Escreva seu post..."
-              name=""
-              id=""
-            ></textarea>
-            <Button>.Post</Button>
-          </div>
-          <div className="line"></div>
-        </main>
-      </DivDashboard>
+      {isDesktop ? (
+        <>
+          <Header />
+          <Container>
+            <ContainerMain>
+              <aside className="container_info_user">
+                <UserOptions />
+              </aside>
+              <main className="container_posts">
+                <FormPost />
+                <PostList />
+              </main>
+              <aside className="container_search">
+                <SearchInput />
+              </aside>
+            </ContainerMain>
+          </Container>
+        </>
+      ) : (
+        <>
+          <Header />
+          <Container>
+            <ContainerMain>
+              <aside className="container_info_user">
+                <UserOptions />
+              </aside>
+              <aside className="container_search">
+                <SearchInput />
+              </aside>
+              <main className="container_posts">
+                <FormPost />
+                <PostList />
+              </main>
+            </ContainerMain>
+          </Container>
+        </>
+      )}
     </>
   );
 };

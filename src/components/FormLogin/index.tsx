@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../assets/LogoDevil.png";
 
 import { ContainerPassword, Form } from "./styles";
 import Button from "../Button";
@@ -10,6 +8,8 @@ import schema from "../../validators/loginUser";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { GiBleedingEye } from "react-icons/gi";
 import { AuthContext } from "../../providers/AuthContext";
+import Span from "../FormSpan";
+import { FiAlertCircle } from "react-icons/fi";
 
 interface IUserLogin {
   email: string;
@@ -28,49 +28,70 @@ const FormLogin = () => {
 
   return (
     <Form onSubmit={handleSubmit(signIn)}>
-      <figure>
-        <img src={logo} alt="Logo da Deviews" />
-      </figure>
-
       <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        placeholder="Digite aqui seu email"
-        {...register("email")}
-      />
-      <span>{errors.email?.message}</span>
+      <div className="div_input">
+        <input
+          type="text"
+          placeholder="Digite aqui seu email"
+          {...register("email")}
+        />
+        <div className="div_span">
+          {errors.email && (
+            <>
+              <span className="error">{errors.email.message}</span>
+              <FiAlertCircle />
+            </>
+          )}
+        </div>
+      </div>
 
       <label htmlFor="password">Senha</label>
-      {isView ? (
-        <ContainerPassword>
-          <input
-            type="text"
-            placeholder="Digite aqui sua senha"
-            {...register("password")}
-          />
-          <button type="button" onClick={() => setIsView(!isView)}>
-            <GiBleedingEye className="eyeOpen" />
-          </button>
-        </ContainerPassword>
-      ) : (
-        <ContainerPassword>
-          <input
-            type="password"
-            placeholder="Digite aqui sua senha"
-            {...register("password")}
-          />
-          <button type="button" onClick={() => setIsView(!isView)}>
-            <IoEyeOffOutline />
-          </button>
-        </ContainerPassword>
-      )}
-      <span>{errors.password?.message}</span>
+      <div className="div_input">
+        {isView ? (
+          <ContainerPassword>
+            <input
+              type="text"
+              placeholder="Digite aqui sua senha"
+              {...register("password")}
+            />
+            <button
+              className="message_password"
+              type="button"
+              onClick={() => setIsView(!isView)}
+            >
+              <span>Ocultar senha</span>
+              <GiBleedingEye className="eyeOpen" />
+            </button>
+          </ContainerPassword>
+        ) : (
+          <ContainerPassword>
+            <input
+              type="password"
+              placeholder="Digite aqui sua senha"
+              {...register("password")}
+            />
+            <button
+              className="message_password"
+              type="button"
+              onClick={() => setIsView(!isView)}
+            >
+              <span>Mostrar senha</span>
+              <IoEyeOffOutline />
+            </button>
+          </ContainerPassword>
+        )}
+        <div className="div_span">
+          {errors.password && (
+            <>
+              <span className="error">{errors.password.message}</span>
+              <FiAlertCircle />
+            </>
+          )}
+        </div>
+      </div>
 
       <Button>&lt;Login/&gt;</Button>
-      <p>
-        Ainda não possui uma conta?
-        <Link to={"/register"}>Cadastre-se.</Link>
-      </p>
+      <Span>Cadastre-se.</Span>
     </Form>
   );
 };

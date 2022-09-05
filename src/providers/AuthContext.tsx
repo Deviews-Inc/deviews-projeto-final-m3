@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { ToastError, ToastSucess } from "../components/ToastStyle/styles";
 import api from "../services/api";
 
 interface AuthProps {
@@ -11,18 +13,18 @@ interface UserDataLogin {
   password: string;
 }
 
-interface UserDataRegister {
+export interface UserDataRegister {
   name: string;
   username: string;
-  bio: string;
   email: string;
   password: string;
-  techs: string[];
+  bio: string;
+  techs?: string[];
 }
 
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
-  register: (userData: UserDataRegister) => void;
+  signUp: (userData: UserDataRegister) => void;
   user: object;
 }
 
@@ -65,22 +67,28 @@ const AuthProvider = ({ children }: AuthProps) => {
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
+        toast.success("Bem vindo(a)!", ToastSucess);
         navigate("/dashboard", { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch(() => {
+        toast.error("Email e/ou senha inválidos.", ToastError);
+      });
   };
 
-  const register = (data: UserDataRegister) => {
+  const signUp = (data: UserDataRegister) => {
     api
-      .post("/registe", data)
-      .then((response) => {
+      .post("/register", data)
+      .then(() => {
+        toast.success("Conta criada com sucesso!", ToastSucess);
         navigate("/login", { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch(() =>
+        toast.error("Ops! Já existe um cadastro com este email.", ToastError)
+      );
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, register, user }}>
+    <AuthContext.Provider value={{ signIn, signUp, user }}>
       {children}
     </AuthContext.Provider>
   );
