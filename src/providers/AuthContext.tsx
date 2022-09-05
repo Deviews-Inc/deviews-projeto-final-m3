@@ -47,7 +47,7 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
 
   const navigate = useNavigate();
 
