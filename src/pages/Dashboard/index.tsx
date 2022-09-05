@@ -1,9 +1,37 @@
 import { useEffect, useState } from "react";
+import * as yup from "yup";
 import Button from "../../components/Button";
 import Logo from "./Logo.png";
 import { DivDashboard } from "./style";
+import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+interface INewPost {
+  content: string;
+  img: string;
+  userId: number;
+  date: string;
+  userInfo: {
+    name: string;
+    username: string;
+    img: string;
+  };
+}
+
+const token = localStorage.getItem("@deviews:token");
 
 const Dashboard = () => {
+  const [textArea, setTextArea] = useState<string>("");
+
+  // function newPost(data: INewPost) {
+  //   api
+  //     .post("/dashboard", data)
+  //     .then((response) => navigate("/dashboard"))
+  //     .catch((error) => console.log(error));
+  // }
+
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 
   const updateMedia = () => {
@@ -38,6 +66,8 @@ const Dashboard = () => {
               placeholder="Escreva seu post..."
               name=""
               id=""
+              value={textArea}
+              onChange={(event) => setTextArea(event.target.value)}
             ></textarea>
             <Button>.Post</Button>
           </div>
@@ -47,6 +77,7 @@ const Dashboard = () => {
           <input type="text" placeholder="Pesquisar..." />
         </aside>
       </DivDashboard>
+      {console.log(textArea)}
     </>
   ) : (
     <>
