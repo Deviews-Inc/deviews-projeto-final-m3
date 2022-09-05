@@ -20,6 +20,7 @@ export interface UserDataRegister {
   password: string;
   bio: string;
   techs?: string[];
+  id?: number;
 }
 
 interface AuthProvidersData {
@@ -27,6 +28,7 @@ interface AuthProvidersData {
   signUp: (userData: UserDataRegister) => void;
   user: object;
   logOut: () => void;
+  userInfo: UserDataRegister;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -36,7 +38,9 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState<UserDataRegister>(
+    {} as UserDataRegister
+  );
 
   const navigate = useNavigate();
 
@@ -97,7 +101,7 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user, logOut }}>
+    <AuthContext.Provider value={{ signIn, signUp, user, logOut, userInfo }}>
       {children}
     </AuthContext.Provider>
   );

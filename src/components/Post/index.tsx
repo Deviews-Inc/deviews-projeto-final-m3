@@ -1,10 +1,13 @@
-import { PostsData } from "../../providers/PostContext";
+import { useContext } from "react";
+import { PostContext, PostsData } from "../../providers/PostContext";
 import ButtonFire from "../ButtonFire";
 import { Container } from "./style";
 
-type postProps = Omit<PostsData, "id">;
+const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
+  const loggedId = localStorage.getItem("@deviews:id");
 
-const Post = ({ content, img, date, userInfo }: postProps) => {
+  const { newFirePost } = useContext(PostContext);
+
   return (
     <Container>
       <div>
@@ -16,7 +19,16 @@ const Post = ({ content, img, date, userInfo }: postProps) => {
       {img && <img src={img} alt="imagem post" />}
       <div className="bottom_info">
         <span>{date}</span>
-        <ButtonFire />
+        <div>
+          <ButtonFire
+            onClick={() => {
+              const data = { userId: Number(loggedId), postId: id };
+              newFirePost(data);
+              console.log("oi");
+            }}
+          />
+          {fires.length > 0 && <p>{fires.length}</p>}
+        </div>
       </div>
     </Container>
   );
