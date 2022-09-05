@@ -22,10 +22,22 @@ export interface UserDataRegister {
   techs?: string[];
 }
 
+interface IUserInfo {
+  bio: string;
+  email: string;
+  id: number;
+  img: string;
+  name: string;
+  techs: string[];
+  username: string;
+}
+
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
+  logOut: () => void;
+  userInfo: IUserInfo;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -35,6 +47,8 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,6 +76,7 @@ const AuthProvider = ({ children }: AuthProps) => {
       .then((response) => {
         const { user, accessToken: token } = response.data;
 
+        setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
@@ -87,8 +102,13 @@ const AuthProvider = ({ children }: AuthProps) => {
       );
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user }}>
+    <AuthContext.Provider value={{ signIn, signUp, user, logOut, userInfo }}>
       {children}
     </AuthContext.Provider>
   );

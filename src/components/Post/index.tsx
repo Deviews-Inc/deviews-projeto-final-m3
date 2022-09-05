@@ -1,4 +1,5 @@
 import { PostsData } from "../../providers/PostContext";
+import ButtonFire from "../ButtonFire";
 import { Container } from "./style";
 
 type postProps = Omit<PostsData, "id">;
@@ -12,8 +13,11 @@ const Post = ({ content, img, date, userInfo }: postProps) => {
         <p>{`@${userInfo.username}`}</p>
       </div>
       <p className="content">{content}</p>
-      <img src={img} alt="imagem post" />
-      <span>{date}</span>
+      {img && <img src={img} alt="imagem post" />}
+      <div className="bottom_info">
+        <span>{date}</span>
+        <ButtonFire />
+      </div>
     </Container>
   );
 };
