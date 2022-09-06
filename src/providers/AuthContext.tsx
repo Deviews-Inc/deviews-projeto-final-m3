@@ -20,27 +20,21 @@ export interface UserDataRegister {
   password: string;
   bio: string;
   techs?: string[];
+  id?: number;
+  img?: string;
 }
 
-interface IUserInfo {
-  bio: string;
-  email: string;
-  id: number;
-  img: string;
-  name: string;
-  techs: string[];
-  username: string;
-}
 
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
   logOut: () => void;
-  userInfo: IUserInfo;
+  userInfo: UserDataRegister;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
+
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -50,9 +44,12 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
 
+  const [userInfo, setUserInfo] = useState<UserDataRegister>(
+    {} as UserDataRegister
+  );
   const [isToken, setIsToken] = useState("");
+
 
   const navigate = useNavigate();
 

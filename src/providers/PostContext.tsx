@@ -33,7 +33,7 @@ interface AnswersId {
 }
 
 interface FireDataPost {
-  count: number;
+  userId: number;
   postId: number;
 }
 
@@ -48,12 +48,19 @@ interface IuserInfo {
   username: string;
 }
 
+export interface IFireData {
+  userId: number;
+  postId: number;
+  id: number;
+}
+
 export interface PostsData {
   content: string;
   date: string;
   id: number;
   img: string;
   userInfo: IuserInfo;
+  fires: IFireData[];
 }
 
 interface PostProvidersData {
@@ -61,7 +68,7 @@ interface PostProvidersData {
   deletePost: (idPost: PostId) => void;
   editPost: (idPost: PostId, answersData: DataPost) => void;
   newAnswers: (idPost: PostId, answersData: DataAnswers) => void;
-  newFirePost: (idPost: PostId, fireData: FireDataPost) => void;
+  newFirePost: (fireData: FireDataPost) => void;
   newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
@@ -128,10 +135,12 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  const newFirePost = (postId: PostId, data: FireDataPost) => {
+  const newFirePost = (data: FireDataPost) => {
     api
-      .patch(`/posts/${postId}`, data)
-      .then((response) => {})
+      .post("/posts/fires", data)
+      .then((response) => {
+        console.log(response);
+      })
       .catch((err) => console.log(err));
   };
 
