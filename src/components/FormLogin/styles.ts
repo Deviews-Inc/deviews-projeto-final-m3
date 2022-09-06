@@ -112,11 +112,53 @@ export const ContainerPassword = styled.div`
 
       width: 1.125rem;
       height: 1.125rem;
+
+      transition: 0.3s;
+
+      &:hover {
+        color: var(--color-white-0);
+      }
     }
 
     .eyeOpen {
       width: 1.25rem;
       height: 1.25rem;
+    }
+
+    span {
+      width: 6.25rem;
+      height: 1.25rem;
+
+      position: absolute;
+      color: var(--color-grey-4);
+      background: var(--color-white-0);
+
+      font-size: 0.875rem;
+      font-weight: 500;
+
+      text-align: center;
+      visibility: hidden;
+      border-radius: 0.375rem;
+    }
+
+    span:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: 1px;
+      width: 0;
+
+      border-top: 0.5rem solid var(--color-white-0);
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+    }
+
+    &:hover span {
+      visibility: visible;
+      opacity: 0.5;
+      bottom: 30px;
+      left: -50px;
     }
   }
 

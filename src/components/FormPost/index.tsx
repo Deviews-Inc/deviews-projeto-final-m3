@@ -1,13 +1,19 @@
 import Button from "../Button";
 import { ContainerForm, Form } from "./styles";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 function FormPost() {
   return (
     <ContainerForm>
       <Form>
-        <div>
+        <div className="container_post">
           <textarea placeholder="Escreva o seu post..." />
-          <Button>.Post</Button>
+          <div className="container_buttons">
+            <Button>
+              <MdOutlineAddPhotoAlternate />
+            </Button>
+            <Button>.Post</Button>
+          </div>
         </div>
       </Form>
     </ContainerForm>

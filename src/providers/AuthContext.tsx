@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import ToastStyle from "../components/ToastStyle/styles";
+import { ToastError, ToastSucess } from "../components/ToastStyle/styles";
 import api from "../services/api";
 
 interface AuthProps {
@@ -21,7 +21,9 @@ export interface UserDataRegister {
   bio: string;
   techs?: string[];
   id?: number;
+  img?: string;
 }
+
 
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
@@ -29,6 +31,10 @@ interface AuthProvidersData {
   user: object;
   logOut: () => void;
   userInfo: UserDataRegister;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isToken: string;
+
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -38,9 +44,12 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+
   const [userInfo, setUserInfo] = useState<UserDataRegister>(
     {} as UserDataRegister
   );
+  const [isToken, setIsToken] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -53,12 +62,12 @@ const AuthProvider = ({ children }: AuthProps) => {
         try {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
+          setIsToken(token);
           navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
       }
-      setLoading(false);
     };
     loadUser();
   }, []);
@@ -68,18 +77,21 @@ const AuthProvider = ({ children }: AuthProps) => {
       .post("/login", data)
       .then((response) => {
         const { user, accessToken: token } = response.data;
-
+        console.log(token);
         setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
-        toast.success("Bem vindo(a)!", ToastStyle);
+        setIsToken(token);
+        console.log(isToken);
+        toast.success("Bem vindo(a)!", ToastSucess);
+
         navigate("/dashboard", { replace: true });
       })
       .catch(() => {
-        toast.error("Email e/ou senha inválidos.", ToastStyle);
+        toast.error("Email e/ou senha inválidos.", ToastError);
       });
   };
 
@@ -87,11 +99,11 @@ const AuthProvider = ({ children }: AuthProps) => {
     api
       .post("/register", data)
       .then(() => {
-        toast.success("Conta criada com sucesso!", ToastStyle);
+        toast.success("Conta criada com sucesso!", ToastSucess);
         navigate("/login", { replace: true });
       })
       .catch(() =>
-        toast.error("Ops! Já existe um cadastro com este email.", ToastStyle)
+        toast.error("Ops! Já existe um cadastro com este email.", ToastError)
       );
   };
 
@@ -101,7 +113,18 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user, logOut, userInfo }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signUp,
+        user,
+        logOut,
+        userInfo,
+        loading,
+        setLoading,
+        isToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
