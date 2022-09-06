@@ -34,7 +34,7 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
               console.log("oi");
             }}
           />
-          {/* {fires.length > 0 && <p>{fires.length}</p>} */}
+          {fires?.length > 0 && <p>{fires.length}</p>}
         </div>
       </div>
     </Container>

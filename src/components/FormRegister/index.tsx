@@ -47,8 +47,14 @@ const FormRegister = () => {
   };
 
   const createData = (data: UserDataRegister) => {
-    const newData = data;
-    newData.techs = newTech;
+    const newData = {
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      bio: data.bio,
+      techs: newTech 
+    }
     signUp(newData);
   };
 

@@ -20,7 +20,7 @@ function UserOptions() {
   return (
     <>
       {isDesktop ? (
-        <>
+        <div>
           <ContainerName>
             <figure>
               {user.img ? (
@@ -46,7 +46,7 @@ function UserOptions() {
               ))}
             </ul>
           </ContainerTechs>
-        </>
+        </div>
       ) : (
         <ContainerName>
           <figure>
