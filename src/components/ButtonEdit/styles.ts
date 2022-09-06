@@ -7,8 +7,8 @@ export const ButtonComponent = styled.button`
 
   width: fit-content;
   height: fit-content;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 0.625rem;
+  border-radius: 0.25rem;
 
   font-size: 1rem;
 
