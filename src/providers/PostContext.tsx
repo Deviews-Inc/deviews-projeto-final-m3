@@ -73,6 +73,7 @@ interface PostProvidersData {
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
   posts: PostsData[];
+  deleteFire: (id: number) => void;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -137,7 +138,7 @@ const PostProvider = ({ children }: PostProps) => {
 
   const newFirePost = (data: FireDataPost) => {
     api
-      .post("/posts/fires", data)
+      .post("/fires", data)
       .then((response) => {
         console.log(response);
       })
@@ -150,6 +151,14 @@ const PostProvider = ({ children }: PostProps) => {
       .then((response) => {})
       .catch((err) => err);
   };
+
+  const deleteFire = (id: number) => {
+    api
+      .delete(`/fires/${id}`)
+      .then((response) => {})
+      .catch((err) => console.log(err));
+  };
+
   const searchPost = (data: string) => {
     api
       .get(`/posts?q=${data}`)
@@ -178,6 +187,7 @@ const PostProvider = ({ children }: PostProps) => {
         searchPost,
         posts,
         getUserById,
+        deleteFire,
       }}
     >
       {children}

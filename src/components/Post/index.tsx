@@ -6,7 +6,11 @@ import { Container } from "./style";
 const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
   const loggedId = localStorage.getItem("@deviews:id");
 
-  const { newFirePost } = useContext(PostContext);
+  const { newFirePost, deleteFire } = useContext(PostContext);
+
+  const isFire = fires.findIndex((elem) => {
+    return elem.userId === Number(loggedId);
+  });
 
   return (
     <Container>
@@ -20,13 +24,26 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
       <div className="bottom_info">
         <span>{date}</span>
         <div>
-          <ButtonFire
-            onClick={() => {
-              const data = { userId: Number(loggedId), postId: id };
-              newFirePost(data);
-              console.log("oi");
-            }}
-          />
+          {isFire === -1 ? (
+            <ButtonFire
+              onClick={() => {
+                const data = { userId: Number(loggedId), postId: id };
+                newFirePost(data);
+              }}
+            />
+          ) : (
+            <ButtonFire
+              onClick={() => {
+                const teste2 = fires.find((elem) => {
+                  return elem.userId === Number(loggedId);
+                });
+
+                const idFire = Number(teste2?.id);
+                deleteFire(idFire);
+              }}
+            />
+          )}
+
           {fires.length > 0 && <p>{fires.length}</p>}
         </div>
       </div>

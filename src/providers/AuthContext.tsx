@@ -24,7 +24,6 @@ export interface UserDataRegister {
   img?: string;
 }
 
-
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
@@ -34,7 +33,6 @@ interface AuthProvidersData {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
-
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -49,7 +47,6 @@ const AuthProvider = ({ children }: AuthProps) => {
     {} as UserDataRegister
   );
   const [isToken, setIsToken] = useState("");
-
 
   const navigate = useNavigate();
 
