@@ -14,6 +14,9 @@ export const ContainerMain = styled.div`
   margin: 1.875rem auto;
   flex-direction: column;
   gap: 1.875rem;
+  main{
+    width: 100%;
+  }
 
   .container_info_user {
     flex-direction: column;
@@ -60,8 +63,11 @@ export const ContainerMain = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    .container_posts {
+    main{
       width: 50%;
+    }
+    .container_posts {
+      width: 100%;
     }
   }
 `;

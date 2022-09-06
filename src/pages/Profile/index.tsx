@@ -56,14 +56,16 @@ const Profile = () => {
             <ContainerMain>
                 <aside className="container_info_user">
                 </aside>
-                <main className="container_posts">
+                <main>
                   <div className="container_profile">
                     <UserOptions />
                     <ButtonEdit>Editar Perfil</ButtonEdit>
                   </div>
-                  <FormPost />
-                  <PostList />
-                  <div ref={divScrollRef} />
+                  <div className="container_posts">
+                   <FormPost />
+                    <PostList />
+                    <div ref={divScrollRef} />
+                  </div>
                 </main>
               <aside className="container_search">
                 <SearchInput />
