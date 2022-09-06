@@ -29,7 +29,6 @@ interface AuthProvidersData {
   signUp: (userData: UserDataRegister) => void;
   user: UserDataRegister;
   logOut: () => void;
-  userInfo: UserDataRegister;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
@@ -42,10 +41,6 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState<UserDataRegister>({} as UserDataRegister);
   const [loading, setLoading] = useState(true);
-
-  const [userInfo, setUserInfo] = useState<UserDataRegister>(
-    {} as UserDataRegister
-  );
   const [isToken, setIsToken] = useState("");
 
   const navigate = useNavigate();
@@ -75,7 +70,6 @@ const AuthProvider = ({ children }: AuthProps) => {
       .then((response) => {
         const { user, accessToken: token } = response.data;
         console.log(token);
-        setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
@@ -116,7 +110,6 @@ const AuthProvider = ({ children }: AuthProps) => {
         signUp,
         user,
         logOut,
-        userInfo,
         loading,
         setLoading,
         isToken,
