@@ -6,18 +6,18 @@ import { Container } from "./style";
 const PostList = () => {
   const { posts } = useContext(PostContext);
 
-  console.log(posts);
-
   return (
     <>
       <Container>
         {posts.map((post, index) => (
           <Post
             key={index}
+            id={post.id}
             content={post.content}
             userInfo={post.userInfo}
             date={post.date}
             img={post.img}
+            fires={post.fires}
           />
         ))}
       </Container>

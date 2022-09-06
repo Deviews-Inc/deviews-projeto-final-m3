@@ -26,7 +26,7 @@ export const Container = styled.li`
     padding-right: 0.313rem;
     margin: 0.625rem 0 1.25rem 0;
 
-    img {
+    > img {
       width: 1.875rem;
       height: 1.875rem;
       border-radius: 50%;
@@ -61,12 +61,30 @@ export const Container = styled.li`
     margin-bottom: 0.625rem;
   }
 
-  span {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: var(--color-grey-0);
+  .bottom_info {
+    height: 10%;
     width: 90%;
-    text-align: start;
-    margin: 1.25rem 0;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--color-grey-0);
+      width: 90%;
+      text-align: start;
+    }
+    div {
+      width: 10%;
+      gap: 5px;
+
+      img {
+        margin: 0 auto;
+        width: 60%;
+        border: none;
+      }
+    }
   }
 `;

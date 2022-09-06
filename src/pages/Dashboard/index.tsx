@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
 import PostList from "../../components/PostList";
+import Loading from "../../components/Loading";
 import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
+import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
+import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
+  const { loading } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -17,6 +21,10 @@ const Dashboard = () => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>

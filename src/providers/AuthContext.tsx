@@ -20,12 +20,21 @@ export interface UserDataRegister {
   password: string;
   bio: string;
   techs?: string[];
+  id?: number;
+  img?: string;
 }
+
 
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
   user: object;
+  logOut: () => void;
+  userInfo: UserDataRegister;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isToken: string;
+
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -35,6 +44,13 @@ export const AuthContext = createContext<AuthProvidersData>(
 const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const [userInfo, setUserInfo] = useState<UserDataRegister>(
+    {} as UserDataRegister
+  );
+  const [isToken, setIsToken] = useState("");
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,12 +62,12 @@ const AuthProvider = ({ children }: AuthProps) => {
         try {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
+          setIsToken(token);
           navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
       }
-      setLoading(false);
     };
     loadUser();
   }, []);
@@ -61,13 +77,17 @@ const AuthProvider = ({ children }: AuthProps) => {
       .post("/login", data)
       .then((response) => {
         const { user, accessToken: token } = response.data;
-
+        console.log(token);
+        setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
+        setIsToken(token);
+        console.log(isToken);
         toast.success("Bem vindo(a)!", ToastSucess);
+
         navigate("/dashboard", { replace: true });
       })
       .catch(() => {
@@ -87,8 +107,24 @@ const AuthProvider = ({ children }: AuthProps) => {
       );
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signUp,
+        user,
+        logOut,
+        userInfo,
+        loading,
+        setLoading,
+        isToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
