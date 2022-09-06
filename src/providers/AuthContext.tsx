@@ -23,6 +23,7 @@ export interface UserDataRegister {
   id?: number;
   img?: string;
 }
+
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
