@@ -73,6 +73,7 @@ interface PostProvidersData {
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
   posts: PostsData[];
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -81,6 +82,7 @@ export const PostContext = createContext<PostProvidersData>(
 
 const PostProvider = ({ children }: PostProps) => {
   const { setLoading, isToken } = useContext(AuthContext);
+  const [page, setPage] = useState(1);
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [reloadPosts, setReloadPosts] = useState(false);
   useEffect(() => {
@@ -88,11 +90,11 @@ const PostProvider = ({ children }: PostProps) => {
       if (isToken) {
         try {
           await api
-            .get("/posts?_embed=fires", {
+            .get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc`, {
               headers: { Authorization: `Bearer ${isToken}` },
             })
             .then((res) => {
-              const orderedPosts = res.data.reverse();
+              const orderedPosts = res.data;
               console.log(res.data);
               setPosts(orderedPosts);
               setLoading(false);
@@ -103,7 +105,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken]);
+  }, [isToken, page, setLoading]);
 
   const newPost = (data: DataPost) => {
     api
@@ -178,6 +180,7 @@ const PostProvider = ({ children }: PostProps) => {
         searchPost,
         posts,
         getUserById,
+        setPage
       }}
     >
       {children}

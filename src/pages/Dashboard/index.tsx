@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
 import PostList from "../../components/PostList";
@@ -11,6 +11,7 @@ import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
+  const { setPage } = useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -22,6 +23,24 @@ const Dashboard = () => {
     return () => window.removeEventListener("resize", updateMedia);
   });
 
+  const divScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      console.log(test)
+      const ratio = entry.intersectionRatio;
+      if (ratio > 0){
+          setPage((previousPage) => previousPage + 1);
+      }
+    })
+    if (divScrollRef.current){
+      intersectionObserver.observe(divScrollRef.current);
+    }
+    return () => {
+      intersectionObserver.disconnect();
+    }
+  }, [divScrollRef,setPage])
+
   if (loading) {
     return <Loading />;
   }
@@ -30,16 +49,17 @@ const Dashboard = () => {
     <>
       {isDesktop ? (
         <>
-          <Header />
           <Container>
+          <Header />
             <ContainerMain>
-              <aside className="container_info_user">
-                <UserOptions />
-              </aside>
-              <main className="container_posts">
-                <FormPost />
-                <PostList />
-              </main>
+                <aside className="container_info_user">
+                  <UserOptions />
+                </aside>
+                <main className="container_posts">
+                  <FormPost />
+                  <PostList />
+                  <div ref={divScrollRef} />
+                </main>
               <aside className="container_search">
                 <SearchInput />
               </aside>
@@ -48,8 +68,8 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <Header />
           <Container>
+            <Header />
             <ContainerMain>
               <aside className="container_info_user">
                 <UserOptions />
@@ -60,6 +80,7 @@ const Dashboard = () => {
               <main className="container_posts">
                 <FormPost />
                 <PostList />
+                <div ref={divScrollRef} />
               </main>
             </ContainerMain>
           </Container>

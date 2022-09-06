@@ -18,7 +18,7 @@ function UserOptions() {
   return (
     <>
       {isDesktop ? (
-        <>
+        <div>
           <ContainerName>
             <figure>
               <img src={Devil} alt="Devil" />
@@ -43,7 +43,7 @@ function UserOptions() {
               <SpanTech>Node.js</SpanTech>
             </ul>
           </ContainerTechs>
-        </>
+        </div>
       ) : (
         <ContainerName>
           <figure>

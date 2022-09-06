@@ -31,6 +31,12 @@ export const ContainerMain = styled.div`
     height: 90vh;
       overflow-y: auto;
   }
+  .container_profile{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
+  }
 
   @media screen and (min-width: 768px) {
     flex-direction: inherit;
