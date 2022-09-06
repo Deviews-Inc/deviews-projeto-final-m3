@@ -100,7 +100,6 @@ interface PostProvidersData {
   setPostIdSelected: React.Dispatch<React.SetStateAction<number>>;
   getPostAndAnswers: (id: number) => void;
   reloadPosts: boolean;
-
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -116,7 +115,6 @@ const PostProvider = ({ children }: PostProps) => {
     {} as IPostSelected
   );
   const [postIdSelected, setPostIdSelected] = useState(0);
-  const [page, setpage] = useState(1);
   const [reloadPosts, setReloadPosts] = useState(false);
   useEffect(() => {
     const loadPosts = async () => {
@@ -138,7 +136,6 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-
   }, [isToken, reloadPosts, page]);
 
   const newPost = (data: DataPost) => {
@@ -242,7 +239,6 @@ const PostProvider = ({ children }: PostProps) => {
         setPostIdSelected,
         getPostAndAnswers,
         reloadPosts,
-
       }}
     >
       {children}

@@ -60,7 +60,7 @@ const AuthProvider = ({ children }: AuthProps) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
           setIsToken(token);
-          navigate("/profile", { replace: true });
+          navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }

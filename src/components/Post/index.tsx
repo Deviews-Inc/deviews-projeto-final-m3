@@ -31,10 +31,9 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
             onClick={() => {
               const data = { userId: Number(loggedId), postId: id };
               newFirePost(data);
-              console.log("oi");
             }}
           />
-          {fires?.length > 0 && <p>{fires.length}</p>}
+          {/* {fires?.length > 0 && <p>{fires.length}</p>} */}
         </div>
       </div>
     </Container>
