@@ -27,10 +27,12 @@ const PostList = () => {
         {posts.map((post, index) => (
             <Post
             key={index}
+            id={post.id}
             content={post.content}
             userInfo={post.userInfo}
             date={post.date}
             img={post.img}
+            fires={post.fires}
           />
         ))}
       <div ref={divScrollRef} />
