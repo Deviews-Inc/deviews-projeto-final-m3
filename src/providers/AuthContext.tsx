@@ -49,6 +49,8 @@ const AuthProvider = ({ children }: AuthProps) => {
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
 
+  console.log(userInfo);
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

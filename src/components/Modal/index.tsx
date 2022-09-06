@@ -4,17 +4,19 @@ import { ReactNode } from "react";
 
 interface ModalProps {
   children: ReactNode;
+  onClose: () => void;
 }
 
-const Modal = ({ children }: ModalProps) => {
+const Modal = ({ onClose, children }: ModalProps) => {
   return (
     <>
-      <ContainerBackground>
-        <ContainerModal>
-          <CgClose className="close" />
-          <div>{children}</div>
-        </ContainerModal>
-      </ContainerBackground>
+      <ContainerModal>
+        <div className="containerButton">
+          <CgClose onClick={onClose} className="close" />
+        </div>
+        <div>{children}</div>
+      </ContainerModal>
+      <ContainerBackground onClick={onClose} />
     </>
   );
 };

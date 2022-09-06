@@ -1,12 +1,28 @@
-import { PostsData } from "../../providers/PostContext";
+import { useContext } from "react";
+import { PostContext, PostsData } from "../../providers/PostContext";
 import ButtonFire from "../ButtonFire";
 import { Container } from "./style";
 
-type postProps = Omit<PostsData, "id">;
+// type postProps = Omit<PostsData, "id">;
+interface postProps {
+  content: string;
+  img?: string;
+  date: string;
+  userInfo: { name: string; username: string; img: string };
+  id: number;
+  answers?: [{}];
+}
 
-const Post = ({ content, img, date, userInfo }: postProps) => {
+const Post = ({ content, img, date, userInfo, id }: postProps) => {
+  const { setOpenPostModal, setPostIdSelected, getPostAndAnswers } =
+    useContext(PostContext);
+
+  const onClick = () => {
+    getPostAndAnswers(id);
+    // setPostIdSelected(id);
+  };
   return (
-    <Container>
+    <Container onClick={onClick}>
       <div>
         <img src={userInfo.img} alt="imagem usuário" />
         <h2>{userInfo.name}</h2>

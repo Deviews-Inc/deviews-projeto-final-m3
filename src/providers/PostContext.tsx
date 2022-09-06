@@ -21,8 +21,14 @@ interface DataAnswers {
   postId: number;
 }
 
-interface AnswersId {
-  answersId: number;
+interface IAnswersData {
+  content: string;
+  userId: number;
+  date: string;
+  userInfo: IuserInfo;
+  postId: number;
+  img?: string;
+  id: number;
 }
 
 interface FireDataPost {
@@ -31,8 +37,9 @@ interface FireDataPost {
 }
 
 interface FireDataAnswers {
-  count: number;
-  answersId: number;
+  userId: number;
+  postId: number;
+  id: number;
 }
 
 interface IuserInfo {
@@ -49,6 +56,16 @@ export interface PostsData {
   userInfo: IuserInfo;
 }
 
+interface IPostSelected {
+  content: string;
+  date: string;
+  id: number;
+  img: string;
+  userInfo: IuserInfo;
+  answers: IAnswersData[];
+  fire: FireDataAnswers[];
+}
+
 interface PostProvidersData {
   newPost: (postData: DataPost) => void;
   deletePost: (idPost: PostId) => void;
@@ -59,6 +76,13 @@ interface PostProvidersData {
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
   posts: PostsData[];
+  openPostModal: boolean;
+  setOpenPostModal: React.Dispatch<React.SetStateAction<boolean>>;
+  postSelected: IPostSelected;
+  setPostSelected: React.Dispatch<React.SetStateAction<IPostSelected>>;
+  postIdSelected: number;
+  setPostIdSelected: React.Dispatch<React.SetStateAction<number>>;
+  getPostAndAnswers: (id: number) => void;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -67,17 +91,25 @@ export const PostContext = createContext<PostProvidersData>(
 
 const PostProvider = ({ children }: PostProps) => {
   const [posts, setPosts] = useState<PostsData[]>([]);
+  const [openPostModal, setOpenPostModal] = useState(false);
+  const [postSelected, setPostSelected] = useState<IPostSelected>(
+    {} as IPostSelected
+  );
+  const [postIdSelected, setPostIdSelected] = useState(0);
+  const [page, setpage] = useState(1);
 
   useEffect(() => {
     const loadPosts = () => {
       const token = localStorage.getItem("@deviews:token");
       if (token) {
         try {
-          api.get("/posts?_embed=fires").then((res) => {
-            const orderedPosts = res.data.reverse();
-            console.log(res.data);
-            setPosts(orderedPosts);
-          });
+          api
+            .get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc`)
+            .then((res) => {
+              const orderedPosts = res.data;
+              console.log(res.data);
+              setPosts(orderedPosts);
+            });
         } catch (err) {
           console.log(err);
         }
@@ -132,7 +164,9 @@ const PostProvider = ({ children }: PostProps) => {
   const searchPost = (data: string) => {
     api
       .get(`/posts?q=${data}`)
-      .then((response) => {})
+      .then((response) => {
+        setPosts(response.data);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -141,6 +175,17 @@ const PostProvider = ({ children }: PostProps) => {
       .get(`/users/${id}`)
       .then((response) => {
         console.log(response);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getPostAndAnswers = (id: number) => {
+    api
+      .get(`/posts/${id}?_embed=answers&_embed=fires`)
+      .then((response) => {
+        setPostSelected(response.data);
+        setOpenPostModal(true);
+        console.log(postSelected);
       })
       .catch((err) => console.log(err));
   };
@@ -157,6 +202,13 @@ const PostProvider = ({ children }: PostProps) => {
         searchPost,
         posts,
         getUserById,
+        openPostModal,
+        setOpenPostModal,
+        postSelected,
+        setPostSelected,
+        postIdSelected,
+        setPostIdSelected,
+        getPostAndAnswers,
       }}
     >
       {children}
