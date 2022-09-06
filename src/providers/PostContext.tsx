@@ -140,9 +140,10 @@ const PostProvider = ({ children }: PostProps) => {
     api
       .post("/fires", data)
       .then((response) => {
-        console.log(response);
+        setReloadPosts(true);
       })
       .catch((err) => console.log(err));
+    setReloadPosts(false);
   };
 
   const newFireAnswers = (postId: PostId, data: FireDataAnswers) => {
@@ -155,8 +156,11 @@ const PostProvider = ({ children }: PostProps) => {
   const deleteFire = (id: number) => {
     api
       .delete(`/fires/${id}`)
-      .then((response) => {})
+      .then((response) => {
+        setReloadPosts(true);
+      })
       .catch((err) => console.log(err));
+    setReloadPosts(false);
   };
 
   const searchPost = (data: string) => {

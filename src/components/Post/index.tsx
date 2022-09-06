@@ -34,13 +34,14 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
           ) : (
             <ButtonFire
               onClick={() => {
-                const teste2 = fires.find((elem) => {
-                  return elem.userId === Number(loggedId);
-                });
+                const teste2 = fires.find(
+                  (elem) => elem.userId === Number(loggedId)
+                );
 
                 const idFire = Number(teste2?.id);
                 deleteFire(idFire);
               }}
+              liked={true}
             />
           )}
 
