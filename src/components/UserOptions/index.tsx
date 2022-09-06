@@ -1,9 +1,11 @@
 import SpanTech from "../SpanTech";
-import Devil from "../../assets/LogoDevil.png";
-import { useEffect, useState } from "react";
+import User from "../../assets/User.png";
+import { useContext, useEffect, useState } from "react";
 import { ContainerBio, ContainerName, ContainerTechs } from "./styles";
+import { AuthContext } from "../../providers/AuthContext";
 
 function UserOptions() {
+  const { user } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -21,37 +23,42 @@ function UserOptions() {
         <div>
           <ContainerName>
             <figure>
-              <img src={Devil} alt="Devil" />
+              {user.img ? (
+                <img src={user.img} alt="User Avatar" />
+              ) : (
+                <img src={User} alt="User random" />
+              )}
             </figure>
             <div>
-              <h3>Frederico</h3>
-              <span>@FredericoPugDev</span>
+              <h3>{user.name}</h3>
+              <span>@{user.username}</span>
             </div>
           </ContainerName>
           <ContainerBio>
             <h3>Bio:</h3>
-            <p>Eu sou um pug dev!</p>
+            <p>{user.bio}</p>
           </ContainerBio>
           <ContainerTechs>
             <h3>Techs:</h3>
             <ul>
-              <SpanTech>Javascript</SpanTech>
-              <SpanTech>Node.js</SpanTech>
-              <SpanTech>Node.js</SpanTech>
-              <SpanTech>Node.js</SpanTech>
-              <SpanTech>Node.js</SpanTech>
-              <SpanTech>Node.js</SpanTech>
+              {user.techs?.map((tech, index) => (
+                <SpanTech key={index}>{tech}</SpanTech>
+              ))}
             </ul>
           </ContainerTechs>
         </div>
       ) : (
         <ContainerName>
           <figure>
-            <img src={Devil} alt="Devil" />
+            {user.img ? (
+              <img src={user.img} alt="User Avatar" />
+            ) : (
+              <img src={User} alt="User random" />
+            )}
           </figure>
           <div>
-            <h3>Frederico</h3>
-            <span>@FredericoPugDev</span>
+            <h3>{user.name}</h3>
+            <span>@{user.username}</span>
           </div>
         </ContainerName>
       )}
