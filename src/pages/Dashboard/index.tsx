@@ -1,7 +1,9 @@
 import { useContext, useRef, useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
+import Modal from "../../components/Modal";
 import PostList from "../../components/PostList";
+import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
 import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
@@ -11,7 +13,11 @@ import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
+  
   const { setPage } = useContext(PostContext);
+
+  const { openPostModal, setOpenPostModal } = useContext(PostContext);
+
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -49,6 +55,13 @@ const Dashboard = () => {
     <>
       {isDesktop ? (
         <>
+
+          {openPostModal && (
+            <Modal onClose={() => setOpenPostModal(false)}>
+              <PostModal />
+            </Modal>
+          )}
+
           <Container>
           <Header />
             <ContainerMain>
@@ -68,6 +81,13 @@ const Dashboard = () => {
         </>
       ) : (
         <>
+
+          {openPostModal && (
+            <Modal onClose={() => setOpenPostModal(false)}>
+              <PostModal />
+            </Modal>
+          )}
+
           <Container>
             <Header />
             <ContainerMain>

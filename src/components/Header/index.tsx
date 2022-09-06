@@ -38,6 +38,7 @@ const Header = () => {
           <ButtonLogout
             onClick={() => {
               setIsAuthenticated(false);
+
               logOut();
             }}
           />
