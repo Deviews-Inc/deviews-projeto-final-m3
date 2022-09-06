@@ -38,6 +38,9 @@ interface AuthProvidersData {
   user: object;
   logOut: () => void;
   userInfo: IUserInfo;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isToken: string;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -48,6 +51,8 @@ const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
+
+  const [isToken, setIsToken] = useState("");
 
   const navigate = useNavigate();
 
@@ -60,12 +65,12 @@ const AuthProvider = ({ children }: AuthProps) => {
         try {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
+          setIsToken(token);
           navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
       }
-      setLoading(false);
     };
     loadUser();
   }, []);
@@ -75,14 +80,17 @@ const AuthProvider = ({ children }: AuthProps) => {
       .post("/login", data)
       .then((response) => {
         const { user, accessToken: token } = response.data;
-
+        console.log(token);
         setUserInfo(response.data.user);
         setUser(user);
 
         window.localStorage.clear();
         localStorage.setItem("@deviews:token", token);
         localStorage.setItem("@deviews:id", user.id);
+        setIsToken(token);
+        console.log(isToken);
         toast.success("Bem vindo(a)!", ToastSucess);
+
         navigate("/dashboard", { replace: true });
       })
       .catch(() => {
@@ -108,7 +116,18 @@ const AuthProvider = ({ children }: AuthProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signUp, user, logOut, userInfo }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signUp,
+        user,
+        logOut,
+        userInfo,
+        loading,
+        setLoading,
+        isToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
