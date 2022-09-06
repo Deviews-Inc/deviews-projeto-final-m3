@@ -6,6 +6,6 @@ interface IButtonProps {
 }
 
 const ButtonEdit = ({ children }: IButtonProps) => {
-  return <ButtonComponent type="submit">{children}</ButtonComponent>;
+  return <ButtonComponent type="button">{children}</ButtonComponent>;
 };
 export default ButtonEdit;
