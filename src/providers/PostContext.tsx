@@ -74,7 +74,7 @@ const PostProvider = ({ children }: PostProps) => {
       if (token) {
         try {
           api.get("/posts").then((res) => {
-            setPosts(res.data);
+            setPosts(res.data.reverse());
           });
         } catch (err) {
           console.log(err);

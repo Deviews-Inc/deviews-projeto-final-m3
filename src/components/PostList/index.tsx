@@ -1,18 +1,31 @@
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { PostContext } from "../../providers/PostContext";
 import Post from "../Post";
 import { Container } from "./style";
 
 const PostList = () => {
   const { posts } = useContext(PostContext);
-
+  
+  const divScrollRef = useRef<HTMLDivElement>(null);
   console.log(posts);
+
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver((test) => {
+      console.log(test)
+    })
+
+    
+
+    if (divScrollRef.current){
+      intersectionObserver.observe(divScrollRef.current);
+    }
+  }, [])
 
   return (
     <>
       <Container>
         {posts.map((post, index) => (
-          <Post
+            <Post
             key={index}
             content={post.content}
             userInfo={post.userInfo}
@@ -20,6 +33,7 @@ const PostList = () => {
             img={post.img}
           />
         ))}
+      <div ref={divScrollRef} />
       </Container>
     </>
   );
