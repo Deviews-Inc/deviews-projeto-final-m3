@@ -76,11 +76,15 @@ export const Container = styled.li`
       width: 90%;
       text-align: start;
     }
+    div {
+      width: 10%;
+      gap: 5px;
 
-    img {
-      margin: 0 auto;
-      width: 60%;
-      border: none;
+      img {
+        margin: 0 auto;
+        width: 60%;
+        border: none;
+      }
     }
   }
 `;

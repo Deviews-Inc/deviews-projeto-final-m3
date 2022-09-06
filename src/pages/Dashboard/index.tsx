@@ -4,12 +4,15 @@ import Header from "../../components/Header";
 import Modal from "../../components/Modal";
 import PostList from "../../components/PostList";
 import PostModal from "../../components/PostModal";
+import Loading from "../../components/Loading";
 import SearchInput from "../../components/SearchInput";
 import UserOptions from "../../components/UserOptions";
-import { PostContext } from "../../providers/PostContext";
+import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
+import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
+  const { loading } = useContext(AuthContext);
   const { openPostModal, setOpenPostModal } = useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
@@ -21,6 +24,10 @@ const Dashboard = () => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>

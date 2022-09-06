@@ -1,5 +1,12 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import api from "../services/api";
+import { AuthContext } from "./AuthContext";
 
 interface PostProps {
   children: ReactNode;
@@ -32,7 +39,7 @@ interface IAnswersData {
 }
 
 interface FireDataPost {
-  count: number;
+  userId: number;
   postId: number;
 }
 
@@ -48,12 +55,19 @@ interface IuserInfo {
   username: string;
 }
 
+export interface IFireData {
+  userId: number;
+  postId: number;
+  id: number;
+}
+
 export interface PostsData {
   content: string;
   date: string;
   id: number;
-  img: string;
+  img?: string;
   userInfo: IuserInfo;
+  fires?: IFireData[];
 }
 
 interface IPostSelected {
@@ -71,7 +85,7 @@ interface PostProvidersData {
   deletePost: (idPost: PostId) => void;
   editPost: (idPost: PostId, answersData: DataPost) => void;
   newAnswers: (idPost: PostId, answersData: DataAnswers) => void;
-  newFirePost: (idPost: PostId, fireData: FireDataPost) => void;
+  newFirePost: (fireData: FireDataPost) => void;
   newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
@@ -90,6 +104,7 @@ export const PostContext = createContext<PostProvidersData>(
 );
 
 const PostProvider = ({ children }: PostProps) => {
+  const { setLoading, isToken } = useContext(AuthContext);
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [openPostModal, setOpenPostModal] = useState(false);
   const [postSelected, setPostSelected] = useState<IPostSelected>(
@@ -97,18 +112,20 @@ const PostProvider = ({ children }: PostProps) => {
   );
   const [postIdSelected, setPostIdSelected] = useState(0);
   const [page, setpage] = useState(1);
-
+  const [reloadPosts, setReloadPosts] = useState(false);
   useEffect(() => {
-    const loadPosts = () => {
-      const token = localStorage.getItem("@deviews:token");
-      if (token) {
+    const loadPosts = async () => {
+      if (isToken) {
         try {
-          api
-            .get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc`)
+          await api
+            .get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc`, {
+              headers: { Authorization: `Bearer ${isToken}` },
+            })
             .then((res) => {
               const orderedPosts = res.data;
               console.log(res.data);
               setPosts(orderedPosts);
+              setLoading(false);
             });
         } catch (err) {
           console.log(err);
@@ -116,7 +133,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, []);
+  }, [isToken]);
 
   const newPost = (data: DataPost) => {
     api
@@ -148,10 +165,12 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  const newFirePost = (postId: PostId, data: FireDataPost) => {
+  const newFirePost = (data: FireDataPost) => {
     api
-      .patch(`/posts/${postId}`, data)
-      .then((response) => {})
+      .post("/posts/fires", data)
+      .then((response) => {
+        console.log(response);
+      })
       .catch((err) => console.log(err));
   };
 
