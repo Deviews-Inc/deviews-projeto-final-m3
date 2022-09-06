@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { ContainerForm, Form } from "./styles";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
