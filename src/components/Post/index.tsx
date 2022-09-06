@@ -5,11 +5,18 @@ import { Container } from "./style";
 
 const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
   const loggedId = localStorage.getItem("@deviews:id");
-
-  const { newFirePost } = useContext(PostContext);
-
+  const {
+    setOpenPostModal,
+    setPostIdSelected,
+    getPostAndAnswers,
+    newFirePost,
+  } = useContext(PostContext);
+  const onClick = () => {
+    getPostAndAnswers(id);
+    setPostIdSelected(id);
+  };
   return (
-    <Container>
+    <Container onClick={onClick}>
       <div>
         <img src={userInfo.img} alt="imagem usuário" />
         <h2>{userInfo.name}</h2>
@@ -27,7 +34,7 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
               console.log("oi");
             }}
           />
-          {fires.length > 0 && <p>{fires.length}</p>}
+          {fires?.length > 0 && <p>{fires.length}</p>}
         </div>
       </div>
     </Container>

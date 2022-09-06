@@ -24,17 +24,15 @@ export interface UserDataRegister {
   img?: string;
 }
 
-
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
-  user: object;
+  user: UserDataRegister;
   logOut: () => void;
   userInfo: UserDataRegister;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
-
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -42,14 +40,13 @@ export const AuthContext = createContext<AuthProvidersData>(
 );
 
 const AuthProvider = ({ children }: AuthProps) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<UserDataRegister>({} as UserDataRegister);
   const [loading, setLoading] = useState(true);
 
   const [userInfo, setUserInfo] = useState<UserDataRegister>(
     {} as UserDataRegister
   );
   const [isToken, setIsToken] = useState("");
-
 
   const navigate = useNavigate();
 
@@ -63,7 +60,7 @@ const AuthProvider = ({ children }: AuthProps) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
           setIsToken(token);
-          navigate("/dashboard", { replace: true });
+          navigate("/profile", { replace: true });
         } catch (err) {
           console.log(err);
         }
