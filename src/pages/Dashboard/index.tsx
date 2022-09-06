@@ -58,7 +58,7 @@ const Dashboard = () => {
         <>
           {openPostModal && (
             <Modal onClose={() => setOpenPostModal(false)}>
-              <h1>Teste</h1>
+              <PostModal />
             </Modal>
           )}
           <Header />

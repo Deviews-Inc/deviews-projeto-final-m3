@@ -20,7 +20,6 @@ export const ContainerAnswers = styled.ul`
 `;
 
 export const ContainerForm = styled.div`
-  div {
-    width: 80%;
-  }
+  width: 80%;
+  margin: 0 auto;
 `;

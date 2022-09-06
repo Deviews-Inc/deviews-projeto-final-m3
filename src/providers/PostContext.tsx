@@ -12,10 +12,11 @@ interface PostProps {
   children: ReactNode;
 }
 
-interface DataPost {
+export interface DataPost {
   content: string;
-  img: string;
-  firePost: number;
+  img?: string;
+  userInfo: IuserInfo;
+  date: string;
   userId: number;
 }
 
@@ -28,7 +29,7 @@ interface DataAnswers {
   postId: number;
 }
 
-interface IAnswersData {
+export interface IAnswersData {
   content: string;
   userId: number;
   date: string;
@@ -49,7 +50,7 @@ interface FireDataAnswers {
   id: number;
 }
 
-interface IuserInfo {
+export interface IuserInfo {
   img: string;
   name: string;
   username: string;
@@ -84,7 +85,7 @@ interface PostProvidersData {
   newPost: (postData: DataPost) => void;
   deletePost: (idPost: PostId) => void;
   editPost: (idPost: PostId, answersData: DataPost) => void;
-  newAnswers: (idPost: PostId, answersData: DataAnswers) => void;
+  newAnswers: (answersData: IAnswersData) => void;
   newFirePost: (fireData: FireDataPost) => void;
   newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
   searchPost: (data: string) => void;
@@ -97,6 +98,7 @@ interface PostProvidersData {
   postIdSelected: number;
   setPostIdSelected: React.Dispatch<React.SetStateAction<number>>;
   getPostAndAnswers: (id: number) => void;
+  reloadPosts: boolean;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -133,15 +135,18 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken]);
+  }, [isToken, reloadPosts]);
 
   const newPost = (data: DataPost) => {
     api
       .post("/posts", data)
-      .then((response) => {})
+      .then((response) => {
+        setReloadPosts(true);
+      })
       .catch((err) => {
         console.log(err);
       });
+    setReloadPosts(false);
   };
 
   const deletePost = (postId: PostId) => {
@@ -158,11 +163,14 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  const newAnswers = (postId: PostId, data: DataAnswers) => {
+  const newAnswers = (data: IAnswersData) => {
     api
-      .patch(`/posts/${postId}`, data)
-      .then((response) => {})
+      .post(`/answers`, data)
+      .then((response) => {
+        setReloadPosts(true);
+      })
       .catch((err) => console.log(err));
+    setReloadPosts(false);
   };
 
   const newFirePost = (data: FireDataPost) => {
@@ -228,6 +236,7 @@ const PostProvider = ({ children }: PostProps) => {
         postIdSelected,
         setPostIdSelected,
         getPostAndAnswers,
+        reloadPosts,
       }}
     >
       {children}

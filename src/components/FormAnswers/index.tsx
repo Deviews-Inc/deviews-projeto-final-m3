@@ -2,11 +2,16 @@ import Button from "../Button";
 import { ContainerForm, Form } from "./styles";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { motion } from "framer-motion";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "../../validators/postValidators";
-import { DataPost, IuserInfo, PostContext } from "../../providers/PostContext";
+
+import {
+  IAnswersData,
+  IuserInfo,
+  PostContext,
+} from "../../providers/PostContext";
 import { AuthContext } from "../../providers/AuthContext";
 
 interface IPostData {
@@ -14,9 +19,9 @@ interface IPostData {
   img?: string;
 }
 
-function FormPost() {
+function FormAnswers() {
   const { user } = useContext(AuthContext);
-  const { newPost } = useContext(PostContext);
+  const { newAnswers, postSelected } = useContext(PostContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const parent = {
@@ -29,12 +34,12 @@ function FormPost() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<DataPost>({ resolver: yupResolver(schema) });
+  } = useForm<IAnswersData>({ resolver: yupResolver(schema) });
 
   const createNewData = (data: IPostData) => {
     const date = new Date().toLocaleDateString();
 
-    const newData = {} as DataPost;
+    const newData = {} as IAnswersData;
     newData.content = data.content;
     if (data.img !== "") {
       newData.img = data.img;
@@ -47,8 +52,8 @@ function FormPost() {
     };
     newData.date = date;
     newData.userId = Number(user.id);
-
-    newPost(newData);
+    newData.postId = Number(postSelected.id);
+    newAnswers(newData);
     reset();
   };
   return (
@@ -86,4 +91,4 @@ function FormPost() {
   );
 }
 
-export default FormPost;
+export default FormAnswers;

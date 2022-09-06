@@ -13,7 +13,7 @@ const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
   } = useContext(PostContext);
   const onClick = () => {
     getPostAndAnswers(id);
-    // setPostIdSelected(id);
+    setPostIdSelected(id);
   };
   return (
     <Container onClick={onClick}>

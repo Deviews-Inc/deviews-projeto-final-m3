@@ -1,12 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PostContext } from "../../providers/PostContext";
-import api from "../../services/api";
-import FormPost from "../FormPost";
+import FormAnswers from "../FormAnswers";
 import Post from "../Post";
 import { Container, ContainerAnswers, ContainerForm } from "./style";
 
 const PostModal = () => {
-  const { posts, postSelected } = useContext(PostContext);
+  const {
+    posts,
+    postSelected,
+    postIdSelected,
+    getPostAndAnswers,
+    reloadPosts,
+  } = useContext(PostContext);
+
+  useEffect(() => {
+    getPostAndAnswers(postIdSelected);
+  }, [reloadPosts]);
 
   return (
     <>
@@ -34,7 +43,7 @@ const PostModal = () => {
         ))}
       </ContainerAnswers>
       <ContainerForm>
-        <FormPost />
+        <FormAnswers />
       </ContainerForm>
     </>
   );
