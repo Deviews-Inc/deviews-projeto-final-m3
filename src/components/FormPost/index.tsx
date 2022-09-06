@@ -1,4 +1,5 @@
 import Button from "../Button";
+import * as yup from "yup";
 import { ContainerForm, Form } from "./styles";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { motion } from "framer-motion";

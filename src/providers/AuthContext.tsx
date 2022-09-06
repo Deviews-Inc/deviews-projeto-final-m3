@@ -40,7 +40,7 @@ export const AuthContext = createContext<AuthProvidersData>(
 );
 
 const AuthProvider = ({ children }: AuthProps) => {
-  const [user, setUser] = useState({} as UserDataRegister);
+  const [user, setUser] = useState<UserDataRegister>({} as UserDataRegister);
   const [loading, setLoading] = useState(true);
 
   const [userInfo, setUserInfo] = useState<UserDataRegister>(
@@ -48,8 +48,6 @@ const AuthProvider = ({ children }: AuthProps) => {
   );
   const [isToken, setIsToken] = useState("");
 
-  console.log(userInfo);
-  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {
