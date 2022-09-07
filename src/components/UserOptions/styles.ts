@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const ContainerUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+`;
+
 export const ContainerName = styled.div`
   display: flex;
   align-items: center;

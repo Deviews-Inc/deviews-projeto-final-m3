@@ -1,8 +1,14 @@
 import SpanTech from "../SpanTech";
 import User from "../../assets/User.png";
 import { useContext, useEffect, useState } from "react";
-import { ContainerBio, ContainerName, ContainerTechs } from "./styles";
+import {
+  ContainerBio,
+  ContainerName,
+  ContainerTechs,
+  ContainerUser,
+} from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
+import { Link } from "react-router-dom";
 
 function UserOptions() {
   const { user } = useContext(AuthContext);
@@ -20,20 +26,22 @@ function UserOptions() {
   return (
     <>
       {isDesktop ? (
-        <div>
-          <ContainerName>
-            <figure>
-              {user.img ? (
-                <img src={user.img} alt="User Avatar" />
-              ) : (
-                <img src={User} alt="User random" />
-              )}
-            </figure>
-            <div>
-              <h3>{user.name}</h3>
-              <span>@{user.username}</span>
-            </div>
-          </ContainerName>
+        <ContainerUser>
+          <Link to="/profile">
+            <ContainerName>
+              <figure>
+                {user.img ? (
+                  <img src={user.img} alt="User Avatar" />
+                ) : (
+                  <img src={User} alt="User random" />
+                )}
+              </figure>
+              <div>
+                <h3>{user.name}</h3>
+                <span>@{user.username}</span>
+              </div>
+            </ContainerName>
+          </Link>
           <ContainerBio>
             <h3>Bio:</h3>
             <p>{user.bio}</p>
@@ -46,7 +54,7 @@ function UserOptions() {
               ))}
             </ul>
           </ContainerTechs>
-        </div>
+        </ContainerUser>
       ) : (
         <ContainerName>
           <figure>
