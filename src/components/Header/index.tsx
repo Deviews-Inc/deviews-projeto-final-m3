@@ -4,9 +4,7 @@ import logoDevil from "../../assets/LogoDevil.png";
 import logoName from "../../assets/LogoNome.png";
 import ButtonLogout from "../ButtonLogout";
 import { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthContext";
-import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
@@ -36,11 +34,11 @@ const Header = () => {
       {isAuthenticated ? (
         <div>
           {isDesktop ? (
-            <Link to="/dashboard">
+            <a href="/dashboard">
               <figure>
                 <img src={fullLogo} alt="Logo <Deviews/>" />
               </figure>
-            </Link>
+            </a>
           ) : (
             <a href="/dashboard">
               <figure className="logoMobile">
@@ -59,9 +57,11 @@ const Header = () => {
         <div>
           {isDesktop ? (
             <>
+            <a href="/login">
               <figure>
                 <img src={fullLogo} alt="Logo <Deviews/>" />
               </figure>
+            </a>
               <div className="dropdown">
                 <GiHamburgerMenu color="rgba(154,154,154,1)"/>
               <ul className="dropdown-content">
@@ -74,9 +74,11 @@ const Header = () => {
             </>
           ) : (
             <>
+            <a href="/login">
               <figure className="logoMobilePublic">
                 <img src={logoName} alt="Logo devil" />
               </figure>
+            </a>
               <div className="dropdown">
                 <GiHamburgerMenu color="rgba(154,154,154,1)"/>
               <ul className="dropdown-content">
