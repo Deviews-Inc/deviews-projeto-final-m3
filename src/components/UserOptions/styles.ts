@@ -14,9 +14,16 @@ export const ContainerName = styled.div`
     )
     left bottom var(--color-grey-4) no-repeat;
   background-size: 100% 1px;
-
-  figure > img {
+  figure {
+    z-index: 10;
+    overflow: hidden;
+    border-radius: 50%;
     width: 3.75rem;
+    height: 3.75rem;
+  }
+  figure > img {
+    height: 3.75rem;
+    z-index: 9;
   }
 
   span {

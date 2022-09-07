@@ -17,7 +17,6 @@ const PostList = () => {
             userInfo={post.userInfo}
             date={post.date}
             img={post.img}
-            fires={post.fires}
           />
         ))}
       </Container>
