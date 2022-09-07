@@ -6,6 +6,10 @@ export const Button = styled.button`
 
   svg {
     color: var(--color-grey-1);
-    width: 95%;
+  }
+
+  svg:hover {
+    color: var(--color-grey-0);
+    transition: 100ms linear;
   }
 `;

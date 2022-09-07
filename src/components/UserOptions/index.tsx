@@ -3,6 +3,7 @@ import User from "../../assets/User.png";
 import { useContext, useEffect, useState } from "react";
 import { ContainerBio, ContainerName, ContainerTechs } from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
+import { PostContext } from "../../providers/PostContext";
 
 function UserOptions() {
   const { user } = useContext(AuthContext);

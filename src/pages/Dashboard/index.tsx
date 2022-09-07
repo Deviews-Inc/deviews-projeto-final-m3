@@ -13,7 +13,7 @@ import { PostContext } from "../../providers/PostContext";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
-  
+
   const { setPage } = useContext(PostContext);
 
   const { openPostModal, setOpenPostModal } = useContext(PostContext);
@@ -33,19 +33,19 @@ const Dashboard = () => {
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      console.log(test)
+      console.log(test);
       const ratio = entry.intersectionRatio;
-      if (ratio > 0){
-          setPage((previousPage) => previousPage + 1);
+      if (ratio > 0) {
+        setPage((previousPage) => previousPage + 1);
       }
-    })
-    if (divScrollRef.current){
+    });
+    if (divScrollRef.current) {
       intersectionObserver.observe(divScrollRef.current);
     }
     return () => {
       intersectionObserver.disconnect();
-    }
-  }, [divScrollRef,setPage])
+    };
+  }, [divScrollRef, setPage]);
 
   if (loading) {
     return <Loading />;
@@ -55,7 +55,6 @@ const Dashboard = () => {
     <>
       {isDesktop ? (
         <>
-
           {openPostModal && (
             <Modal onClose={() => setOpenPostModal(false)}>
               <PostModal />
@@ -63,16 +62,16 @@ const Dashboard = () => {
           )}
 
           <Container>
-          <Header />
+            <Header />
             <ContainerMain>
-                <aside className="container_info_user">
-                  <UserOptions />
-                </aside>
-                <main className="container_posts">
-                  <FormPost />
-                  <PostList />
-                  <div ref={divScrollRef} />
-                </main>
+              <aside className="container_info_user">
+                <UserOptions />
+              </aside>
+              <main className="container_posts">
+                <FormPost />
+                <PostList />
+                <div ref={divScrollRef} />
+              </main>
               <aside className="container_search">
                 <SearchInput />
               </aside>
@@ -81,7 +80,6 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-
           {openPostModal && (
             <Modal onClose={() => setOpenPostModal(false)}>
               <PostModal />
