@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { BsPlusLg } from "react-icons/bs";
 import { FiAlertCircle } from "react-icons/fi";
 import toast from "react-hot-toast";
+import UserLogo from "../../assets/User.png";
 
 import { Form } from "./styles";
 import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
@@ -47,8 +48,15 @@ const FormRegister = () => {
   };
 
   const createData = (data: UserDataRegister) => {
-    const newData = data;
-    newData.techs = newTech;
+    const newData = {
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      bio: data.bio,
+      techs: newTech,
+      img: UserLogo,
+    };
     signUp(newData);
   };
 

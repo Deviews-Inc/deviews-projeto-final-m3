@@ -10,6 +10,7 @@ import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
 import { PostContext } from "../../providers/PostContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
