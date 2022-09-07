@@ -6,6 +6,7 @@ import ButtonLogout from "../ButtonLogout";
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
@@ -27,13 +28,17 @@ const Header = () => {
       {isAuthenticated ? (
         <div>
           {isDesktop ? (
-            <figure>
-              <img src={fullLogo} alt="Logo <Deviews/>" />
-            </figure>
+            <Link to="/dashboard">
+              <figure>
+                <img src={fullLogo} alt="Logo <Deviews/>" />
+              </figure>
+            </Link>
           ) : (
-            <figure className="logoMobile">
-              <img src={logoDevil} alt="Logo devil" />
-            </figure>
+            <a href="/dashboard">
+              <figure className="logoMobile">
+                <img src={logoDevil} alt="Logo devil" />
+              </figure>
+            </a>
           )}
           <ButtonLogout
             onClick={() => {
