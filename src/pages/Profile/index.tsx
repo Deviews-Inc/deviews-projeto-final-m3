@@ -4,15 +4,15 @@ import Header from "../../components/Header";
 import PostList from "../../components/PostList";
 import Loading from "../../components/Loading";
 import SearchInput from "../../components/SearchInput";
-import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
 import { PostContext } from "../../providers/PostContext";
 import { BiPencil } from "react-icons/bi";
 import ButtonEdit from "../../components/ButtonEdit";
+import UserProfile from "../../components/UserProfile";
 
 const Profile = () => {
-    const { loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   const { setPage } = useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
@@ -29,19 +29,19 @@ const Profile = () => {
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      console.log(test)
+      console.log(test);
       const ratio = entry.intersectionRatio;
-      if (ratio > 0){
-          setPage((previousPage) => previousPage + 1);
+      if (ratio > 0) {
+        setPage((previousPage) => previousPage + 1);
       }
-    })
-    if (divScrollRef.current){
+    });
+    if (divScrollRef.current) {
       intersectionObserver.observe(divScrollRef.current);
     }
     return () => {
       intersectionObserver.disconnect();
-    }
-  }, [divScrollRef,setPage])
+    };
+  }, [divScrollRef, setPage]);
 
   if (loading) {
     return <Loading />;
@@ -52,21 +52,20 @@ const Profile = () => {
       {isDesktop ? (
         <>
           <Container>
-          <Header />
+            <Header />
             <ContainerMain>
-                <aside className="container_info_user">
-                </aside>
-                <main>
-                  <div className="container_profile">
-                    <UserOptions />
-                    <ButtonEdit>Editar Perfil</ButtonEdit>
-                  </div>
-                  <div className="container_posts">
-                   <FormPost />
-                    <PostList />
-                    <div ref={divScrollRef} />
-                  </div>
-                </main>
+              <aside className="container_info_user"></aside>
+              <main>
+                <div className="container_profile">
+                  <UserProfile />
+                  <ButtonEdit>Editar Perfil</ButtonEdit>
+                </div>
+                <div className="container_posts">
+                  <FormPost />
+                  <PostList />
+                  <div ref={divScrollRef} />
+                </div>
+              </main>
               <aside className="container_search">
                 <SearchInput />
               </aside>
@@ -79,8 +78,10 @@ const Profile = () => {
             <Header />
             <ContainerMain>
               <aside className="container_info_user">
-                <UserOptions />
-                <ButtonEdit><BiPencil /></ButtonEdit>
+                <UserProfile />
+                <ButtonEdit>
+                  <BiPencil />
+                </ButtonEdit>
               </aside>
               <aside className="container_search">
                 <SearchInput />

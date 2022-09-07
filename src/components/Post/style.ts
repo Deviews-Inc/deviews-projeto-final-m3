@@ -45,6 +45,7 @@ export const Container = styled.li`
 
   .content {
     font-size: 1.125rem;
+    line-height: initial;
     font-weight: 400;
     color: white;
     padding: 0 0.625rem 0 0.625rem;
