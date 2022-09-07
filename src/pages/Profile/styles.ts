@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const ContainerMain = styled.div`
@@ -19,9 +19,8 @@ export const ContainerMain = styled.div`
   }
 
   .container_info_user {
-    flex-direction: column;
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     padding-bottom: 0.625rem;
     color: var(--color-white-4);
     background: linear-gradient(
@@ -53,14 +52,14 @@ export const ContainerMain = styled.div`
 
   .container_posts {
     width: 100%;
-    height: 90vh;
+    height: 1000px;
     overflow-y: auto;
   }
   .container_profile {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     padding: 0rem 1.25rem;
 
     div > a > div {
@@ -86,7 +85,7 @@ export const ContainerMain = styled.div`
 
     .container_posts {
       position: relative;
-      height: 90vh;
+      height: 50vh;
       overflow-y: auto;
       width: 100%;
     }

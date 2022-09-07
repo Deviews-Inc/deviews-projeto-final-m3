@@ -24,10 +24,6 @@ interface PostId {
   postId: number;
 }
 
-interface DataAnswers {
-  content: string;
-  postId: number;
-}
 
 export interface IAnswersData {
   content: string;
@@ -94,7 +90,9 @@ interface PostProvidersData {
   getUserById: (id: number) => void;
   posts: PostsData[];
   deleteFire: (id: number) => void;
+  page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPosts: React.Dispatch<React.SetStateAction<PostsData[]>>;
   openPostModal: boolean;
   setOpenPostModal: React.Dispatch<React.SetStateAction<boolean>>;
   postSelected: IPostSelected;
@@ -146,7 +144,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken, reloadPosts, page]);
+  }, [isToken, reloadPosts, page, setLoading]);
 
   useEffect(() => {
     const getAllFires = async () => {
@@ -268,7 +266,9 @@ const PostProvider = ({ children }: PostProps) => {
         posts,
         getUserById,
         deleteFire,
+        page,
         setPage,
+        setPosts,
         openPostModal,
         setOpenPostModal,
         postSelected,
