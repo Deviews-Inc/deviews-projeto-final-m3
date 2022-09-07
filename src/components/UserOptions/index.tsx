@@ -56,19 +56,21 @@ function UserOptions() {
           </ContainerTechs>
         </ContainerUser>
       ) : (
-        <ContainerName>
-          <figure>
-            {user.img ? (
-              <img src={user.img} alt="User Avatar" />
-            ) : (
-              <img src={User} alt="User random" />
-            )}
-          </figure>
-          <div>
-            <h3>{user.name}</h3>
-            <span>@{user.username}</span>
-          </div>
-        </ContainerName>
+        <Link to="/profile">
+          <ContainerName>
+            <figure>
+              {user.img ? (
+                <img src={user.img} alt="User Avatar" />
+              ) : (
+                <img src={User} alt="User random" />
+              )}
+            </figure>
+            <div>
+              <h3>{user.name}</h3>
+              <span>@{user.username}</span>
+            </div>
+          </ContainerName>
+        </Link>
       )}
     </>
   );
