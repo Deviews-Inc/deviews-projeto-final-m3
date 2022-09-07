@@ -78,7 +78,7 @@ export const Container = styled.li`
     }
     div {
       width: 10%;
-      gap: 5px;
+      margin: 0;
 
       img {
         margin: 0 auto;
