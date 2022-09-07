@@ -26,7 +26,7 @@ export const Container = styled.li`
     padding-right: 0.313rem;
     margin: 0.625rem 0 1.25rem 0;
 
-    > img {
+    img {
       width: 1.875rem;
       height: 1.875rem;
       border-radius: 50%;
@@ -45,6 +45,7 @@ export const Container = styled.li`
 
   .content {
     font-size: 1.125rem;
+    line-height: initial;
     font-weight: 400;
     color: white;
     padding: 0 0.625rem 0 0.625rem;
@@ -55,7 +56,7 @@ export const Container = styled.li`
 
   img {
     width: 90%;
-    height: 50%;
+    height: 17.5rem;
     object-fit: cover;
     border-radius: 0.5rem;
     margin-bottom: 0.625rem;
