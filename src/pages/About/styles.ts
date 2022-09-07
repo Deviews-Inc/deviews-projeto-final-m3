@@ -49,7 +49,8 @@ export const ContainerMain = styled.div`
     }
   }
 
-  p{
+  p {
+    padding: 0 15px 0 15px;
     margin: 5px 10px;
     font-size: 14px;
     line-height: 1.5rem;
@@ -57,14 +58,18 @@ export const ContainerMain = styled.div`
 
   @media screen and (min-width: 425px) {
     width: 24.25rem;
-    .container_logo{
+    .container_logo {
       justify-content: center;
-      h2{
+      h2 {
         margin: 10px;
       }
-      img{
+      img {
         margin: 10px;
       }
+    }
+
+    p {
+      padding: 0 70px 0 70px;
     }
   }
 
@@ -72,4 +77,3 @@ export const ContainerMain = styled.div`
     width: 70%;
   }
 `;
-
