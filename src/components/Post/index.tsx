@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PostContext, PostsData } from "../../providers/PostContext";
 import ButtonFire from "../ButtonFire";
 import { Container } from "./style";
+import Chat from "../ButtonChat";
 
 const Post = ({ content, img, date, userInfo, id }: PostsData) => {
   const loggedId = localStorage.getItem("@deviews:id");
@@ -36,6 +37,7 @@ const Post = ({ content, img, date, userInfo, id }: PostsData) => {
       {img && <img src={img} alt="post content img" />}
       <div className="bottom_info">
         <span>{date}</span>
+        <Chat />
         <div>
           {isFire === -1 ? (
             <ButtonFire
