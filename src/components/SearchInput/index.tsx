@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { ChangeEvent } from "react";
 
 const SearchInput = () => {
-  const [inputSearchValue, setInputSearchValue] = useState<string>("");
-  const { searchPost } = useContext(PostContext);
+  const { searchPost, inputSearchValue, setInputSearchValue } =
+    useContext(PostContext);
 
   const [isTablet, setIsTablet] = useState(
     window.innerWidth >= 768 && window.innerWidth < 1024

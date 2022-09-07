@@ -8,6 +8,7 @@ import {
   ContainerUser,
 } from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
+import { PostContext } from "../../providers/PostContext";
 import { Link } from "react-router-dom";
 
 function UserOptions() {

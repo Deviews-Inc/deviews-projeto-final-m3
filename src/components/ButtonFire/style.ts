@@ -7,6 +7,7 @@ interface IButtonFireProps {
 export const Icon = styled.button<IButtonFireProps>`
   background-color: transparent;
   border: none;
+  z-index: 9;
 
   svg {
     color: ${(props) =>
