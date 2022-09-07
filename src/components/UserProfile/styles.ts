@@ -25,21 +25,43 @@ export const ContainerName = styled.div`
     z-index: 10;
     overflow: hidden;
     border-radius: 50%;
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 4.375rem;
+    height: 4.375rem;
   }
   figure > img {
-    height: 3.75rem;
+    height: 4.375rem;
     z-index: 9;
   }
 
   span {
-    font-size: 0.75rem;
-    color: var(--color-grey-0);
+    font-size: 0.875rem;
+    color: var(--color-grey-1);
   }
 
   h3 {
     color: var(--color-white-0);
+    font-size: 1.25rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+
+    h3 {
+      font-size: 1.375rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+
+    figure {
+      width: 5.625rem;
+      height: 5.625rem;
+
+      img {
+        height: 5.625rem;
+      }
+    }
   }
 `;
 
@@ -51,7 +73,14 @@ export const ContainerBio = styled.div`
   h3,
   p {
     color: var(--color-white-0);
-    font-size: 0.875rem;
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    h3,
+    p {
+      font-size: 1.25rem;
+    }
   }
 `;
 
@@ -62,15 +91,24 @@ export const ContainerTechs = styled.div`
 
   h3 {
     color: var(--color-white-0);
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
     width: 11.375rem;
-    height: 4.375rem;
+    max-height: 4.375rem;
     overflow: auto;
     gap: 0.625rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    h3 {
+      font-size: 1.25rem;
+    }
+    li {
+      font-size: 0.875rem;
+    }
   }
 `;

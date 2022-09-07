@@ -10,14 +10,15 @@ const PostList = () => {
     <>
       <Container>
         {posts.map((post, index) => (
-            <Post
+          <Post
             key={index}
             id={post.id}
             content={post.content}
             userInfo={post.userInfo}
             date={post.date}
             img={post.img}
-            fires={post.fires}
+            isAnswer={false}
+            answers={post.answers}
           />
         ))}
       </Container>

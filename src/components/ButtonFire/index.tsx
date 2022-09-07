@@ -1,11 +1,17 @@
-import fire from "../../assets/Fire.png";
+import { MdLocalFireDepartment } from "react-icons/md";
 import { Icon } from "./style";
 
-const ButtonFire = ({ ...rest }) => {
+interface IButtonFireProps {
+  rest?: any;
+  liked?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const ButtonFire = ({ liked, onClick }: IButtonFireProps) => {
   return (
     <>
-      <Icon {...rest}>
-        <img src={fire} alt="icon fire" />
+      <Icon onClick={onClick} liked={liked}>
+        <MdLocalFireDepartment />
       </Icon>
     </>
   );

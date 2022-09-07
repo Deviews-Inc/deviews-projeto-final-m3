@@ -1,9 +1,16 @@
 import SpanTech from "../SpanTech";
 import User from "../../assets/User.png";
 import { useContext, useEffect, useState } from "react";
-import { ContainerBio, ContainerName, ContainerTechs } from "./styles";
+import {
+  ContainerBio,
+  ContainerName,
+  ContainerTechs,
+  ContainerUser,
+} from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { PostContext } from "../../providers/PostContext";
+import { Link } from "react-router-dom";
 
 function UserOptions() {
   const { user } = useContext(AuthContext);
@@ -25,7 +32,37 @@ function UserOptions() {
   return (
     <>
       {isDesktop ? (
-        <div>
+        <ContainerUser>
+          <Link to="/profile">
+            <ContainerName onClick={teste}>
+              <figure>
+                {user.img ? (
+                  <img src={user.img} alt="User Avatar" />
+                ) : (
+                  <img src={User} alt="User random" />
+                )}
+              </figure>
+              <div>
+                <h3>{user.name}</h3>
+                <span>@{user.username}</span>
+              </div>
+            </ContainerName>
+          </Link>
+          <ContainerBio>
+            <h3>Bio:</h3>
+            <p>{user.bio}</p>
+          </ContainerBio>
+          <ContainerTechs>
+            <h3>Techs:</h3>
+            <ul>
+              {user.techs?.map((tech, index) => (
+                <SpanTech key={index}>{tech}</SpanTech>
+              ))}
+            </ul>
+          </ContainerTechs>
+        </ContainerUser>
+      ) : (
+        <Link to="/profile">
           <ContainerName onClick={teste}>
             <figure>
               {user.img ? (
@@ -39,33 +76,7 @@ function UserOptions() {
               <span>@{user.username}</span>
             </div>
           </ContainerName>
-          <ContainerBio>
-            <h3>Bio:</h3>
-            <p>{user.bio}</p>
-          </ContainerBio>
-          <ContainerTechs>
-            <h3>Techs:</h3>
-            <ul>
-              {user.techs?.map((tech, index) => (
-                <SpanTech key={index}>{tech}</SpanTech>
-              ))}
-            </ul>
-          </ContainerTechs>
-        </div>
-      ) : (
-        <ContainerName onClick={teste}>
-          <figure>
-            {user.img ? (
-              <img src={user.img} alt="User Avatar" />
-            ) : (
-              <img src={User} alt="User random" />
-            )}
-          </figure>
-          <div>
-            <h3>{user.name}</h3>
-            <span>@{user.username}</span>
-          </div>
-        </ContainerName>
+        </Link>
       )}
     </>
   );

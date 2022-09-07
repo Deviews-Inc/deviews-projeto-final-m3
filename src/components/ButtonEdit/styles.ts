@@ -6,11 +6,21 @@ export const ButtonComponent = styled.button`
   box-shadow: var(--box-shadow);
 
   width: fit-content;
-  height: fit-content;
-  padding: 0.625rem;
+  min-height: 1.875rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0rem 0.625rem;
   border-radius: 0.25rem;
 
   font-size: 1rem;
+
+  svg {
+    width: 90%;
+    height: 80%;
+  }
 
   &:hover {
     background-color: rgba(211, 0, 0, 0.83);

@@ -27,6 +27,8 @@ const PostModal = () => {
             date={postSelected.date}
             img={postSelected.img}
             id={postSelected.id}
+            isAnswer={false}
+            answers={postSelected.answers}
           />
         }
       </Container>
@@ -39,6 +41,7 @@ const PostModal = () => {
             date={answer.date}
             img={answer.img}
             id={answer.id}
+            isAnswer={true}
           />
         ))}
       </ContainerAnswers>

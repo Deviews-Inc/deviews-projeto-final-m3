@@ -24,11 +24,6 @@ interface PostId {
   postId: number;
 }
 
-interface DataAnswers {
-  content: string;
-  postId: number;
-}
-
 export interface IAnswersData {
   content: string;
   userId: number;
@@ -41,13 +36,14 @@ export interface IAnswersData {
 
 interface FireDataPost {
   userId: number;
-  postId: number;
+  postId?: number;
+  answersId?: number;
 }
 
 interface FireDataAnswers {
   userId: number;
-  postId: number;
-  id: number;
+  answersId: number;
+  id?: number;
 }
 
 export interface IuserInfo {
@@ -68,7 +64,8 @@ export interface PostsData {
   id: number;
   img?: string;
   userInfo: IuserInfo;
-  fires?: IFireData[];
+  postId?: number;
+  answers?: IAnswersData[];
 }
 
 interface IPostSelected {
@@ -87,11 +84,14 @@ interface PostProvidersData {
   editPost: (idPost: PostId, answersData: DataPost) => void;
   newAnswers: (answersData: IAnswersData) => void;
   newFirePost: (fireData: FireDataPost) => void;
-  newFireAnswers: (idPost: PostId, fireData: FireDataAnswers) => void;
+  newFireAnswers: (id: number, fireData: FireDataAnswers) => void;
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
   posts: PostsData[];
+  deleteFire: (id: number) => void;
+  page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPosts: React.Dispatch<React.SetStateAction<PostsData[]>>;
   openPostModal: boolean;
   setOpenPostModal: React.Dispatch<React.SetStateAction<boolean>>;
   postSelected: IPostSelected;
@@ -100,6 +100,9 @@ interface PostProvidersData {
   setPostIdSelected: React.Dispatch<React.SetStateAction<number>>;
   getPostAndAnswers: (id: number) => void;
   reloadPosts: boolean;
+  allFires: IFireData[];
+  inputSearchValue: string;
+  setInputSearchValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -108,27 +111,30 @@ export const PostContext = createContext<PostProvidersData>(
 
 const PostProvider = ({ children }: PostProps) => {
   const { setLoading, isToken } = useContext(AuthContext);
-  const [page, setPage] = useState(1);
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [openPostModal, setOpenPostModal] = useState(false);
   const [postSelected, setPostSelected] = useState<IPostSelected>(
     {} as IPostSelected
   );
   const [postIdSelected, setPostIdSelected] = useState(0);
+  const [page, setPage] = useState(1);
   const [reloadPosts, setReloadPosts] = useState(false);
+  const [allFires, setAllFires] = useState<IFireData[]>([]);
+  const [inputSearchValue, setInputSearchValue] = useState<string>("");
 
   useEffect(() => {
     const loadPosts = async () => {
       if (isToken) {
         try {
           await api
-            .get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc`, {
-              headers: { Authorization: `Bearer ${isToken}` },
-            })
+            .get(
+              `/posts?_page=${page}&_limit=10&_sort=id&_order=desc&_embed=answers`,
+              {
+                headers: { Authorization: `Bearer ${isToken}` },
+              }
+            )
             .then((res) => {
-              const orderedPosts = res.data;
-              console.log(res.data);
-              setPosts(orderedPosts);
+              setPosts(res.data);
               setLoading(false);
             });
         } catch (err) {
@@ -137,7 +143,22 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken, reloadPosts, page]);
+  }, [isToken, reloadPosts, page, setLoading]);
+
+  useEffect(() => {
+    const getAllFires = async () => {
+      if (isToken) {
+        try {
+          await api.get(`/fires`).then((res) => {
+            setAllFires(res.data);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    getAllFires();
+  }, [isToken, reloadPosts]);
 
   const newPost = (data: DataPost) => {
     api
@@ -177,19 +198,31 @@ const PostProvider = ({ children }: PostProps) => {
 
   const newFirePost = (data: FireDataPost) => {
     api
-      .post("/posts/fires", data)
+      .post("/fires", data)
       .then((response) => {
-        console.log(response);
+        setReloadPosts(true);
       })
       .catch((err) => console.log(err));
+    setReloadPosts(false);
   };
 
-  const newFireAnswers = (postId: PostId, data: FireDataAnswers) => {
+  const newFireAnswers = (id: number, data: FireDataAnswers) => {
     api
-      .patch(`/posts/${postId}`, data)
+      .patch(`/posts/${id}`, data)
       .then((response) => {})
       .catch((err) => err);
   };
+
+  const deleteFire = (id: number) => {
+    api
+      .delete(`/fires/${id}`)
+      .then((response) => {
+        setReloadPosts(true);
+      })
+      .catch((err) => console.log(err));
+    setReloadPosts(false);
+  };
+
   const searchPost = (data: string) => {
     api
       .get(`/posts?q=${data}`)
@@ -216,7 +249,6 @@ const PostProvider = ({ children }: PostProps) => {
       .then((response) => {
         setPostSelected(response.data);
         setOpenPostModal(true);
-        console.log(postSelected);
       })
       .catch((err) => console.log(err));
   };
@@ -233,7 +265,10 @@ const PostProvider = ({ children }: PostProps) => {
         searchPost,
         posts,
         getUserById,
+        deleteFire,
+        page,
         setPage,
+        setPosts,
         openPostModal,
         setOpenPostModal,
         postSelected,
@@ -242,6 +277,9 @@ const PostProvider = ({ children }: PostProps) => {
         setPostIdSelected,
         getPostAndAnswers,
         reloadPosts,
+        allFires,
+        inputSearchValue,
+        setInputSearchValue,
       }}
     >
       {children}

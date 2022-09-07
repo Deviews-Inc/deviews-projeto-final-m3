@@ -126,9 +126,6 @@ export const ContainerPassword = styled.div`
     }
 
     span {
-      width: 6.25rem;
-      height: 1.25rem;
-
       position: absolute;
       color: var(--color-grey-4);
       background: var(--color-white-0);
@@ -139,26 +136,28 @@ export const ContainerPassword = styled.div`
       text-align: center;
       visibility: hidden;
       border-radius: 0.375rem;
+
+      padding: 2px 5px;
     }
 
     span:after {
       content: "";
       position: absolute;
       top: 100%;
-      left: 50%;
+      left: 80%;
       margin-left: 1px;
       width: 0;
 
       border-top: 0.5rem solid var(--color-white-0);
-      border-right: 0.5rem solid transparent;
-      border-left: 0.5rem solid transparent;
+      border-right: 0.1rem solid transparent;
+      border-left: 0.6rem solid transparent;
     }
 
     &:hover span {
       visibility: visible;
-      opacity: 0.5;
+      opacity: 0.6;
       bottom: 30px;
-      left: -50px;
+      left: -90px;
     }
   }
 
