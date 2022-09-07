@@ -37,13 +37,14 @@ const FormRegister = () => {
   });
 
   const addTech = (data: string) => {
-    const tech = data.toLowerCase();
-    const findTech = newTech.find((elem) => elem === tech);
+    const findTech = newTech.find(
+      (elem) => elem.toLowerCase() === data.toLowerCase()
+    );
 
     findTech && toast.error("Você já cadastrou essa tecnologia.", ToastError);
-    tech === "" && toast.error("Adicione uma tecnologia válida.", ToastError);
+    data === "" && toast.error("Adicione uma tecnologia válida.", ToastError);
 
-    !findTech && tech !== "" && setNewTech((prev: any) => [...prev, data]);
+    !findTech && data !== "" && setNewTech((prev: any) => [...prev, data]);
   };
 
   const createData = (data: UserDataRegister) => {

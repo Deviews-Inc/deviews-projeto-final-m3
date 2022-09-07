@@ -51,9 +51,7 @@ const Post = ({ content, img, date, userInfo, id }: PostsData) => {
                   (elem) => elem.userId === Number(loggedId)
                 );
 
-                if (likesByUser) {
-                  deleteFire(likesByUser.id);
-                }
+                likesByUser && deleteFire(likesByUser.id);
               }}
               liked={true}
             />

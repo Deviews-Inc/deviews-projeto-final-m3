@@ -246,15 +246,6 @@ const PostProvider = ({ children }: PostProps) => {
       .catch((err) => console.log(err));
   };
 
-  // const getAllFires = () => {
-  //   api
-  //     .get("/fires")
-  //     .then((response) => setAllFires(response.data))
-  //     .catch((err) => console.log(err));
-  // };
-
-  // getAllFires();
-
   return (
     <PostContext.Provider
       value={{
