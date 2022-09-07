@@ -30,8 +30,7 @@ export const ContainerModal = styled.div`
       padding-box,
     linear-gradient(to right, rgba(211, 0, 0, 0.83), rgba(0, 0, 0, 0.25))
       border-box;
-
-  overflow: scroll;
+  overflow-x: auto;
 
   .containerButton {
     width: 100%;
