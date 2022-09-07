@@ -116,6 +116,7 @@ const PostProvider = ({ children }: PostProps) => {
   );
   const [postIdSelected, setPostIdSelected] = useState(0);
   const [reloadPosts, setReloadPosts] = useState(false);
+
   useEffect(() => {
     const loadPosts = async () => {
       if (isToken) {
@@ -209,7 +210,9 @@ const PostProvider = ({ children }: PostProps) => {
 
   const getPostAndAnswers = (id: number) => {
     api
-      .get(`/posts/${id}?_embed=answers&_embed=fires`)
+      .get(`/posts/${id}?_embed=answers&_embed=fires`, {
+        headers: { Authorization: `Bearer ${isToken}` },
+      })
       .then((response) => {
         setPostSelected(response.data);
         setOpenPostModal(true);

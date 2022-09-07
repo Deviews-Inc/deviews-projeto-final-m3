@@ -5,12 +5,8 @@ import { Container } from "./style";
 
 const Post = ({ content, img, date, userInfo, fires, id }: PostsData) => {
   const loggedId = localStorage.getItem("@deviews:id");
-  const {
-    setOpenPostModal,
-    setPostIdSelected,
-    getPostAndAnswers,
-    newFirePost,
-  } = useContext(PostContext);
+  const { setPostIdSelected, getPostAndAnswers, newFirePost } =
+    useContext(PostContext);
   const onClick = () => {
     getPostAndAnswers(id);
     setPostIdSelected(id);

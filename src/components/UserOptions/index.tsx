@@ -3,10 +3,13 @@ import User from "../../assets/User.png";
 import { useContext, useEffect, useState } from "react";
 import { ContainerBio, ContainerName, ContainerTechs } from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function UserOptions() {
   const { user } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
+  const navigate = useNavigate();
 
   const updateMedia = () => {
     setIsDesktop(window.innerWidth >= 768);
@@ -16,12 +19,14 @@ function UserOptions() {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
-
+  const teste = () => {
+    navigate("/profile", { replace: true });
+  };
   return (
     <>
       {isDesktop ? (
         <div>
-          <ContainerName>
+          <ContainerName onClick={teste}>
             <figure>
               {user.img ? (
                 <img src={user.img} alt="User Avatar" />
@@ -48,7 +53,7 @@ function UserOptions() {
           </ContainerTechs>
         </div>
       ) : (
-        <ContainerName>
+        <ContainerName onClick={teste}>
           <figure>
             {user.img ? (
               <img src={user.img} alt="User Avatar" />
