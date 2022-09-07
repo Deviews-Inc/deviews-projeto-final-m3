@@ -14,6 +14,9 @@ export const ContainerMain = styled.div`
   margin: 1.875rem auto;
   flex-direction: column;
   gap: 1.875rem;
+  main{
+    width: 100%;
+  }
 
   .container_info_user {
     flex-direction: column;
@@ -30,6 +33,12 @@ export const ContainerMain = styled.div`
     width: 100%;
     height: 90vh;
       overflow-y: auto;
+  }
+  .container_profile{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -54,8 +63,11 @@ export const ContainerMain = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    .container_posts {
+    main{
       width: 50%;
+    }
+    .container_posts {
+      width: 100%;
     }
   }
 `;

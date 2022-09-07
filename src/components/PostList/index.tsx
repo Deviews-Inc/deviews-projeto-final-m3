@@ -10,7 +10,7 @@ const PostList = () => {
     <>
       <Container>
         {posts.map((post, index) => (
-          <Post
+            <Post
             key={index}
             id={post.id}
             content={post.content}

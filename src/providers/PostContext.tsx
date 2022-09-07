@@ -91,6 +91,7 @@ interface PostProvidersData {
   searchPost: (data: string) => void;
   getUserById: (id: number) => void;
   posts: PostsData[];
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   openPostModal: boolean;
   setOpenPostModal: React.Dispatch<React.SetStateAction<boolean>>;
   postSelected: IPostSelected;
@@ -107,13 +108,13 @@ export const PostContext = createContext<PostProvidersData>(
 
 const PostProvider = ({ children }: PostProps) => {
   const { setLoading, isToken } = useContext(AuthContext);
+  const [page, setPage] = useState(1);
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [openPostModal, setOpenPostModal] = useState(false);
   const [postSelected, setPostSelected] = useState<IPostSelected>(
     {} as IPostSelected
   );
   const [postIdSelected, setPostIdSelected] = useState(0);
-  const [page, setpage] = useState(1);
   const [reloadPosts, setReloadPosts] = useState(false);
   useEffect(() => {
     const loadPosts = async () => {
@@ -135,7 +136,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken, reloadPosts]);
+  }, [isToken, reloadPosts, page]);
 
   const newPost = (data: DataPost) => {
     api
@@ -229,6 +230,7 @@ const PostProvider = ({ children }: PostProps) => {
         searchPost,
         posts,
         getUserById,
+        setPage,
         openPostModal,
         setOpenPostModal,
         postSelected,

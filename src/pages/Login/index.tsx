@@ -2,6 +2,7 @@ import FormLogin from "../../components/FormLogin";
 import Header from "../../components/Header";
 import Logo from "../../assets/LogoDevil.png";
 import { ContainerLeft, ContainerMain, ContainerRight, Main } from "./styles";
+import Footer from "../../components/Footer";
 
 const Login = () => {
   return (
@@ -25,6 +26,7 @@ const Login = () => {
           </div>
         </ContainerMain>
       </Main>
+      <Footer />
     </>
   );
 };

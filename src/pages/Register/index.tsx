@@ -1,6 +1,7 @@
 import FormRegister from "../../components/FormRegister";
 import Header from "../../components/Header";
 import { Main } from "./styles";
+import Footer from "../../components/Footer";
 
 const Register = () => {
   return (
@@ -11,6 +12,7 @@ const Register = () => {
           <FormRegister />
         </div>
       </Main>
+      <Footer />
     </>
   );
 };
