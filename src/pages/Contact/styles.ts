@@ -21,7 +21,7 @@ export const ContainerMain = styled.div`
   background-color: var(--color-grey-3);
   color: var(--color-grey-0);
 
-  .title{
+  .title {
     display: flex;
     justify-content: center;
     background-color: var(--color-grey-2);
@@ -54,25 +54,26 @@ export const ContainerMain = styled.div`
 
     img {
       width: 3.125rem;
+      object-fit: cover;
     }
   }
 
-  .devs{
+  .devs {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    margin-left: 10px;
+    margin-left: 15px;
     width: 100%;
   }
 
   @media screen and (min-width: 425px) {
     width: 24.25rem;
-    .container_logo{
+    .container_logo {
       justify-content: center;
-      h2{
+      h2 {
         margin: 10px;
       }
-      img{
+      img {
         margin: 10px;
       }
     }
@@ -81,7 +82,7 @@ export const ContainerMain = styled.div`
   @media screen and (min-width: 768px) {
     width: 70%;
   }
-  .devs{
+  .devs {
     width: 100%;
     margin: 0;
     justify-content: center;
@@ -91,6 +92,4 @@ export const ContainerMain = styled.div`
     margin: 0;
     justify-content: space-evenly;
   }
-
 `;
-
