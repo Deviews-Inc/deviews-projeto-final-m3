@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { NumericLiteral } from "typescript";
 import api from "../services/api";
 import { AuthContext } from "./AuthContext";
 
@@ -66,10 +67,12 @@ export interface PostsData {
   img?: string;
   userInfo: IuserInfo;
   postId?: number;
+  userId: number;
   answers?: IAnswersData[];
 }
 
 interface IPostSelected {
+  userId: number;
   content: string;
   date: string;
   id: number;

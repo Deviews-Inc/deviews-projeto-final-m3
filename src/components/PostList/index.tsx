@@ -5,7 +5,7 @@ import { Container } from "./style";
 
 const PostList = () => {
   const { posts } = useContext(PostContext);
-
+  console.log(posts)
   return (
     <>
       <Container>
@@ -15,6 +15,7 @@ const PostList = () => {
             id={post.id}
             content={post.content}
             userInfo={post.userInfo}
+            userId={post.userId}
             date={post.date}
             img={post.img}
             isAnswer={false}

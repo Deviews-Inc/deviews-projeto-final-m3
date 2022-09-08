@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import {
   IAnswersData,
   IuserInfo,
@@ -15,6 +15,7 @@ interface IPostProps {
   date: string;
   userInfo: IuserInfo;
   id: number;
+  userId: number;
   isAnswer?: boolean;
   answers?: IAnswersData[];
 }
@@ -27,6 +28,7 @@ const Post = ({
   id,
   isAnswer,
   answers,
+  userId
 }: IPostProps) => {
   const loggedId = localStorage.getItem("@deviews:id");
   const {
@@ -36,7 +38,6 @@ const Post = ({
     newFirePost,
     deleteFire,
     allFires,
-    newFireAnswers,
   } = useContext(PostContext);
 
   const postsFire = allFires.filter((elem) => elem.postId === id);
@@ -50,6 +51,12 @@ const Post = ({
     setPostIdSelected(id);
   };
 
+  const [isUser, setIsUser] = useState<boolean>(false);
+  
+    if (userId === Number(loggedId)){
+      setIsUser(true);
+    }
+    
   return (
     <Container>
       <div>
@@ -62,7 +69,7 @@ const Post = ({
       <div className="bottom_info">
         {isAnswer ? (
           <span>{date}</span>
-        ) : (
+          ) : (
           <>
             <span>{date}</span>
             <div>
