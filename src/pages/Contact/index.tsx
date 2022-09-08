@@ -11,7 +11,7 @@ import Vitor from "../../assets/vitor.jpg";
 
 function Contact() {
   return (
-    <div>
+    <>
       <Header />
       <Main>
         <ContainerMain>
@@ -64,7 +64,7 @@ function Contact() {
         </ContainerMain>
       </Main>
       <Footer />
-    </div>
+    </>
   );
 }
 
