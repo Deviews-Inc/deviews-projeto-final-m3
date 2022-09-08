@@ -82,6 +82,13 @@ table {
 button {
 	cursor: pointer;
 }
+
+#root{
+  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 `;
 
 export default GlobalReset;

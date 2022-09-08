@@ -24,7 +24,6 @@ interface PostId {
   postId: number;
 }
 
-
 export interface IAnswersData {
   content: string;
   userId: number;
@@ -104,6 +103,8 @@ interface PostProvidersData {
   allFires: IFireData[];
   inputSearchValue: string;
   setInputSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  reloadPostUser: boolean;
+  setReloadPostUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -120,6 +121,7 @@ const PostProvider = ({ children }: PostProps) => {
   const [postIdSelected, setPostIdSelected] = useState(0);
   const [page, setPage] = useState(1);
   const [reloadPosts, setReloadPosts] = useState(false);
+  const [reloadPostUser, setReloadPostUser] = useState(false);
   const [allFires, setAllFires] = useState<IFireData[]>([]);
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
 
@@ -244,11 +246,12 @@ const PostProvider = ({ children }: PostProps) => {
 
   const getPostAndAnswers = (id: number) => {
     api
-      .get(`/posts/${id}?_embed=answers&_embed=fires`)
+      .get(`/posts/${id}?_embed=answers&_embed=fires`, {
+        headers: { Authorization: `Bearer ${isToken}` },
+      })
       .then((response) => {
         setPostSelected(response.data);
         setOpenPostModal(true);
-        // console.log(postSelected);
       })
       .catch((err) => console.log(err));
   };
@@ -280,6 +283,8 @@ const PostProvider = ({ children }: PostProps) => {
         allFires,
         inputSearchValue,
         setInputSearchValue,
+        reloadPostUser,
+        setReloadPostUser,
       }}
     >
       {children}

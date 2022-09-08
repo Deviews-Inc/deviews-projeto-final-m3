@@ -24,6 +24,13 @@ export interface UserDataRegister {
   img?: string;
 }
 
+interface IUserEdit {
+  name: string;
+  bio: string;
+  img: string;
+  techs?: string[];
+}
+
 interface AuthProvidersData {
   signIn: (userDataLogin: UserDataLogin) => void;
   signUp: (userData: UserDataRegister) => void;
@@ -32,6 +39,11 @@ interface AuthProvidersData {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isToken: string;
+  techs: string[];
+  setTechs: React.Dispatch<React.SetStateAction<string[]>>;
+  editProfile: (editUserData: IUserEdit) => void;
+  openUserModal: boolean;
+  setOpenUserModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext<AuthProvidersData>(
@@ -42,6 +54,9 @@ const AuthProvider = ({ children }: AuthProps) => {
   const [user, setUser] = useState<UserDataRegister>({} as UserDataRegister);
   const [loading, setLoading] = useState(true);
   const [isToken, setIsToken] = useState("");
+  const [techs, setTechs] = useState<string[]>([]);
+  const [openUserModal, setOpenUserModal] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const navigate = useNavigate();
 
@@ -54,15 +69,16 @@ const AuthProvider = ({ children }: AuthProps) => {
         try {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
+          setTechs(data.techs);
           setIsToken(token);
-          navigate("/profile", { replace: true });
+          navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
       }
     };
     loadUser();
-  }, []);
+  }, [reload]);
 
   const signIn = (data: UserDataLogin) => {
     api
@@ -103,6 +119,17 @@ const AuthProvider = ({ children }: AuthProps) => {
     navigate("/login", { replace: true });
   };
 
+  const editProfile = (data: IUserEdit) => {
+    api
+      .patch(`/users/${user.id}`, data)
+      .then((response) => {
+        setOpenUserModal(false);
+        setReload(true);
+      })
+      .catch((err) => console.log(err));
+    setReload(false);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -113,6 +140,11 @@ const AuthProvider = ({ children }: AuthProps) => {
         loading,
         setLoading,
         isToken,
+        techs,
+        setTechs,
+        editProfile,
+        openUserModal,
+        setOpenUserModal,
       }}
     >
       {children}
