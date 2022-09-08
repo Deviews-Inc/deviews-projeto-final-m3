@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
 import Modal from "../../components/Modal";

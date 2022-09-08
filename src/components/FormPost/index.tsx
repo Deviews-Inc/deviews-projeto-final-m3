@@ -1,5 +1,4 @@
 import Button from "../Button";
-import * as yup from "yup";
 import { ContainerForm, Form } from "./styles";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -7,7 +6,7 @@ import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "../../validators/postValidators";
-import { DataPost, IuserInfo, PostContext } from "../../providers/PostContext";
+import { DataPost, PostContext } from "../../providers/PostContext";
 import { AuthContext } from "../../providers/AuthContext";
 
 interface IPostData {
@@ -25,12 +24,9 @@ function FormPost() {
     open: { width: 200 },
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<DataPost>({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, reset } = useForm<DataPost>({
+    resolver: yupResolver(schema),
+  });
 
   const createNewData = (data: IPostData) => {
     const date = new Date().toLocaleDateString();

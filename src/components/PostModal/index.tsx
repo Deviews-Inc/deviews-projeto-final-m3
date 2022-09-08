@@ -5,13 +5,8 @@ import Post from "../Post";
 import { Container, ContainerAnswers, ContainerForm } from "./style";
 
 const PostModal = () => {
-  const {
-    posts,
-    postSelected,
-    postIdSelected,
-    getPostAndAnswers,
-    reloadPosts,
-  } = useContext(PostContext);
+  const { postSelected, postIdSelected, getPostAndAnswers, reloadPosts } =
+    useContext(PostContext);
 
   useEffect(() => {
     getPostAndAnswers(postIdSelected);

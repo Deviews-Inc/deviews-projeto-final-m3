@@ -13,13 +13,9 @@ interface INews {
   urlToImage: string;
 }
 
-interface INewsData {
-  allNews: INews[];
-}
-
 const News = () => {
   const [allNews, setAllNews] = useState<INews[]>([]);
-  console.log(allNews);
+
   useEffect(() => {
     apiNews
       .get(
