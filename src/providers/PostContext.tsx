@@ -103,6 +103,8 @@ interface PostProvidersData {
   allFires: IFireData[];
   inputSearchValue: string;
   setInputSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  reloadPostUser: boolean;
+  setReloadPostUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const PostContext = createContext<PostProvidersData>(
@@ -119,6 +121,7 @@ const PostProvider = ({ children }: PostProps) => {
   const [postIdSelected, setPostIdSelected] = useState(0);
   const [page, setPage] = useState(1);
   const [reloadPosts, setReloadPosts] = useState(false);
+  const [reloadPostUser, setReloadPostUser] = useState(false);
   const [allFires, setAllFires] = useState<IFireData[]>([]);
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
 
@@ -280,6 +283,8 @@ const PostProvider = ({ children }: PostProps) => {
         allFires,
         inputSearchValue,
         setInputSearchValue,
+        reloadPostUser,
+        setReloadPostUser,
       }}
     >
       {children}

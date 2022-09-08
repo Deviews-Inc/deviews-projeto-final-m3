@@ -26,15 +26,13 @@ function UserOptions() {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
-  const teste = () => {
-    navigate("/profile", { replace: true });
-  };
+
   return (
     <>
       {isDesktop ? (
         <ContainerUser>
           <Link to="/profile">
-            <ContainerName onClick={teste}>
+            <ContainerName>
               <figure>
                 {user.img ? (
                   <img src={user.img} alt="User Avatar" />
@@ -63,7 +61,7 @@ function UserOptions() {
         </ContainerUser>
       ) : (
         <Link to="/profile">
-          <ContainerName onClick={teste}>
+          <ContainerName>
             <figure>
               {user.img ? (
                 <img src={user.img} alt="User Avatar" />

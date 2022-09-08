@@ -16,7 +16,8 @@ import UserModal from "../../components/UserModal";
 
 const Profile = () => {
   const { openUserModal, setOpenUserModal, loading } = useContext(AuthContext);
-  const { page, setPage, posts, setPosts } = useContext(PostContext);
+  const { page, setPage, posts, setPosts, reloadPostUser } =
+    useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -48,7 +49,7 @@ const Profile = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [posts]);
+  }, [reloadPostUser]);
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(([entry]) => {

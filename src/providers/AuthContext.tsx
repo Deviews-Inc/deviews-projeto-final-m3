@@ -71,7 +71,7 @@ const AuthProvider = ({ children }: AuthProps) => {
           setUser(data);
           setTechs(data.techs);
           setIsToken(token);
-          navigate("/profile", { replace: true });
+          navigate("/dashboard", { replace: true });
         } catch (err) {
           console.log(err);
         }
