@@ -5,11 +5,11 @@ export const Button = styled.button`
   border: none;
 
   svg {
-    color: var(--color-grey-1);
+    color: var(--color-grey-0);
+    transition: 0.5s;
   }
 
   svg:hover {
-    color: var(--color-grey-0);
-    transition: 100ms linear;
+    color: var(--color-white-0);
   }
 `;

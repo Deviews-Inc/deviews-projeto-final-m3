@@ -57,7 +57,6 @@ export const ContainerModal = styled.div`
       display: flex;
       align-items: center;
       flex-direction: column;
-      height: 90%;
     }
   }
 `;

@@ -143,7 +143,6 @@ const UserModal = () => {
         </ul>
 
         <div className="container_buttons">
-          <Button>&lt;Deletar Conta/&gt;</Button>
           <Button>&lt;Salvar/&gt;</Button>
         </div>
       </ContainerForm>

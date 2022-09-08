@@ -15,17 +15,31 @@ export const Container = styled.li`
   align-items: center;
   margin-bottom: 1.875rem;
 
-  .userPost{
+  .userPost {
     width: 90%;
     display: flex;
     justify-content: flex-end;
+
+    svg {
+      cursor: pointer;
+    }
   }
 
-  .editPost{
+  .editPost {
     color: var(--color-grey-0);
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--color-white-0);
+    }
   }
-  .deletePost{
+  .deletePost {
     color: var(--color-grey-0);
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--color-red-0);
+    }
   }
 
   div {
@@ -46,12 +60,12 @@ export const Container = styled.li`
     }
 
     h2 {
-      color: white;
+      color: var(--color-white-0);
       text-align: center;
     }
 
     p {
-      color: #606060;
+      color: var(--color-grey-1);
       font-size: 0.875rem;
     }
   }

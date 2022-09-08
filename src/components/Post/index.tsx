@@ -31,9 +31,10 @@ const Post = ({
   id,
   isAnswer,
   answers,
-  userId
+  userId,
 }: IPostProps) => {
-  const { deletePost, openEditModal, setOpenEditModal } = useContext(PostContext);
+  const { deletePost, openEditModal, setOpenEditModal } =
+    useContext(PostContext);
   const loggedId = localStorage.getItem("@deviews:id");
   const {
     setPostIdSelected,
@@ -54,71 +55,82 @@ const Post = ({
     setPostIdSelected(id);
   };
 
- 
   return (
     <>
-    {openEditModal && <Modal onClose={() => setOpenEditModal(false)}><EditPostModal/></Modal>}
-    <Container>
-      {userId === Number(loggedId) ? 
-      <div className="userPost">
-        <BsPencil className="editPost" onClick={() => {
-          setOpenEditModal(true)
-          setPostIdSelected(id)
-        }} />
-        <CgClose className="deletePost" onClick={() => {
-          deletePost(id)
-          }} />
-      </div> 
-      : <></>}
-      <div>
-        <img src={userInfo.img} alt="User img" />
-        <h2>{userInfo.name}</h2>
-        <p>{`@${userInfo.username}`}</p>
-      </div>
-      <p className="content">{content}</p>
-      {img && <img src={img} alt="post content img" />}
-      <div className="bottom_info">
-        {isAnswer ? (
-          <span>{date}</span>
+      {openEditModal && (
+        <Modal onClose={() => setOpenEditModal(false)}>
+          <EditPostModal />
+        </Modal>
+      )}
+      <Container>
+        <div>
+          <img src={userInfo.img} alt="User img" />
+          <h2>{userInfo.name}</h2>
+          <p>{`@${userInfo.username}`}</p>
+          {userId === Number(loggedId) ? (
+            <div className="userPost">
+              <BsPencil
+                className="editPost"
+                onClick={() => {
+                  setOpenEditModal(true);
+                  setPostIdSelected(id);
+                }}
+              />
+              <CgClose
+                className="deletePost"
+                onClick={() => {
+                  deletePost(id);
+                }}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+        <p className="content">{content}</p>
+        {img && <img src={img} alt="post content img" />}
+        <div className="bottom_info">
+          {isAnswer ? (
+            <span>{date}</span>
           ) : (
             <>
-            <span>{date}</span>
-            <div>
-              <Chat onClick={onClick} />
-              <p>{answers?.length}</p>
-            </div>
-            <div>
-              {isFire === -1 ? (
-                <>
-                  <ButtonFire
-                    onClick={() => {
-                      const data = { userId: Number(loggedId), postId: id };
-                      newFirePost(data);
-                    }}
+              <span>{date}</span>
+              <div>
+                <Chat onClick={onClick} />
+                <p>{answers?.length}</p>
+              </div>
+              <div>
+                {isFire === -1 ? (
+                  <>
+                    <ButtonFire
+                      onClick={() => {
+                        const data = { userId: Number(loggedId), postId: id };
+                        newFirePost(data);
+                      }}
                     />
-                  {postsFire?.length > 0 && <p>{postsFire.length}</p>}
-                </>
-              ) : (
-                <>
-                  <ButtonFire
-                    onClick={() => {
-                      const likesByUser = postsFire.find(
-                        (elem) => elem.userId === Number(loggedId)
-                      );
+                    {postsFire?.length > 0 && <p>{postsFire.length}</p>}
+                  </>
+                ) : (
+                  <>
+                    <ButtonFire
+                      onClick={() => {
+                        const likesByUser = postsFire.find(
+                          (elem) => elem.userId === Number(loggedId)
+                        );
 
-                      likesByUser && deleteFire(likesByUser.id);
-                    }}
-                    liked={true}
+                        likesByUser && deleteFire(likesByUser.id);
+                      }}
+                      liked={true}
                     />
-                  {postsFire?.length > 0 && <p>{postsFire.length}</p>}
-                </>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </Container>
-  </>
+                    {postsFire?.length > 0 && <p>{postsFire.length}</p>}
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </Container>
+    </>
   );
 };
 export default Post;
