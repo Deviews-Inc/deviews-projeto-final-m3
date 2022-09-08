@@ -8,12 +8,15 @@ import {
   ContainerUser,
 } from "./styles";
 import { AuthContext } from "../../providers/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { PostContext } from "../../providers/PostContext";
 import { Link } from "react-router-dom";
 
 function UserOptions() {
   const { user } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
+  const navigate = useNavigate();
 
   const updateMedia = () => {
     setIsDesktop(window.innerWidth >= 768);

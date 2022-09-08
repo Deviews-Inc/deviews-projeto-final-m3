@@ -10,6 +10,7 @@ import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
 import { PostContext } from "../../providers/PostContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
@@ -33,7 +34,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      console.log(test);
       const ratio = entry.intersectionRatio;
       if (ratio > 0) {
         setPage((previousPage) => previousPage + 1);

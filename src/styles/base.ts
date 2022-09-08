@@ -19,6 +19,7 @@ const GlobalBase = createGlobalStyle`
     --box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
     
     --font-base: 'Roboto', sans-serif;
+    --font-login: 'IBM Plex Mono', monospace;
 }
 
 `;
