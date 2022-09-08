@@ -14,7 +14,7 @@ const Modal = ({ onClose, children }: ModalProps) => {
         <div className="containerButton">
           <CgClose onClick={onClose} className="close" />
         </div>
-        <div>{children}</div>
+        <div className="container_infos">{children}</div>
       </ContainerModal>
       <ContainerBackground onClick={onClose} />
     </>

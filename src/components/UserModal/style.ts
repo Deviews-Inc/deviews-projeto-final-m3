@@ -9,8 +9,11 @@ export const Container = styled.div`
   .containerUser {
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: baseline;
     gap: 10px;
+    margin-bottom: 10px;
+
     figure {
       z-index: 10;
       overflow: hidden;
@@ -26,8 +29,8 @@ export const Container = styled.div`
     div {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      align-items: baseline;
+      gap: 5px;
 
       span {
         font-size: 1.35rem;
@@ -39,12 +42,18 @@ export const Container = styled.div`
         color: var(--color-white-0);
       }
     }
+
+    @media screen and (min-width: 425px) {
+      flex-direction: initial;
+      align-items: center;
+    }
   }
 
   @media screen and (min-width: 768px) {
     .containerUser {
       div {
         flex-direction: row;
+        gap: 20px;
       }
     }
   }
@@ -55,12 +64,34 @@ export const ContainerForm = styled.form`
   flex-flow: column;
   gap: 0.625rem;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
+
+  .container_edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
 
   label {
     padding-top: 1rem;
     padding-bottom: 1rem;
+
+    width: 90%;
+    padding-right: 1.3125rem;
+
+    @media screen and (min-width: 425px) {
+      width: 18.1875rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 100px;
+      text-align: end;
+    }
   }
   .entry {
     width: 90%;
@@ -79,6 +110,10 @@ export const ContainerForm = styled.form`
 
     &:focus {
       border: 2px solid var(--color-grey-1);
+    }
+
+    @media screen and (min-width: 425px) {
+      width: 16.875rem;
     }
   }
   .entryDiv {
@@ -144,6 +179,47 @@ export const ContainerForm = styled.form`
 
     @media screen and (min-width: 425px) {
       width: 16.875rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  .container_techs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-height: 6rem;
+    overflow: auto;
+  }
+
+  button,
+  .container_techs {
+    width: 90%;
+  }
+
+  .container_buttons {
+    display: flex;
+
+    gap: 20px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 425px) {
+    button,
+    .container_techs {
+      width: 18.1875rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .container_edit {
+      flex-direction: initial;
+      justify-content: center;
+      gap: 10%;
     }
   }
 `;

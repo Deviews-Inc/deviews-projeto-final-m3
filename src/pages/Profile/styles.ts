@@ -19,6 +19,7 @@ export const ContainerMain = styled.div`
   }
 
   .container_info_user {
+    justify-content: space-between;
     display: flex;
     gap: 1rem;
     padding-bottom: 0.625rem;

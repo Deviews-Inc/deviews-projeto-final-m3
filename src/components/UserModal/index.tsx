@@ -24,11 +24,7 @@ const UserModal = () => {
   const [img, setImg] = useState(user.img);
   const [bio, setBio] = useState(user.bio);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormEdit>({
+  const { register, handleSubmit } = useForm<IFormEdit>({
     resolver: yupResolver(Schema),
   });
 
@@ -79,52 +75,60 @@ const UserModal = () => {
         </div>
       </Container>
       <ContainerForm onSubmit={handleSubmit(createData)}>
-        <label htmlFor="name">Alterar Nome</label>
-        <input
-          className="entry"
-          placeholder="Digite aqui o seu nome"
-          type="text"
-          onChangeCapture={(e) => handleChangeName(e)}
-          value={name}
-          {...register("name")}
-        />
-        <label htmlFor="img">Alterar foto</label>
-        <input
-          className="entry"
-          placeholder="insira sua foto"
-          type="text"
-          onChangeCapture={(e) => handleChangeImg(e)}
-          value={img}
-          {...register("img")}
-        />
-        <label htmlFor="bio">Alterar bio</label>
-        <input
-          className="entry"
-          placeholder="insira sua bio"
-          type="text"
-          onChangeCapture={(e) => handleChangeBio(e)}
-          value={bio}
-          {...register("bio")}
-        />
-
-        <label htmlFor="techs">Tecnologias</label>
-        <div className="entryDiv">
+        <div className="container_edit">
+          <label htmlFor="name">Alterar Nome</label>
           <input
-            placeholder="Digite a tecnologia"
-            value={inputValue}
+            className="entry"
+            placeholder="Digite aqui o seu nome"
             type="text"
-            onChange={(event) => setInputValue(event.target.value)}
+            onChangeCapture={(e) => handleChangeName(e)}
+            value={name}
+            {...register("name")}
           />
-          <button
-            className="btn_add"
-            type="button"
-            onClick={() => addTech(inputValue)}
-          >
-            <BsPlusLg className="iconReact" />
-          </button>
+        </div>
+        <div className="container_edit">
+          <label htmlFor="img">Alterar foto</label>
+          <input
+            className="entry"
+            placeholder="insira sua foto"
+            type="text"
+            onChangeCapture={(e) => handleChangeImg(e)}
+            value={img}
+            {...register("img")}
+          />
+        </div>
+        <div className="container_edit">
+          <label htmlFor="bio">Alterar bio</label>
+          <input
+            className="entry"
+            placeholder="insira sua bio"
+            type="text"
+            onChangeCapture={(e) => handleChangeBio(e)}
+            value={bio}
+            {...register("bio")}
+          />
         </div>
 
-        <ul>
+        <div className="container_edit">
+          <label htmlFor="techs">Tecnologias</label>
+          <div className="entryDiv">
+            <input
+              placeholder="Digite a tecnologia"
+              value={inputValue}
+              type="text"
+              onChange={(event) => setInputValue(event.target.value)}
+            />
+            <button
+              className="btn_add"
+              type="button"
+              onClick={() => addTech(inputValue)}
+            >
+              <BsPlusLg className="iconReact" />
+            </button>
+          </div>
+        </div>
+
+        <ul className="container_techs">
           {techs &&
             techs.length > 0 &&
             techs.map((thisTech: any, index: any) => (
@@ -138,7 +142,10 @@ const UserModal = () => {
             ))}
         </ul>
 
-        <Button>&lt;Salvar/&gt;</Button>
+        <div className="container_buttons">
+          <Button>&lt;Deletar Conta/&gt;</Button>
+          <Button>&lt;Salvar/&gt;</Button>
+        </div>
       </ContainerForm>
     </>
   );

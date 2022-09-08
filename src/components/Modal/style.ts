@@ -42,10 +42,22 @@ export const ContainerModal = styled.div`
       width: 25px;
       height: 25px;
       cursor: pointer;
+      transition: 0.5s;
+
+      &:hover {
+        color: var(--color-red-0);
+      }
     }
   }
 
   @media screen and (min-width: 768px) {
     width: 60%;
+    .container_infos {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      height: 90%;
+    }
   }
 `;
