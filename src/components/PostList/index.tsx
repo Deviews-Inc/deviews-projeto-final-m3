@@ -5,7 +5,6 @@ import { Container } from "./style";
 
 const PostList = () => {
   const { posts } = useContext(PostContext);
-  console.log(posts)
   return (
     <>
       <Container>

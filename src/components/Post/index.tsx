@@ -1,13 +1,16 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
+import { CgClose } from "react-icons/cg";
+import { BsPencil } from "react-icons/bs";
 import {
   IAnswersData,
   IuserInfo,
   PostContext,
-  PostsData,
 } from "../../providers/PostContext";
 import ButtonFire from "../ButtonFire";
 import { Container } from "./style";
 import Chat from "../ButtonChat";
+import Modal from "../Modal";
+import EditPostModal from "../EditPostModal";
 
 interface IPostProps {
   content: string;
@@ -30,9 +33,9 @@ const Post = ({
   answers,
   userId
 }: IPostProps) => {
+  const { deletePost, openEditModal, setOpenEditModal } = useContext(PostContext);
   const loggedId = localStorage.getItem("@deviews:id");
   const {
-    setOpenPostModal,
     setPostIdSelected,
     getPostAndAnswers,
     newFirePost,
@@ -51,14 +54,22 @@ const Post = ({
     setPostIdSelected(id);
   };
 
-  const [isUser, setIsUser] = useState<boolean>(false);
-  
-    if (userId === Number(loggedId)){
-      setIsUser(true);
-    }
-    
+ 
   return (
+    <>
+    {openEditModal && <Modal onClose={() => setOpenEditModal(false)}><EditPostModal/></Modal>}
     <Container>
+      {userId === Number(loggedId) ? 
+      <div className="userPost">
+        <BsPencil className="editPost" onClick={() => {
+          setOpenEditModal(true)
+          setPostIdSelected(id)
+        }} />
+        <CgClose className="deletePost" onClick={() => {
+          deletePost(id)
+          }} />
+      </div> 
+      : <></>}
       <div>
         <img src={userInfo.img} alt="User img" />
         <h2>{userInfo.name}</h2>
@@ -70,7 +81,7 @@ const Post = ({
         {isAnswer ? (
           <span>{date}</span>
           ) : (
-          <>
+            <>
             <span>{date}</span>
             <div>
               <Chat onClick={onClick} />
@@ -84,7 +95,7 @@ const Post = ({
                       const data = { userId: Number(loggedId), postId: id };
                       newFirePost(data);
                     }}
-                  />
+                    />
                   {postsFire?.length > 0 && <p>{postsFire.length}</p>}
                 </>
               ) : (
@@ -98,7 +109,7 @@ const Post = ({
                       likesByUser && deleteFire(likesByUser.id);
                     }}
                     liked={true}
-                  />
+                    />
                   {postsFire?.length > 0 && <p>{postsFire.length}</p>}
                 </>
               )}
@@ -107,6 +118,7 @@ const Post = ({
         )}
       </div>
     </Container>
+  </>
   );
 };
 export default Post;
