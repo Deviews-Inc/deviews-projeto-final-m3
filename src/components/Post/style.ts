@@ -83,7 +83,6 @@ export const Container = styled.li`
 
   img {
     width: 90%;
-    height: 17.5rem;
     object-fit: cover;
     border-radius: 0.5rem;
     margin-bottom: 0.625rem;

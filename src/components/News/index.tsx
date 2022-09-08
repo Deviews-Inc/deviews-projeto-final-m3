@@ -9,7 +9,7 @@ interface INews {
   publishedAt: string;
   source: string;
   title: string;
-  url: string;
+  link: string;
   urlToImage: string;
 }
 
@@ -19,10 +19,10 @@ const News = () => {
   useEffect(() => {
     apiNews
       .get(
-        "/everything?q=desenvolvedor&language=pt&pageSize=10&apiKey=4e412cebdfe94aebab875ee76e92b583"
+        "/1/news?apikey=pub_1086550aec075813e771d3a21f40160b6353e&language=pt&category=technology"
       )
       .then((response) => {
-        setAllNews(response.data.articles);
+        setAllNews(response.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -33,7 +33,7 @@ const News = () => {
       <ContainerList>
         {allNews.map((newsMap, index) => (
           <li key={index}>
-            <a href={newsMap.url} target="_blank">
+            <a href={newsMap.link} target="_blank">
               <p>{newsMap.title}</p>
             </a>
           </li>
