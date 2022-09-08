@@ -10,7 +10,6 @@ import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
 import { PostContext } from "../../providers/PostContext";
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
@@ -29,23 +28,18 @@ const Dashboard = () => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
-
-  const divScrollRef = useRef<HTMLDivElement>(null);
+  
+  const divScroll = document.querySelector("#scrollInfinite");
 
   useEffect(() => {
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      const ratio = entry.intersectionRatio;
-      if (ratio > 0) {
-        setPage((previousPage) => previousPage + 1);
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if(entries.some((entry) => entry.isIntersecting)){
+        setPage((previous) => previous + 1)
       }
     });
-    if (divScrollRef.current) {
-      intersectionObserver.observe(divScrollRef.current);
-    }
-    return () => {
-      intersectionObserver.disconnect();
-    };
-  }, [divScrollRef, setPage]);
+    (divScroll !== null) ? intersectionObserver.observe(divScroll)
+    : intersectionObserver.disconnect();
+  }, [divScroll])
 
   if (loading) {
     return <Loading />;
@@ -70,7 +64,7 @@ const Dashboard = () => {
               <main className="container_posts">
                 <FormPost />
                 <PostList />
-                <div ref={divScrollRef} />
+                <div id="scrollInfinite"/>
               </main>
               <aside className="container_search">
                 <SearchInput />
@@ -98,7 +92,7 @@ const Dashboard = () => {
               <main className="container_posts">
                 <FormPost />
                 <PostList />
-                <div ref={divScrollRef} />
+                <div id="scrollInfinite"/>
               </main>
             </ContainerMain>
           </Container>

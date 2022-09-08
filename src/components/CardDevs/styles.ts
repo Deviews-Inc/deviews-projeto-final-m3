@@ -5,8 +5,8 @@ export const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 0 2rem;
-  padding: 15px;
+  margin: 0 0.2rem;
+  padding: 0.125rem;
 
   figure {
     display: none;

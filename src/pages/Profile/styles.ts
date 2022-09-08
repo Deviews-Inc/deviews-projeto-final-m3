@@ -46,7 +46,10 @@ export const ContainerMain = styled.div`
       background: transparent;
     }
   }
-
+  #scrollInfinite{
+    height: 3rem;
+    background-color: transparent;
+  }
   .container_search {
     display: flex;
     justify-content: center;
@@ -55,6 +58,7 @@ export const ContainerMain = styled.div`
   .container_posts {
     width: 100%;
     height: 1000px;
+
   }
 
   .container_profile {

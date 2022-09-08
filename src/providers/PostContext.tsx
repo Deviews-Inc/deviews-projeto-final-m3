@@ -147,7 +147,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [isToken, reloadPosts, page, setLoading]);
+  }, [page, isToken, setLoading]);
 
   useEffect(() => {
     const getAllFires = async () => {
