@@ -138,7 +138,9 @@ const PostProvider = ({ children }: PostProps) => {
               }
             )
             .then((res) => {
-              setPosts(res.data);
+              if (res.data.length > 0) {
+                setPosts(res.data);
+              }
               setLoading(false);
             });
         } catch (err) {
@@ -147,7 +149,7 @@ const PostProvider = ({ children }: PostProps) => {
       }
     };
     loadPosts();
-  }, [page, isToken, setLoading, posts]);
+  }, [page, isToken, setLoading]);
 
   useEffect(() => {
     const getAllFires = async () => {
@@ -180,7 +182,7 @@ const PostProvider = ({ children }: PostProps) => {
     api
       .delete(`/posts/${postId}`)
       .then((response) => {
-        setReloadPosts(true)
+        setReloadPosts(true);
       })
       .catch((err) => console.log(err));
     setReloadPosts(false);
@@ -188,12 +190,14 @@ const PostProvider = ({ children }: PostProps) => {
 
   const editPost = (postId: number, data: DataPost) => {
     api
-      .patch(`/posts/${postId}`, data,  {
+      .patch(`/posts/${postId}`, data, {
         headers: { Authorization: `Bearer ${isToken}` },
       })
-      .then((response) => {setReloadPosts(true)})
+      .then((response) => {
+        setReloadPosts(true);
+      })
       .catch((err) => console.log(err));
-      setReloadPosts(false);
+    setReloadPosts(false);
   };
 
   const newAnswers = (data: IAnswersData) => {
