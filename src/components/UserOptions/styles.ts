@@ -20,6 +20,7 @@ export const ContainerName = styled.div`
     )
     left bottom var(--color-grey-4) no-repeat;
   background-size: 100% 1px;
+
   figure {
     z-index: 10;
     overflow: hidden;

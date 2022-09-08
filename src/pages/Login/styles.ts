@@ -50,11 +50,8 @@ export const ContainerMain = styled.div`
 `;
 
 export const ContainerLeft = styled.div`
-  display: none;
-
-  p {
-    color: var(--color-white-0);
-  }
+  display: flex;
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     width: 50%;

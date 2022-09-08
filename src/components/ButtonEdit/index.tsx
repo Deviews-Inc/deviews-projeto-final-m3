@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
+import { AuthContext } from "../../providers/AuthContext";
 import { ButtonComponent } from "./styles";
 
 interface IButtonProps {
@@ -6,6 +7,11 @@ interface IButtonProps {
 }
 
 const ButtonEdit = ({ children }: IButtonProps) => {
-  return <ButtonComponent type="button">{children}</ButtonComponent>;
+  const { setOpenUserModal } = useContext(AuthContext);
+  return (
+    <ButtonComponent onClick={() => setOpenUserModal(true)} type="button">
+      {children}
+    </ButtonComponent>
+  );
 };
 export default ButtonEdit;

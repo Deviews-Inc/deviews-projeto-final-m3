@@ -11,10 +11,13 @@ import { BiPencil } from "react-icons/bi";
 import ButtonEdit from "../../components/ButtonEdit";
 import UserProfile from "../../components/UserProfile";
 import api from "../../services/api";
+import Modal from "../../components/Modal";
+import UserModal from "../../components/UserModal";
 
 const Profile = () => {
-  const { loading } = useContext(AuthContext);
-  const { page, setPage, posts, setPosts } = useContext(PostContext);
+  const { openUserModal, setOpenUserModal, loading } = useContext(AuthContext);
+  const { page, setPage, posts, setPosts, reloadPostUser } =
+    useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const updateMedia = () => {
@@ -31,25 +34,25 @@ const Profile = () => {
   useEffect(() => {
     const user = localStorage.getItem("@deviews:id");
     const token = localStorage.getItem("@deviews:token");
-    try{
-      api.get(`/posts?_page=${page}&_limit=10&_sort=id&_order=desc&_embed=answers&userId=${user}`, 
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log(res)
-        setPosts(res.data);
-      });
+    try {
+      api
+        .get(
+          `/posts?_page=${page}&_limit=10&_sort=id&_order=desc&_embed=answers&userId=${user}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          setPosts(res.data);
+        });
+    } catch (err) {
+      console.log(err);
     }
-    catch(err){
-      console.log(err)
-    }
-  }, [posts])
-  
+  }, [reloadPostUser]);
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      console.log(test);
       const ratio = entry.intersectionRatio;
       if (ratio > 0) {
         setPage((previousPage) => previousPage + 1);
@@ -71,6 +74,11 @@ const Profile = () => {
     <>
       {isDesktop ? (
         <>
+          {openUserModal && (
+            <Modal onClose={() => setOpenUserModal(false)}>
+              <UserModal />
+            </Modal>
+          )}
           <Container>
             <Header />
             <ContainerMain>
@@ -94,6 +102,11 @@ const Profile = () => {
         </>
       ) : (
         <>
+          {openUserModal && (
+            <Modal onClose={() => setOpenUserModal(false)}>
+              <UserModal />
+            </Modal>
+          )}
           <Container>
             <Header />
             <ContainerMain>

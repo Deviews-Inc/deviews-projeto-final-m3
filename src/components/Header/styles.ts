@@ -9,7 +9,7 @@ export const HeaderComponent = styled.header`
 
   background-color: var(--color-black-0);
   box-shadow: var(--box-shadow);
-  
+
   div {
     display: flex;
     align-items: center;
@@ -44,15 +44,31 @@ export const HeaderComponent = styled.header`
       position: absolute;
       background-color: var(--color-grey-2);
       min-width: 160px;
-      margin-top: 210px;
+      margin-top: 320px;
       box-shadow: 0px 8px 16px 0px var(--box-shadow);
-      padding: 12px 16px;
       z-index: 1;
-      a{
+      border-radius: 5px;
+
+      a {
         color: var(--color-white-0);
       }
-      li{
+      li {
         margin: 10px;
+        margin-top: 20px;
+        padding: 12px 16px;
+        border-radius: 4px;
+      }
+
+      li:hover {
+        background: linear-gradient(
+            to right,
+            rgba(211, 0, 0, 0.83),
+            rgba(0, 0, 0, 0.25)
+          )
+          left bottom transparent no-repeat;
+        background-size: 80% 2px;
+        transition: 500ms;
+        background-color: var(--color-grey-1);
       }
     }
 
