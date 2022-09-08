@@ -20,10 +20,6 @@ export interface DataPost {
   userId: number;
 }
 
-interface PostId {
-  postId: number;
-}
-
 export interface IAnswersData {
   content: string;
   userId: number;
@@ -65,10 +61,12 @@ export interface PostsData {
   img?: string;
   userInfo: IuserInfo;
   postId?: number;
+  userId: number;
   answers?: IAnswersData[];
 }
 
 interface IPostSelected {
+  userId: number;
   content: string;
   date: string;
   id: number;
@@ -80,8 +78,8 @@ interface IPostSelected {
 
 interface PostProvidersData {
   newPost: (postData: DataPost) => void;
-  deletePost: (idPost: PostId) => void;
-  editPost: (idPost: PostId, answersData: DataPost) => void;
+  deletePost: (idPost: number) => void;
+  editPost: (idPost: number, answersData: DataPost) => void;
   newAnswers: (answersData: IAnswersData) => void;
   newFirePost: (fireData: FireDataPost) => void;
   newFireAnswers: (id: number, fireData: FireDataAnswers) => void;
@@ -94,6 +92,8 @@ interface PostProvidersData {
   setPosts: React.Dispatch<React.SetStateAction<PostsData[]>>;
   openPostModal: boolean;
   setOpenPostModal: React.Dispatch<React.SetStateAction<boolean>>;
+  openEditModal: boolean;
+  setOpenEditModal: React.Dispatch<React.SetStateAction<boolean>>;
   postSelected: IPostSelected;
   setPostSelected: React.Dispatch<React.SetStateAction<IPostSelected>>;
   postIdSelected: number;
@@ -124,6 +124,7 @@ const PostProvider = ({ children }: PostProps) => {
   const [reloadPostUser, setReloadPostUser] = useState(false);
   const [allFires, setAllFires] = useState<IFireData[]>([]);
   const [inputSearchValue, setInputSearchValue] = useState<string>("");
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -175,18 +176,24 @@ const PostProvider = ({ children }: PostProps) => {
     setReloadPosts(false);
   };
 
-  const deletePost = (postId: PostId) => {
+  const deletePost = (postId: number) => {
     api
       .delete(`/posts/${postId}`)
-      .then((response) => {})
+      .then((response) => {
+        setReloadPosts(true)
+      })
       .catch((err) => console.log(err));
+    setReloadPosts(false);
   };
 
-  const editPost = (postId: PostId, data: DataPost) => {
+  const editPost = (postId: number, data: DataPost) => {
     api
-      .patch(`/posts/${postId}`, data)
-      .then((response) => {})
+      .patch(`/posts/${postId}`, data,  {
+        headers: { Authorization: `Bearer ${isToken}` },
+      })
+      .then((response) => {setReloadPosts(true)})
       .catch((err) => console.log(err));
+      setReloadPosts(false);
   };
 
   const newAnswers = (data: IAnswersData) => {
@@ -272,6 +279,8 @@ const PostProvider = ({ children }: PostProps) => {
         page,
         setPage,
         setPosts,
+        openEditModal,
+        setOpenEditModal,
         openPostModal,
         setOpenPostModal,
         postSelected,
