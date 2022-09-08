@@ -21,6 +21,7 @@ const PostList = () => {
             answers={post.answers}
           />
         ))}
+        <li />
       </Container>
     </>
   );

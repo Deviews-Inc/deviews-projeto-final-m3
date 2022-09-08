@@ -62,7 +62,6 @@ export const ContainerMain = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    margin-left: 15px;
     width: 100%;
   }
 
@@ -81,11 +80,10 @@ export const ContainerMain = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 70%;
-  }
-  .devs {
-    width: 100%;
-    margin: 0;
-    justify-content: center;
+    .devs {
+      width: 80%;
+      margin: 0 auto;
+    }
   }
 
   @media screen and (min-width: 1024px) {

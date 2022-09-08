@@ -28,35 +28,35 @@ function Contact() {
             <CardDevs
               img={Ana}
               name="Ana Verena"
-              funcao="Scrum Master"
+              funcao="Função: SM"
               linkedIn="https://www.linkedin.com/in/agomesbc/"
               github="https://github.com/anavgbc"
             />
             <CardDevs
               img={Tony}
               name="Antonio Kuhl"
-              funcao="Quality Assurance"
+              funcao="Função: QA"
               linkedIn="https://www.linkedin.com/in/antonio-victor-kuhl-rodrigues-256297221/"
               github="https://github.com/antoniov6"
             />
             <CardDevs
               img={Bea}
               name="Beatriz Ramos"
-              funcao="Quality Assurance"
+              funcao="Função: QA"
               linkedIn="https://www.linkedin.com/in/beatriz-ramos-souza/"
               github="https://github.com/ledollabea"
             />
             <CardDevs
               img={Ems}
               name="Emilly Melo"
-              funcao="Tech Leader"
+              funcao="Função: TL"
               linkedIn="https://www.linkedin.com/in/emilly-melo/"
               github="https://github.com/emimelo"
             />
             <CardDevs
               img={Vitor}
               name="Vitor Carvalho"
-              funcao="Product Owner"
+              funcao="Função: PO"
               linkedIn="https://www.linkedin.com/in/vitor-s-carvalho/"
               github="https://github.com/vitorcarvalho06"
             />

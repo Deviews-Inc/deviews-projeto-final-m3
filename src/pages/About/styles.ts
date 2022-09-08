@@ -53,7 +53,7 @@ export const ContainerMain = styled.div`
     padding: 0 15px 0 15px;
     margin: 5px 10px;
     font-size: 14px;
-    line-height: 1.5rem;
+    line-height: 1.4rem;
   }
 
   @media screen and (min-width: 425px) {

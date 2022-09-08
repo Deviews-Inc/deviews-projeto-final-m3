@@ -14,7 +14,10 @@ export const ContainerMain = styled.div`
   margin: 1.875rem auto;
   flex-direction: column;
   gap: 1.875rem;
-
+  #scrollInfinite{
+    height: 3rem;
+    background-color: transparent;
+  }
   .container_info_user {
     flex-direction: column;
     display: flex;

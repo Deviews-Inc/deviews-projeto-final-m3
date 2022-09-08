@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormPost from "../../components/FormPost";
 import Header from "../../components/Header";
 import PostList from "../../components/PostList";
@@ -16,7 +16,7 @@ import UserModal from "../../components/UserModal";
 
 const Profile = () => {
   const { openUserModal, setOpenUserModal, loading } = useContext(AuthContext);
-  const { page, setPage, posts, setPosts, reloadPostUser } =
+  const { page, setPage,  setPosts, reloadPostUser } =
     useContext(PostContext);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
@@ -28,8 +28,6 @@ const Profile = () => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
   });
-
-  const divScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const user = localStorage.getItem("@deviews:id");
@@ -49,22 +47,19 @@ const Profile = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [reloadPostUser]);
+  }, [reloadPostUser, page]);
+
+  const divScroll = document.querySelector("#scrollInfinite");
 
   useEffect(() => {
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      const ratio = entry.intersectionRatio;
-      if (ratio > 0) {
-        setPage((previousPage) => previousPage + 1);
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if(entries.some((entry) => entry.isIntersecting)){
+        setPage((previous) => previous + 1)
       }
     });
-    if (divScrollRef.current) {
-      intersectionObserver.observe(divScrollRef.current);
-    }
-    return () => {
-      intersectionObserver.disconnect();
-    };
-  }, [divScrollRef, setPage]);
+    (divScroll !== null) ? intersectionObserver.observe(divScroll)
+    : intersectionObserver.disconnect();
+  }, [divScroll])
 
   if (loading) {
     return <Loading />;
@@ -91,7 +86,7 @@ const Profile = () => {
                 <div className="container_posts">
                   <FormPost />
                   <PostList />
-                  <div ref={divScrollRef} />
+                  <div id="scrollInfinite" />
                 </div>
               </main>
               <aside className="container_search">
@@ -122,7 +117,7 @@ const Profile = () => {
               <main className="container_posts">
                 <FormPost />
                 <PostList />
-                <div ref={divScrollRef} />
+                <div id="scrollInfinite" />
               </main>
             </ContainerMain>
           </Container>
