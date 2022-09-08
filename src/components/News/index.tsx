@@ -33,14 +33,13 @@ const News = () => {
 
   return (
     <>
-      <h1>news</h1>
+      <h1>O que está acontecendo:</h1>
       <ContainerList>
         {allNews.map((newsMap, index) => (
           <li key={index}>
-            {/* <figure>
-              <img src={newsMap.urlToImage} alt="" />
-            </figure> */}
-            <p>{newsMap.title}</p>
+            <a href={newsMap.url} target="_blank">
+              <p>{newsMap.title}</p>
+            </a>
           </li>
         ))}
       </ContainerList>
