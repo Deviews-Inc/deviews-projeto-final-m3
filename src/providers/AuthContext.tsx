@@ -125,6 +125,7 @@ const AuthProvider = ({ children }: AuthProps) => {
       .then((response) => {
         setOpenUserModal(false);
         setReload(true);
+        toast.success("Dados atualizados com sucesso!", ToastSucess);
       })
       .catch((err) => console.log(err));
     setReload(false);

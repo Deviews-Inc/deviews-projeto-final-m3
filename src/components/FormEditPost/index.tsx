@@ -1,5 +1,4 @@
 import Button from "../Button";
-import * as yup from "yup";
 import { ContainerForm, Form } from "./styles";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -17,7 +16,8 @@ interface IPostData {
 
 const FormEditPost = () => {
   const { user } = useContext(AuthContext);
-  const { editPost, postIdSelected, setOpenEditModal } = useContext(PostContext);
+  const { editPost, postIdSelected, setOpenEditModal } =
+    useContext(PostContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const parent = {
@@ -25,12 +25,9 @@ const FormEditPost = () => {
     open: { width: 200 },
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<DataPost>({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, reset } = useForm<DataPost>({
+    resolver: yupResolver(schema),
+  });
 
   const createNewData = (data: IPostData) => {
     const date = new Date().toLocaleDateString();
@@ -50,7 +47,7 @@ const FormEditPost = () => {
     newData.userId = Number(user.id);
     console.log(postIdSelected);
     editPost(postIdSelected, newData);
-    setOpenEditModal(false)
+    setOpenEditModal(false);
     reset();
   };
   return (
@@ -80,12 +77,12 @@ const FormEditPost = () => {
                 }}
               />
             </div>
-            <Button>.Post</Button>
+            <Button>.Editar</Button>
           </div>
         </div>
       </Form>
     </ContainerForm>
   );
-}
+};
 
 export default FormEditPost;

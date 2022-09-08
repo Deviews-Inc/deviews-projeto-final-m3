@@ -11,6 +11,11 @@ export const Icon = styled.button<IButtonFireProps>`
 
   svg {
     color: ${(props) =>
-      props.liked ? "rgba(203, 0, 0, 1)" : "rgba(96,96,96,1)"};
+      props.liked ? "var(--color-red-0)" : "var(--color-grey-0)"};
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--color-red-0);
+    }
   }
 `;

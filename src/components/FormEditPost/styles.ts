@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerForm = styled.div`
   padding-bottom: 1.875rem;
   color: var(--color-white-4);
+  width: 90%;
   background: linear-gradient(
       to right,
       rgba(211, 0, 0, 0.83),

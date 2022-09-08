@@ -10,6 +10,7 @@ import UserOptions from "../../components/UserOptions";
 import { AuthContext } from "../../providers/AuthContext";
 import { Container, ContainerMain } from "./styles";
 import { PostContext } from "../../providers/PostContext";
+import News from "../../components/News";
 
 const Dashboard = () => {
   const { loading } = useContext(AuthContext);
@@ -68,6 +69,7 @@ const Dashboard = () => {
               </main>
               <aside className="container_search">
                 <SearchInput />
+                <News />
               </aside>
             </ContainerMain>
           </Container>
