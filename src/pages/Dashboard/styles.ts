@@ -24,12 +24,26 @@ export const ContainerMain = styled.div`
   .container_search {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    width: 20%;
+
+    h1 {
+      color: var(--color-white-0);
+      opacity: 0.6;
+      text-align: center;
+      margin: 30px 0 25px 0;
+    }
+
+    h1:hover {
+      opacity: 0.8;
+      transition: 500ms;
+    }
   }
 
   .container_posts {
     width: 100%;
     height: 90vh;
-      overflow-y: auto;
+    overflow-y: auto;
   }
 
   @media screen and (min-width: 768px) {
