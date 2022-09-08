@@ -15,6 +15,19 @@ export const Container = styled.li`
   align-items: center;
   margin-bottom: 1.875rem;
 
+  .userPost{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .editPost{
+    color: var(--color-grey-0);
+  }
+  .deletePost{
+    color: var(--color-grey-0);
+  }
+
   div {
     width: 90%;
     height: 20%;

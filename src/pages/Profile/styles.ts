@@ -16,6 +16,7 @@ export const ContainerMain = styled.div`
 
   main {
     width: 100%;
+    height: 100%;
   }
 
   .container_info_user {
@@ -55,8 +56,8 @@ export const ContainerMain = styled.div`
   .container_posts {
     width: 100%;
     height: 1000px;
-    overflow-y: auto;
   }
+
   .container_profile {
     display: flex;
     justify-content: space-between;
@@ -88,7 +89,6 @@ export const ContainerMain = styled.div`
     .container_posts {
       position: relative;
       height: 50vh;
-      overflow-y: auto;
       width: 100%;
     }
   }
