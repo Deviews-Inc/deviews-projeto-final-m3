@@ -65,8 +65,10 @@ const Post = ({
       <Container>
         <div>
           <img src={userInfo.img} alt="User img" />
-          <h2>{userInfo.name}</h2>
-          <p>{`@${userInfo.username}`}</p>
+          <div className="container_name">
+            <h2>{userInfo.name}</h2>
+            <p>{`@${userInfo.username}`}</p>
+          </div>
           {userId === Number(loggedId) ? (
             <div className="userPost">
               <BsPencil

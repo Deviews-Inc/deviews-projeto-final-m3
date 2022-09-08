@@ -115,4 +115,18 @@ export const Container = styled.li`
       }
     }
   }
+
+  .container_name {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .container_name {
+      flex-direction: initial;
+      gap: 20px;
+    }
+  }
 `;
