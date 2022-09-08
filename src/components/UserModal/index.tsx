@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext, UserDataRegister } from "../../providers/AuthContext";
-import { PostContext } from "../../providers/PostContext";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthContext";
 import { useForm } from "react-hook-form";
 import { Schema } from "../../validators/EditUser";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -47,7 +46,7 @@ const UserModal = () => {
 
   const addTech = (data: string) => {
     const findTech = techs.find(
-      (elem) => elem.toLowerCase() === data.toLowerCase()
+      (elem: string) => elem.toLowerCase() === data.toLowerCase()
     );
 
     findTech && toast.error("Você já cadastrou essa tecnologia.", ToastError);
@@ -128,7 +127,7 @@ const UserModal = () => {
         <ul>
           {techs &&
             techs.length > 0 &&
-            techs.map((thisTech, index) => (
+            techs.map((thisTech: any, index: any) => (
               <ListTech
                 key={index}
                 thisTech={thisTech}

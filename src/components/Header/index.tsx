@@ -6,10 +6,21 @@ import ButtonLogout from "../ButtonLogout";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const parent = {
+    open: {
+      opacity: 1,
+    },
+    closed: {
+      opacity: 0,
+    },
+  };
 
   const { logOut } = useContext(AuthContext);
 
@@ -22,12 +33,12 @@ const Header = () => {
     return () => window.removeEventListener("resize", updateMedia);
   });
 
-  useEffect(()=> {
+  useEffect(() => {
     const token = localStorage.getItem("@deviews:token");
-    if (token){
+    if (token) {
       setIsAuthenticated(() => true);
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <HeaderComponent>
@@ -57,36 +68,84 @@ const Header = () => {
         <div>
           {isDesktop ? (
             <>
-            <a href="/login">
-              <figure>
-                <img src={fullLogo} alt="Logo <Deviews/>" />
-              </figure>
-            </a>
+              <a href="/login">
+                <figure>
+                  <img src={fullLogo} alt="Logo <Deviews/>" />
+                </figure>
+              </a>
               <div className="dropdown">
-                <GiHamburgerMenu color="rgba(154,154,154,1)"/>
-              <ul className="dropdown-content">
-                <a href="/register"><li>Cadastre-se</li></a>
-                <a href="/login"><li>Login</li></a>
-                <a href="/about"><li>Sobre a Deviews</li></a>
-                <a href="/contact"><li>Contato</li></a>
-              </ul>
-            </div>
+                <button
+                  type="button"
+                  className="btn_dropdown"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <GiHamburgerMenu />
+                </button>
+                <motion.ul
+                  className="dropdown-content"
+                  variants={parent}
+                  animate={isOpen ? "open" : "closed"}
+                  transition={{
+                    type: "spring",
+                    damping: 10,
+                    mass: 1,
+                    stiffness: 80,
+                  }}
+                >
+                  <a href="/register">
+                    <li>Cadastre-se</li>
+                  </a>
+                  <a href="/login">
+                    <li>Login</li>
+                  </a>
+                  <a href="/about">
+                    <li>Sobre a Deviews</li>
+                  </a>
+                  <a href="/contact">
+                    <li>Contato</li>
+                  </a>
+                </motion.ul>
+              </div>
             </>
           ) : (
             <>
-            <a href="/login">
-              <figure className="logoMobilePublic">
-                <img src={logoName} alt="Logo devil" />
-              </figure>
-            </a>
+              <a href="/login">
+                <figure className="logoMobilePublic">
+                  <img src={logoName} alt="Logo devil" />
+                </figure>
+              </a>
               <div className="dropdown">
-                <GiHamburgerMenu color="rgba(154,154,154,1)"/>
-              <ul className="dropdown-content">
-                <a href="/register"><li>Cadastre-se</li></a>
-                <a href="/login"><li>Login</li></a>
-                <a href="/about"><li>Sobre a Deviews</li></a>
-                <a href="/contact"><li>Contato</li></a>
-              </ul>
+                <button
+                  type="button"
+                  className="btn_dropdown"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <GiHamburgerMenu />
+                </button>
+                <motion.ul
+                  className="dropdown-content"
+                  variants={parent}
+                  animate={isOpen ? "open" : "closed"}
+                  transition={{
+                    type: "spring",
+                    damping: 10,
+                    mass: 0.2,
+                    stiffness: 80,
+                  }}
+                >
+                  <a href="/register">
+                    <li>Cadastre-se</li>
+                  </a>
+                  <a href="/login">
+                    <li>Login</li>
+                  </a>
+                  <a href="/about">
+                    <li>Sobre a Deviews</li>
+                  </a>
+                  <a href="/contact">
+                    <li>Contato</li>
+                  </a>
+                </motion.ul>
               </div>
             </>
           )}
